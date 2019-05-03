@@ -10,7 +10,6 @@ class SVGActors extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props);
     console.log("SVGActors mounted");
   }
 
@@ -25,10 +24,15 @@ class SVGActors extends React.Component {
             <li className="nav-item"><a className="nav-link" href="#3">Scenario</a></li>
           </ul>
       </nav>
-      <div className="w-100 d-flex mt-2 justify-content-around">
-        <h1 className="test">Actors</h1> 
-        <span onClick={() => this.props.addActor("test")}><FontAwesomeIcon className="mt-2" icon={faPlus} size="2x" /></span>
+      <div className="bg-secondary text-white">
+        <span className ="actors-header text-left pl-2">Actors</span> 
+        <span className="mt-4 mr-4 float-right" onClick={() => this.props.addActor()}>
+          <FontAwesomeIcon className="add-actor" icon={faPlus} size="2x" />
+        </span>
       </div>
+      <ul id="actors-list" className="list-group bg-light text-left">
+        {this.props.renderActorsList()}
+      </ul>
     </React.Fragment>
     );
   }
