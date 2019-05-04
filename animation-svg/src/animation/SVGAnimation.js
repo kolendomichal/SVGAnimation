@@ -3,13 +3,16 @@ import "./SVGAnimation.css";
 import SVGActors from "./SVGActors/SVGActors";
 import SVGActorEditor from "./SVGActorEditor/SVGActorEditor";
 import { Actor } from "./static/actor";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 class SVGAnimation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       selectedActor: null,
-      actors: []
+      actors: [],
+      delete: true,
     };
   }
   componentDidMount() {
@@ -23,6 +26,27 @@ class SVGAnimation extends React.Component {
       actors: [...prevState.actors, actor]
     }));
   }
+  
+  deleteActor = (e,id) => {
+    e.stopPropagation();
+    let actors = [...this.state.actors];
+    let actorToDeleteIndex = actors.findIndex(actor => actor.id === id);
+    actors.splice(actorToDeleteIndex, 1);
+    let selectedActorId = this.state.selectedActor !== null ? this.state.selectedActor.id : -1;
+    let isSelectedActor = selectedActorId === id;;
+    if(isSelectedActor){
+      this.setState({actors,selectedActor: null})
+    }
+    this.setState({actors});
+  }
+  isActiveActor = (id) => {
+    let selectedActorId = this.state.selectedActor !== null ? this.state.selectedActor.id : -1;
+    let isActive = selectedActorId === id;
+    return isActive
+    ? 'active-actor'
+    : '';
+  }
+
   showActorEditor = (id) => {
     let selectedActor = this.state.actors.find(actor => actor.id === id);
     this.setState({selectedActor});
@@ -31,7 +55,7 @@ class SVGAnimation extends React.Component {
   renderActorsList = () =>{
     return this.state.actors.map( (item, key) => {
       return (
-        <li key={item.id} className="list-group-item list-actor" onClick={() => this.showActorEditor(item.id)}>{item.name} {item.id}</li>
+        <li key={item.id} className={'list-group-item list-actor ' + this.isActiveActor(item.id) } onClick={() => this.showActorEditor(item.id)}>{item.name} {item.id}  <FontAwesomeIcon onClick={(e) => this.deleteActor(e,item.id)} className="delete-actor" icon={faTrash} size="1x" /> </li>
       );
     });
   }

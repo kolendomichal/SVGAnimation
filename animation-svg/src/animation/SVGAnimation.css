@@ -1,0 +1,10 @@
+.delete-actor {
+  float: right;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.active-actor {
+    background-color: lightgray !important;
+    /* color: lightgray !important; */
+}
