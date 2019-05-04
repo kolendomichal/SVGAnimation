@@ -4,7 +4,7 @@ import "./input-range.css";
 import InputRange from "react-input-range";
 
 
-//Old class component, now using Hook
+// Old react class component, now using Hook
 // this one is still usable, left only for review after
 class InputNumberRange extends React.Component {
   constructor(props) {

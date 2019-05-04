@@ -1,8 +1,8 @@
-export class Actor {
+export class Figure {
     constructor() {
-        this.name='Actor'
+        this.name='Figure'
         this.id=0;
-        this.type = 'circle'
+        this.figureType = 'Circle'
         this.xPosition = 0;
         this.yPosition = 100;
     }
