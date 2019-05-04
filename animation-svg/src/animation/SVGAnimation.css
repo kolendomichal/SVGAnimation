@@ -1,9 +1,9 @@
-.delete-actor {
+.delete-figure {
   float: right;
   cursor: pointer;
   z-index: 1;
 }
 
-.active-actor {
+.active-figure {
     background-color: lightblue !important;
 }

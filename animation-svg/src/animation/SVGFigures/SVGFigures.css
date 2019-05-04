@@ -1,13 +1,13 @@
-.add-actor {
+.add-figure {
   cursor: pointer;
 }
-.add-actor:hover {
+.add-figure:hover {
   background: grey;
 }
 
-.actors-header {
+.figures-header {
   font-size: 50px;
 }
-.list-actor:hover {
+.list-figure:hover {
   background: lightgray;
 }
