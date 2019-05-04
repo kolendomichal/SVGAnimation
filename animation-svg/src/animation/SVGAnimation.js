@@ -36,6 +36,16 @@ class SVGAnimation extends React.Component {
     });
   }
 
+  //TODO create one switch function maybe?
+  changeYposition = (yPosition) => {
+    let actors = [...this.state.actors];
+    let selectedActor = this.state.selectedActor;
+    let selectedActorIndex = actors.findIndex(actor => actor.id === selectedActor.id);
+    selectedActor.yPosition = yPosition;
+    actors[selectedActorIndex] = selectedActor;
+    this.setState({actors,selectedActor});
+  }
+  //TODO create one switch function maybe?
   changeXposition = (xPosition) => {
     let actors = [...this.state.actors];
     let selectedActor = this.state.selectedActor;
@@ -59,6 +69,7 @@ class SVGAnimation extends React.Component {
           <div className="col-lg-4 bg-light">
            <SVGActorEditor 
               changeXposition={this.changeXposition}
+              changeYposition={this.changeYposition}
               selectedActor={this.state.selectedActor} /> 
           </div>
           <div className="col-lg-5 " />
