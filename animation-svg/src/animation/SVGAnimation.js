@@ -126,7 +126,7 @@ class SVGAnimation extends React.Component {
               selectedFigure={this.state.selectedFigure} /> 
           </div>
           <div className="col-lg-5 " >
-            <SVGCanvas />
+            <SVGCanvas figures={this.state.figures}/>
           </div>
         </div>
       </div>
