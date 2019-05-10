@@ -1,6 +1,6 @@
 import React from 'react';
 import "./SVGCanvas.css";
-import SVGCircle from "./SVGCricle";
+import SVGCircle from "./SVGCircle";
 
 class SVGCanvas extends React.Component {
     constructor(props) {
@@ -16,10 +16,9 @@ class SVGCanvas extends React.Component {
     }
 
     render() { 
-        let renderedFigures = this.getFiguresToRender();
         return (
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 800">
-                {renderedFigures}
+                {this.getFiguresToRender()}
             </svg>
         )
     }

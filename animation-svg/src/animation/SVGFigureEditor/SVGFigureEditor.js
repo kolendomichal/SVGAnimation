@@ -2,7 +2,7 @@ import React from "react";
 import "./SVGFigureEditor.css";
 import SelectFigureType from "./SelectFigureType";
 import InputNumberRangeHook from './InputNumberRangeHook';
-import ActorName from "./ActorName";
+import ActorName from "./ActorName/ActorName";
 
 function SVGFigureEditor(props) {
   return (
