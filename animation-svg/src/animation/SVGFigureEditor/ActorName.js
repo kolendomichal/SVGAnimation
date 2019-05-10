@@ -1,9 +1,6 @@
 import React from "react";
 
 class ActorName extends React.Component {
-    constructor(props) {
-        super(props);
-    }
 
     onBlurHandle() {
         this.props.changeSpecifiedValue("name", this.refs.btn.innerHTML);
