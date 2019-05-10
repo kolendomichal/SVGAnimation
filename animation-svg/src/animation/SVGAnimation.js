@@ -112,22 +112,23 @@ class SVGAnimation extends React.Component {
   render() {
     console.log("SVGAnimation rendered");
     return (
-      <div className="container-fluid">
-        <div className="row">
+      <div className="container-fluid h-100 bg-white">
+        <div className="row h-100">
           <div className="col-lg-3 p-0">
             <SVGFigures 
               addFigure={this.addFigure} 
               renderFiguresList={this.renderFiguresList} />
           </div>
-          <div className="col-lg-4 bg-light">
+          <div className="col-lg-4 h-100 bg-light">
            <SVGFigureEditor 
               changeFigureType={this.changeFigureType}
               changeFigureValue={this.changeFigureValue}
               selectedFigure={this.state.selectedFigure} /> 
           </div>
-          <div className="col-lg-5 " >
+          <div className="col-lg-5 h-100" >
             <SVGCanvas figures={this.state.figures}/>
           </div>
+          
         </div>
       </div>
     );
