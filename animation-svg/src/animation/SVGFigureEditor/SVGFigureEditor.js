@@ -1,8 +1,8 @@
 import React from "react";
 import "./SVGFigureEditor.css";
-import SelectFigureType from "./SelectFigureType";
-import InputNumberRangeHook from './InputNumberRangeHook';
 import ActorName from "./ActorName/ActorName";
+import SelectFigureType from "./SelectFigureType/SelectFigureType";
+import InputNumberRangeHook from './InputNumberRange/InputNumberRangeHook';
 
 function SVGFigureEditor(props) {
   return (
@@ -31,6 +31,7 @@ function SVGFigureEditor(props) {
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.yPosition}
           />
+          
         </React.Fragment>
       )}
     </React.Fragment>
