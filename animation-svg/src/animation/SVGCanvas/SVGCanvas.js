@@ -8,11 +8,9 @@ class SVGCanvas extends React.Component {
     }
 
     getFiguresToRender() {
-        let figuresAfterChange = []
-        for(let i = 0; i < this.props.figures.length; i++) {
-            figuresAfterChange.push(<SVGCircle xPosition={this.props.figures[i].xPosition} yPosition={this.props.figures[i].yPosition}/>)
-        }
-        return figuresAfterChange;
+        return this.props.figures.map( (item, i) => {
+                return <SVGCircle xPosition={item.xPosition} yPosition={item.yPosition}/>
+        })
     }
 
     render() { 
