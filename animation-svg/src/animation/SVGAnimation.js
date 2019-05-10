@@ -7,9 +7,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
-//TODO display actor name
-//TODO edit actor name
-//TODO deleting and adding actor display figures with same numbers, fixed with figuresLength -> maybe more elegant approach?
 //TODO use SVG inline instead of fontawesome
 
 class SVGAnimation extends React.Component {
@@ -31,6 +28,7 @@ class SVGAnimation extends React.Component {
     let figure = new Figure();
     let figuresLength = this.state.figuresLength + 1;
     figure.id = figuresLength;
+    figure.name += " " + figure.id;  
     this.setState(prevState => ({
       figures: [...prevState.figures, figure],
       figuresLength: figuresLength
@@ -69,7 +67,7 @@ class SVGAnimation extends React.Component {
           key={item.id} 
           className={'list-group-item list-figure ' + this.isActiveFigure(item.id) } 
           onClick={() => this.showFigureEditor(item.id)}>
-          {item.name} {item.id}  
+          {item.name} 
         <FontAwesomeIcon 
           onClick={(e) => this.deleteFigure(e,item.id)} 
           className="delete-figure" 
@@ -85,6 +83,10 @@ class SVGAnimation extends React.Component {
     let selectedFigure = this.state.selectedFigure;
     let selectedFigureIndex = figures.findIndex(figure => figure.id === selectedFigure.id);
     switch(type) {
+      case "name": {
+        selectedFigure.name = value;
+        break;
+      }
       case "figureType": {
         console.log(value);
         selectedFigure.figureType = value;
