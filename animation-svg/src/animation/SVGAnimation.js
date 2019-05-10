@@ -2,6 +2,7 @@ import React from "react";
 import "./SVGAnimation.css";
 import SVGFigures from "./SVGFigures/SVGFigures";
 import SVGFigureEditor from "./SVGFigureEditor/SVGFigureEditor";
+import SVGCanvas from "./SVGCanvas/SVGCanvas";
 import { Figure } from "./static/Figure";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
@@ -124,7 +125,9 @@ class SVGAnimation extends React.Component {
               changeFigureValue={this.changeFigureValue}
               selectedFigure={this.state.selectedFigure} /> 
           </div>
-          <div className="col-lg-5 " />
+          <div className="col-lg-5 " >
+            <SVGCanvas />
+          </div>
         </div>
       </div>
     );
