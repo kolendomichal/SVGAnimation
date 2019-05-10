@@ -2,12 +2,17 @@ import React from "react";
 import "./SVGFigureEditor.css";
 import SelectFigureType from "./SelectFigureType";
 import InputNumberRangeHook from './InputNumberRangeHook';
+import ActorName from "./ActorName";
 
 function SVGFigureEditor(props) {
   return (
     <React.Fragment>
       {props.selectedFigure && (
         <React.Fragment>
+          <ActorName 
+            changeSpecifiedValue={props.changeFigureValue}
+            value = {props.selectedFigure.name}
+          />
           <SelectFigureType
             header={"Figure Type"}
             valueType="figureType"
