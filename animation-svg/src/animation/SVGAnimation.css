@@ -7,3 +7,12 @@
 .active-figure {
     background-color: lightblue !important;
 }
+/*
+.figure-editor {
+  position: absolute;
+  overflow-y: scroll;
+}
+::-webkit-scrollbar-track {
+  background: #f1f1f1; 
+}
+*/
