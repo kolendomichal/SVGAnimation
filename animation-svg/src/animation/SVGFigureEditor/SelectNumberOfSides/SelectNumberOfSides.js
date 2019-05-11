@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import './SelectNumberOfSides.css'
 function SelectNumberOfSides(props) {
     const [value, changeValue] = useState(props.value);
 
@@ -15,8 +15,8 @@ function SelectNumberOfSides(props) {
   
     return (
       <div className="form-group">
-        <div className="ml-2 mt-4 text-dark font-weight-bold col-lg-7 p-0"> {props.header} </div>
-        <div className="col-lg-4 p-0"> <input className="form-control" type="number" value={value} id="number-input" onChange={e => onSelectChange(e)}/></div>
+        <span className="ml-2 mt-4 text-dark font-weight-bold  p-0"> {props.header} </span>
+        <span className="p-0"> <input className="form-control w-25 number-sides" type="number" value={value} id="number-input" onChange={e => onSelectChange(e)}/></span>
       </div>
     );
 }
