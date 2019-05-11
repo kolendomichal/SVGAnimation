@@ -5,7 +5,7 @@ function SVGPolygon(props) {
     const figure = props.figure;
     let animStyleName = Object.keys(AnimationTypes).find(key => AnimationTypes[key] === figure.animationType);
     return (
-        <polygon  opacity={figure.opacity} fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} points={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size, 6)} className={animStyleName + " figure"} />
+        <polygon  opacity={figure.opacity} fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} points={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size, figure.numOfSides)} className={animStyleName + " figure"} />
     )
 }
 

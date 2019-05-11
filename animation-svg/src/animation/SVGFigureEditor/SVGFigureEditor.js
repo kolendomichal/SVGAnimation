@@ -4,10 +4,22 @@ import ActorName from "./ActorName/ActorName";
 import SelectFigureType from "./SelectFigureType/SelectFigureType";
 import SelectAnimationType from "./SelectAnimationType/SelectAnimationType";
 import InputNumberRangeHook from './InputNumberRange/InputNumberRangeHook';
+import SelectNumberOfSides from './SelectNumberOfSides/SelectNumberOfSides';
 
 import ColorPicker from "./ColorPicker/ColorPicker";
 
 function SVGFigureEditor(props) {
+
+  let selectNumberOfSides = '';
+  if(props.selectedFigure && props.selectedFigure.figureType == 'Polygon') {
+      selectNumberOfSides = <SelectNumberOfSides
+                              header={"Number of sides"}
+                              valueType="numOfSides"
+                              changeSpecifiedValue={props.changeFigureValue}
+                              value={props.selectedFigure.numOfSides}
+                            />
+  }
+
   return (
     <React.Fragment>
       {props.selectedFigure && (
@@ -37,6 +49,7 @@ function SVGFigureEditor(props) {
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.animationType}
           />
+          {selectNumberOfSides}
           <InputNumberRangeHook
             header="X Position"
             valueType="xPosition"

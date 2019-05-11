@@ -6,6 +6,7 @@ export class Figure {
         this.animationType = 'Move down'
         this.xPosition = 50;
         this.yPosition = 100;
+        this.numOfSides = 3;
         this.opacity = 1;
         this.strokeWidth = 1;
         this.fill= {};
