@@ -1,6 +1,7 @@
 import React from 'react';
 import "./SVGCanvas.css";
 import SVGCircle from "./SVGCircle";
+import SVGSquare from "./SVGSquare";
 
 class SVGCanvas extends React.Component {
     constructor(props) {
@@ -9,7 +10,17 @@ class SVGCanvas extends React.Component {
 
     getFiguresToRender() {
         return this.props.figures.map( (item, i) => {
-                return <SVGCircle xPosition={item.xPosition} yPosition={item.yPosition}/>
+            switch(item.figureType) {
+                case "Circle": {
+                    return <SVGCircle xPosition={item.xPosition} yPosition={item.yPosition}/>
+                }
+                case "Square": {
+                    return <SVGSquare xPosition={item.xPosition} yPosition={item.yPosition}/>
+                }
+                default: {
+                    return <SVGCircle xPosition={item.xPosition} yPosition={item.yPosition}/>
+                }
+            }
         })
     }
 
