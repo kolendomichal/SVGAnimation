@@ -21,6 +21,16 @@ class SVGAnimation extends React.Component {
     };
   }
 
+  componentWillMount(){
+    //Dont know better solution
+    const figures = [ new Figure(), new Figure() ];
+    figures[0].id = 1;
+    figures[0].name += figures[0].id;
+    figures[1].id = 2;
+    figures[1].name += figures[1].id;
+    this.setState({figures, selectedFigure: figures[0], figuresLength: 2});
+  }
+
   componentDidMount() {
     console.log("SVGAnimation Mounted");
   }
@@ -89,7 +99,6 @@ class SVGAnimation extends React.Component {
         break;
       }
       case "figureType": {
-        console.log(value);
         selectedFigure.figureType = value;
         break;
       }
@@ -105,6 +114,22 @@ class SVGAnimation extends React.Component {
         selectedFigure.yPosition = value;
         break;
       }
+      case "opacity": {
+        selectedFigure.opacity = value;
+        break;
+      }
+      case "fill": {
+        selectedFigure.fill = value;
+        break;
+      }
+      case "stroke": {
+        selectedFigure.stroke = value;
+        break;
+      }
+      case "strokeWidth": {
+        selectedFigure.strokeWidth = value;
+        break;
+      }
       default: {
         break;
       }
@@ -118,12 +143,12 @@ class SVGAnimation extends React.Component {
     return (
       <div className="container-fluid h-100 bg-white">
         <div className="row h-100">
-          <div className="col-lg-3 p-0">
+          <div className="col-lg-3 p-0  overflow-auto">
             <SVGFigures 
               addFigure={this.addFigure} 
               renderFiguresList={this.renderFiguresList} />
           </div>
-          <div className="col-lg-4 h-100 bg-light">
+          <div className="col-lg-4 h-100 bg-light overflow-auto">
            <SVGFigureEditor 
               changeFigureType={this.changeFigureType}
               changeFigureValue={this.changeFigureValue}
