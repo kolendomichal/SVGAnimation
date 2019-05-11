@@ -21,9 +21,6 @@ function SVGFigureEditor(props) {
             valueType="figureType"
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.figureType}
-            minValue={0}
-            maxValue={250}
-            step={1}
           />
           <SelectAnimationType
             header={"Animation Type"}
@@ -37,7 +34,7 @@ function SVGFigureEditor(props) {
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.xPosition}
             minValue={0}
-            maxValue={250}
+            maxValue={500}
             step={1}
           />
           <InputNumberRangeHook
@@ -46,7 +43,7 @@ function SVGFigureEditor(props) {
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.yPosition}
             minValue={0}
-            maxValue={250}
+            maxValue={500}
             step={1}
           />
           <p className="h3 mt-5 text-dark font-weight-bold">Figure Style</p>
