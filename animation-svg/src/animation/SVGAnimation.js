@@ -127,6 +127,10 @@ class SVGAnimation extends React.Component {
         selectedFigure.yPosition = value;
         break;
       }
+      case "numOfSides": {
+        selectedFigure.numOfSides = value;
+        break;
+      }
       case "opacity": {
         selectedFigure.opacity = value;
         break;
