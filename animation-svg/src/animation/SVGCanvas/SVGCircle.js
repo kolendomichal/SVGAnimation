@@ -3,9 +3,10 @@ import "./SVGCanvas.css";
 import AnimationTypes from "../static/AnimationTypes";
 
 function SVGCircle(props) {
-    let animStyleName = Object.keys(AnimationTypes).find(key => AnimationTypes[key] === props.animationType);
+    const figure = props.figure;
+    let animStyleName = Object.keys(AnimationTypes).find(key => AnimationTypes[key] === figure.animationType);
     return (
-        <circle className={animStyleName + " figure"} cx={props.xPosition} cy={props.yPosition} r="50" />
+        <circle fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} className={animStyleName + " figure"} cx={figure.xPosition} cy={figure.yPosition} r="50" />
     )
 }
 

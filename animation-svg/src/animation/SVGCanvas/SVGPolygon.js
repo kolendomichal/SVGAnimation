@@ -3,9 +3,10 @@ import "./SVGCanvas.css";
 import AnimationTypes from "../static/AnimationTypes";
 
 function SVGPolygon(props) {
-    let animStyleName = Object.keys(AnimationTypes).find(key => AnimationTypes[key] === props.animationType);
+    const figure = props.figure;
+    let animStyleName = Object.keys(AnimationTypes).find(key => AnimationTypes[key] === figure.animationType);
     return (
-        <polygon points={computeCornerPoints(props.xPosition, props.yPosition, 50, 6)} className={animStyleName + " figure"} />
+        <polygon fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} points={computeCornerPoints(figure.xPosition, figure.yPosition, 50, 6)} className={animStyleName + " figure"} />
     )
 }
 
