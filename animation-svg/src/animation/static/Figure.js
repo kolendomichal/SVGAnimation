@@ -10,5 +10,6 @@ export class Figure {
         this.strokeWidth = 1;
         this.fill= {};
         this.stroke= {};
+        this.size = 50;
     }
 }
