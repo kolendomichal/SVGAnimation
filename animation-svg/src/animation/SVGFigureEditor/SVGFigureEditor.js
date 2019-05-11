@@ -23,7 +23,7 @@ function SVGFigureEditor(props) {
             value={props.selectedFigure.figureType}
           />
           <InputNumberRangeHook
-            header={props.selectedFigure.figureType == "Circle" ? "Circle Diameter" : props.selectedFigure.figureType + " Size"}// na szybko
+            header={props.selectedFigure.figureType === "Circle" ? "Circle Diameter" : props.selectedFigure.figureType + " Size"}// na szybko
             valueType="size"
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.size}
