@@ -13,16 +13,16 @@ class SVGCanvas extends React.Component {
         return this.props.figures.map( (item, i) => {
             switch(item.figureType) {
                 case "Circle": {
-                    return <SVGCircle xPosition={item.xPosition} yPosition={item.yPosition}/>
+                    return <SVGCircle xPosition={item.xPosition} yPosition={item.yPosition} animationType={item.animationType}/>
                 }
                 case "Square": {
-                    return <SVGSquare xPosition={item.xPosition} yPosition={item.yPosition}/>
+                    return <SVGSquare xPosition={item.xPosition} yPosition={item.yPosition} animationType={item.animationType}/>
                 }
                 case "Polygon": {
-                    return <SVGPolygon xPosition={item.xPosition} yPosition={item.yPosition}/>
+                    return <SVGPolygon xPosition={item.xPosition} yPosition={item.yPosition} animationType={item.animationType}/>
                 }
                 default: {
-                    return <SVGCircle xPosition={item.xPosition} yPosition={item.yPosition}/>
+                    return <SVGCircle xPosition={item.xPosition} yPosition={item.yPosition} animationType={item.animationType}/>
                 }
             }
         })

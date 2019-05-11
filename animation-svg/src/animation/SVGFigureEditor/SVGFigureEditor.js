@@ -2,6 +2,7 @@ import React from "react";
 import "./SVGFigureEditor.css";
 import ActorName from "./ActorName/ActorName";
 import SelectFigureType from "./SelectFigureType/SelectFigureType";
+import SelectAnimationType from "./SelectAnimationType/SelectAnimationType";
 import InputNumberRangeHook from './InputNumberRange/InputNumberRangeHook';
 
 function SVGFigureEditor(props) {
@@ -18,6 +19,12 @@ function SVGFigureEditor(props) {
             valueType="figureType"
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.figureType}
+          />
+          <SelectAnimationType
+            header={"Animation Type"}
+            valueType="animationType"
+            changeSpecifiedValue={props.changeFigureValue}
+            value={props.selectedFigure.animationType}
           />
           <InputNumberRangeHook
             header="X Position"

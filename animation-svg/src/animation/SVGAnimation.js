@@ -93,6 +93,10 @@ class SVGAnimation extends React.Component {
         selectedFigure.figureType = value;
         break;
       }
+      case "animationType": {
+        selectedFigure.animationType = value;
+        break;
+      }
       case "xPosition": {
         selectedFigure.xPosition = value;
         break;
