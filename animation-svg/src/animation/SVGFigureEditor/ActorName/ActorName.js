@@ -1,21 +1,20 @@
-import React from "react";
+import React, { useRef } from "react";
 import "./ActorName.css"
-class ActorName extends React.Component {
 
-    onBlurHandle() {
-        this.props.changeSpecifiedValue("name", this.refs.btn.innerHTML);
+function ActorName(props) {
+    const editName = useRef(null);
+
+    function onBlurHandle() {
+        props.changeSpecifiedValue("name", editName.current.innerHTML);
     }
 
-
-    render() {
-        return (
-            <div className="text-center">
-                <button ref="btn" className="actor-name"  contentEditable="true" onBlur={() => this.onBlurHandle()} suppressContentEditableWarning={true}>
-                    {this.props.value}
-                </button>
-            </div>
-        );
-    }
+    return (
+        <div className="text-center">
+            <button ref={editName} className="actor-name" contentEditable="true" onBlur={() => onBlurHandle()} suppressContentEditableWarning={true}>
+                {props.value}
+            </button>
+        </div>
+    );
 
 }
 
