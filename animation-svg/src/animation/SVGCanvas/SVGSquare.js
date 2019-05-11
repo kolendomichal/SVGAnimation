@@ -1,9 +1,11 @@
 import React from 'react';
 import "./SVGCanvas.css";
+import AnimationTypes from "../static/AnimationTypes";
 
 function SVGSquare(props) {
+    let animStyleName = Object.keys(AnimationTypes).find(key => AnimationTypes[key] === props.animationType);
     return (
-        <polygon points={computeCornerPoints(props.xPosition, props.yPosition, 50)} className="anim figure" />
+        <polygon points={computeCornerPoints(props.xPosition, props.yPosition, 50)} className={animStyleName + " figure"} />
     )
 }
 
