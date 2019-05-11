@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useCallback, useState } from 'react';
 import "./SVGCanvas.css";
 import SVGExport from "./SVGExport/SVGExport";
 import SVGCircle from "./SVGFigures/SVGCircle";
@@ -6,7 +6,6 @@ import SVGSquare from "./SVGFigures/SVGSquare";
 import SVGPolygon from "./SVGFigures/SVGPolygon";
 
 function SVGCanvas(props) {
-    const svgElement = useRef();
     const svgText = useRef();
 
     function getFiguresToRender() {
@@ -29,12 +28,18 @@ function SVGCanvas(props) {
 
     }
 
+    function getSVGText() {
+        return (
+        <svg version="1.1" className="border mt-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="80%">
+            {getFiguresToRender()}
+        </svg>
+        )
+    }
+
     return (
         <React.Fragment>
-            <SVGExport title={"SVGAnimation"} svgText={svgText} svgElement={svgElement} figures={props.figures}/>
-            <svg version="1.1" ref={svgElement} className="border mt-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="80%">
-                {getFiguresToRender()}
-            </svg>
+            <SVGExport title={"SVGAnimation"} svgText={svgText} svgElement={getSVGText()} figures={props.figures}/>
+            {getSVGText()}
         </React.Fragment>
     )
 }
