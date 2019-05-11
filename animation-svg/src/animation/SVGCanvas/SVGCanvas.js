@@ -28,7 +28,7 @@ function SVGCanvas(props) {
 
     }
 
-    function getSVGText() {
+    function renderSVG() {
         return (
         <svg version="1.1" className="border mt-3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="80%">
             {getFiguresToRender()}
@@ -38,8 +38,8 @@ function SVGCanvas(props) {
 
     return (
         <React.Fragment>
-            <SVGExport title={"SVGAnimation"} svgText={svgText} svgElement={getSVGText()} figures={props.figures}/>
-            {getSVGText()}
+            <SVGExport title={"SVGAnimation"} svgText={svgText} svgElement={renderSVG()} figures={props.figures}/>
+            {renderSVG()}
         </React.Fragment>
     )
 }
