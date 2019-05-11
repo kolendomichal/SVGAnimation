@@ -2,6 +2,7 @@ import React from 'react';
 import "./SVGCanvas.css";
 import SVGCircle from "./SVGCircle";
 import SVGSquare from "./SVGSquare";
+import SVGPolygon from "./SVGPolygon";
 
 class SVGCanvas extends React.Component {
     constructor(props) {
@@ -16,6 +17,9 @@ class SVGCanvas extends React.Component {
                 }
                 case "Square": {
                     return <SVGSquare xPosition={item.xPosition} yPosition={item.yPosition}/>
+                }
+                case "Polygon": {
+                    return <SVGPolygon xPosition={item.xPosition} yPosition={item.yPosition}/>
                 }
                 default: {
                     return <SVGCircle xPosition={item.xPosition} yPosition={item.yPosition}/>
