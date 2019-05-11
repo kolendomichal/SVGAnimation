@@ -1,9 +1,9 @@
 import React from "react";
-import "./SVGFigures.css";
+import "./SVGFiguresList.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-class SVGFigures extends React.Component {
+class SVGFiguresList extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -38,4 +38,4 @@ class SVGFigures extends React.Component {
   }
 }
 
-export default SVGFigures;
+export default SVGFiguresList;

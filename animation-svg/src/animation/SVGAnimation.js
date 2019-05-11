@@ -1,6 +1,6 @@
 import React from "react";
 import "./SVGAnimation.css";
-import SVGFigures from "./SVGFigures/SVGFigures";
+import SVGFiguresList from "./SVGFiguresList/SVGFiguresList";
 import SVGFigureEditor from "./SVGFigureEditor/SVGFigureEditor";
 import SVGCanvas from "./SVGCanvas/SVGCanvas";
 import { Figure } from "./static/Figure";
@@ -8,8 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 
-//TODO use SVG inline instead of fontawesome
 
+//IMPORTANT TODO
+//All animations have to handled by javascript code inside svg
+//when exporting svg, we only get the html code for it.
+
+//TODO use SVG inline instead of fontawesome
 class SVGAnimation extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +25,7 @@ class SVGAnimation extends React.Component {
     };
   }
 
-  componentWillMount(){
+  componentDidMount() {
     //Dont know better solution
     const figures = [ new Figure(), new Figure() ,new Figure() ];
     figures[0].id = 1;
@@ -37,9 +41,6 @@ class SVGAnimation extends React.Component {
     figures[2].fill.hex = '#00D084'
     figures[2].xPosition = 350;
     this.setState({figures, selectedFigure: figures[0], figuresLength: figures.length});
-  }
-
-  componentDidMount() {
     console.log("SVGAnimation Mounted");
   }
 
@@ -114,6 +115,10 @@ class SVGAnimation extends React.Component {
         selectedFigure.animationType = value;
         break;
       }
+      case "size": {
+        selectedFigure.size = value;
+        break;
+      }
       case "xPosition": {
         selectedFigure.xPosition = value;
         break;
@@ -152,7 +157,7 @@ class SVGAnimation extends React.Component {
       <div className="container-fluid h-100 bg-white">
         <div className="row h-100">
           <div className="col-lg-3 p-0  overflow-auto">
-            <SVGFigures 
+            <SVGFiguresList 
               addFigure={this.addFigure} 
               renderFiguresList={this.renderFiguresList} />
           </div>
