@@ -6,9 +6,9 @@ function SVGAnimate(props) {
     return (
         <animate
             href={animation.href}
-            attributeName={animation.attributeName}
-            from={animation.from}
-            to={animation.to}
+            attributeName={props.attributeName === undefined ? animation.attributeName : props.attributeName}
+            from={props.from === undefined ? animation.from : props.from}
+            to={props.to === undefined ? animation.to : props.to}
             additive={animation.additive}
             repeatCount={animation.repeatCount}
             calcMode={animation.calcMode}
