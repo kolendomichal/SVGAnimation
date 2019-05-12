@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-import SVGStyles from './SVGStyles';
+// import SVGStyles from './SVGStyles';
 import './SVGExport.css';
 
 function SVGExport(props) {
 
-    function addStylesToSVG(svg) {
-        svg = svg.substring(0, svg.length - 6);
-        svg += "<style> " + SVGStyles + "</style></svg>";
-        return svg;
-    }
+    // function addStylesToSVG(svg) {
+    //     svg = svg.substring(0, svg.length - 6);
+    //     svg += "<style> " + SVGStyles + "</style></svg>";
+    //     return svg;
+    // }
 
     function copySVGAnimation() {
         if (props.svgElement === undefined) return '';
