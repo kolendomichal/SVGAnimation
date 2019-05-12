@@ -2,6 +2,7 @@ import React from "react";
 import "./SVGAnimation.css";
 import SVGFiguresList from "./SVGFiguresList/SVGFiguresList";
 import SVGFigureEditor from "./SVGFigureEditor/SVGFigureEditor";
+import SVGAnimationEditor from "./SVGAnimationEditor/SVGAnimationEditor";
 import SVGCanvas from "./SVGCanvas/SVGCanvas";
 import { Figure } from "./static/Figure";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -22,12 +23,13 @@ class SVGAnimation extends React.Component {
       figures: [],
       figuresLength: 0,
       delete: true,
+      ifAnimationEditionMode: false
     };
   }
 
   componentDidMount() {
     //Dont know better solution
-    const figures = [ new Figure(), new Figure() ,new Figure() ];
+    const figures = [new Figure(), new Figure(), new Figure()];
     figures[0].id = 1;
     figures[0].fill.hex = '#EB144C' // czerwony
     figures[1].id = 2;
@@ -37,7 +39,7 @@ class SVGAnimation extends React.Component {
     figures[2].id = 3;
     figures[2].fill.hex = '#00D084'
     figures[2].xPosition = 350;
-    this.setState({figures, selectedFigure: figures[0], figuresLength: figures.length});
+    this.setState({ figures, selectedFigure: figures[0], figuresLength: figures.length });
     console.log("SVGAnimation Mounted");
   }
 
@@ -45,61 +47,61 @@ class SVGAnimation extends React.Component {
     let figure = new Figure();
     let figuresLength = this.state.figuresLength + 1;
     figure.id = figuresLength;
-    figure.name += " " + figure.id;  
+    figure.name += " " + figure.id;
     this.setState(prevState => ({
       figures: [...prevState.figures, figure],
       figuresLength: figuresLength
     }));
   }
-  
-  deleteFigure = (e,id) => {
+
+  deleteFigure = (e, id) => {
     e.stopPropagation(); //clicking on list item triggered showActorEditor
     let figures = [...this.state.figures];
     let figureToDeleteIndex = figures.findIndex(figure => figure.id === id);
     figures.splice(figureToDeleteIndex, 1);
-    let isSelectedFigure = this.state.selectedFigure !== null 
-      ? this.state.selectedFigure.id === id 
+    let isSelectedFigure = this.state.selectedFigure !== null
+      ? this.state.selectedFigure.id === id
       : false;
 
     isSelectedFigure
-      ?  this.setState({figures,selectedFigure: null})
-      : this.setState({figures});
+      ? this.setState({ figures, selectedFigure: null })
+      : this.setState({ figures });
   }
 
   isActiveFigure = (id) => {
     let selectedFigureId = this.state.selectedFigure !== null ? this.state.selectedFigure.id : -1;
     let isActive = selectedFigureId === id;
-    return isActive ? 'active-figure': '';
+    return isActive ? 'active-figure' : '';
   }
 
   showFigureEditor = (id) => {
     let selectedFigure = this.state.figures.find(figure => figure.id === id);
-    this.setState({selectedFigure});
+    this.setState({ selectedFigure });
   }
 
-  renderFiguresList = () =>{
-    return this.state.figures.map( (item, key) => {
+  renderFiguresList = () => {
+    return this.state.figures.map((item, key) => {
       return (
-        <li 
-          key={item.id} 
-          className={'list-group-item list-figure ' + this.isActiveFigure(item.id) } 
+        <li
+          key={item.id}
+          className={'list-group-item list-figure ' + this.isActiveFigure(item.id)}
           onClick={() => this.showFigureEditor(item.id)}>
-          {item.name} 
-        <FontAwesomeIcon 
-          onClick={(e) => this.deleteFigure(e,item.id)} 
-          className="delete-figure" 
-          icon={faTrash} 
-          size="1x" /> 
+          {item.name}
+          <FontAwesomeIcon
+            onClick={(e) => this.deleteFigure(e, item.id)}
+            className="delete-figure"
+            icon={faTrash}
+            size="1x" />
         </li>
       );
     });
   }
 
-  changeFigureValue = (type,value) => {
+  changeFigureValue = (type, value) => {
     let figures = [...this.state.figures];
     let selectedFigure = this.state.selectedFigure;
     let selectedFigureIndex = figures.findIndex(figure => figure.id === selectedFigure.id);
-    switch(type) {
+    switch (type) {
       case "name": {
         selectedFigure.name = value;
         break;
@@ -149,7 +151,15 @@ class SVGAnimation extends React.Component {
       }
     }
     figures[selectedFigureIndex] = selectedFigure;
-    this.setState({figures,selectedFigure});
+    this.setState({ figures, selectedFigure });
+  }
+
+  isActiveEditor(value) {
+    return value === this.state.ifAnimationEditionMode ? "active" : ""
+  }
+
+  handleEditorTabChange(value) {
+    this.setState({ ifAnimationEditionMode: value });
   }
 
   render() {
@@ -158,20 +168,33 @@ class SVGAnimation extends React.Component {
       <div className="container-fluid h-100 bg-white">
         <div className="row h-100">
           <div className="col-lg-3 p-0  overflow-auto">
-            <SVGFiguresList 
-              addFigure={this.addFigure} 
+            <SVGFiguresList
+              addFigure={this.addFigure}
               renderFiguresList={this.renderFiguresList} />
           </div>
           <div className="col-lg-4 h-100 bg-light overflow-auto">
-           <SVGFigureEditor 
-              changeFigureType={this.changeFigureType}
-              changeFigureValue={this.changeFigureValue}
-              selectedFigure={this.state.selectedFigure} /> 
+            <ul class="svg-editor-nav nav nav-tabs nav-fill ">
+              <li class="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(false)}>
+                <a class={"nav-link " + this.isActiveEditor(false)}>Properties</a>
+              </li>
+              <li class="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(true)}>
+                <a class={"nav-link " + this.isActiveEditor(true)}>Animations</a>
+              </li>
+            </ul>
+            {this.state.ifAnimationEditionMode
+              ? <SVGAnimationEditor
+                changeFigureValue={this.changeFigureValue}
+                selectedFigure={this.state.selectedFigure} />
+              : <SVGFigureEditor
+                changeFigureValue={this.changeFigureValue}
+                selectedFigure={this.state.selectedFigure} />
+
+            }
           </div>
           <div className="col-lg-5 p-0 h-100" >
-            <SVGCanvas figures={this.state.figures}/>
+            <SVGCanvas figures={this.state.figures} />
           </div>
-          
+
         </div>
       </div>
     );

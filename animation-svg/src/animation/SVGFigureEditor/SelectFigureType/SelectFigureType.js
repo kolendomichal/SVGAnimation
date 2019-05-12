@@ -26,7 +26,7 @@ function SelectFigureType(props) {
 
   return (
     <div className="form-group">
-      <div className="ml-2 mt-4 text-dark font-weight-bold"> {props.header}</div>
+      <div className="ml-2 mt-2 text-dark font-weight-bold"> {props.header}</div>
       <select
         value={value}
         className="form-control mt-2"
