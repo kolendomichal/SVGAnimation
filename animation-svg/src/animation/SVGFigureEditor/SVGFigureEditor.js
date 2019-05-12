@@ -42,7 +42,13 @@ function SVGFigureEditor(props) {
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.animationType}
           /> */}
-          {selectNumberOfSides}
+          {selectNumberOfSides &&
+            <SelectNumberOfSides
+            header={"Number of sides"}
+            valueType="numOfSides"
+            changeSpecifiedValue={props.changeFigureValue}
+            value={props.selectedFigure.numOfSides}/>
+          }
           <InputNumberRangeHook
             header="X Position"
             valueType="xPosition"
