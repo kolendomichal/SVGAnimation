@@ -153,7 +153,7 @@ class SVGAnimation extends React.Component {
   }
 
   isActiveEditor(value) {
-    return value === this.state.ifAnimationEditionMode ? "active" : ""
+    return value === this.state.ifAnimationEditionMode ? " active" : ""
   }
 
   handleEditorTabChange(value) {
