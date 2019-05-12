@@ -3,6 +3,10 @@ import SVGAnimate from '../SVGAnimate/SVGAnimate'
 
 function SVGSquare(props) {
     const figure = props.figure;
+    figure.animation.attributeName = "points";
+    figure.animation.from = computeCornerPoints(figure.xPosition, figure.yPosition, figure.size, figure.numOfSides);
+    figure.animation.to = computeCornerPoints(figure.xPosition + 50, figure.yPosition, figure.size, figure.numOfSides);
+    
     return (
         <React.Fragment>
             <polygon id={figure.hrefid} opacity={figure.opacity}  fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} points={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size)} className="figure" />
