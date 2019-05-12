@@ -2,7 +2,7 @@ import Animation from "./Animation"
 
 export class Figure {
     constructor() {
-        this.id=0;
+        this.id = 0;
         this.hrefid = 'figure' + this.id;
         this.name='Figure ' + this.id;
         this.figureType = 'Circle'
@@ -17,9 +17,11 @@ export class Figure {
         this.size = 50;
         this.animation = new Animation(this.hrefid);
     }
-    set id(id) {
-        this.hrefid = 'figure' + id;
-        this.name='Figure ' + id;
+    set id(newid) {
+        this._id = newid; 
+        this.hrefid = 'figure' + newid;
+        if(this.name !== undefined) this.name='Figure ' + newid;
         if(this.animation !== undefined) this.animation.href = '#' + this.hrefid;
     }
+    get id(){ return this._id }
 }
