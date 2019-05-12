@@ -34,7 +34,6 @@ class SVGAnimation extends React.Component {
     figures[0].fill.hex = '#EB144C' // czerwony
     figures[1].id = 2;
     figures[1].fill.hex = '#FCB900' //żólty
-    figures[1].animationType = 'Move up'
     figures[1].xPosition = 200;
     figures[2].id = 3;
     figures[2].fill.hex = '#00D084'
@@ -47,7 +46,6 @@ class SVGAnimation extends React.Component {
     let figure = new Figure();
     let figuresLength = this.state.figuresLength + 1;
     figure.id = figuresLength;
-    figure.name += " " + figure.id;
     this.setState(prevState => ({
       figures: [...prevState.figures, figure],
       figuresLength: figuresLength
