@@ -6,7 +6,7 @@ function SVGPolygon(props) {
     
     return (
         <React.Fragment>
-            <polygon id={figure.hrefid} opacity={figure.opacity} fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} points={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size, figure.numOfSides)} className="figure" />
+            <polygon style={{ cursor: 'pointer' }} id={figure.hrefid} opacity={figure.opacity} fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} points={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size, figure.numOfSides)} className="figure" />
             <SVGAnimate animation={figure.animation} 
                         attributeName="points"
                         from={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size, figure.numOfSides)}

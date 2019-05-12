@@ -97,6 +97,10 @@ class SVGAnimation extends React.Component {
     });
   }
 
+  changeSelectedFigure = (figure) => {
+    this.setState({selectedFigure: figure})
+  }
+
   changeFigureValue = (type, value) => {
     let figures = [...this.state.figures];
     let selectedFigure = this.state.selectedFigure;
@@ -201,7 +205,7 @@ class SVGAnimation extends React.Component {
             }
           </div>
           <div className="col-lg-5 p-0 h-100" >
-            <SVGCanvas figures={this.state.figures} svgDimensions={this.state.svgDimensions} />
+            <SVGCanvas figures={this.state.figures} svgDimensions={this.state.svgDimensions} changeSelectedFigure={this.changeSelectedFigure}/>
           </div>
 
         </div>
