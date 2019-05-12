@@ -1,15 +1,15 @@
 export class Animation {
   constructor(id) {
       this.href = "#" + id;
-      this.attributeName="cx";
+      this.attributeName="cy";
       this.from = "0";
       this.to = "100";
       this.additive = "sum";
       this.repeatCount = "10";
       this.calcMode = "spline";
       this.keyTimes = "0;1";
-      this.keySplines = ".42 0 1 1";
-      this.dur = "1s";
+      this.keySplines = ".42 0.5 0.5 1";
+      this.dur = "0.2s";
       this.begin = "0s";
       this.fill = "freeze";
   }
@@ -17,3 +17,15 @@ export class Animation {
 
 
 export default Animation;
+
+/*
+	Begin – dropdown -> do wyboru sekundy, kliknięcie lub opcja „Immediately”
+	attributeName – dropdown, do wyboru po jakiej osi x/y
+	from – slider
+	to – slider
+	repeatCount – slider z checkboxem „always” (domyślnie always)
+	keyTimes – zmienialem ale nie zauwazylem wplywu
+  keySplines – to jest zwiazane z keyTimes, pojebane i nie chcialo mi sie czytac
+  dur= jak dlugo ma trwać cała animacja ( spowalnia jak długo ), slider
+
+*/
