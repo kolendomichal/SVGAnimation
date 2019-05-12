@@ -10,8 +10,8 @@ import ColorPicker from "../ColorPicker/ColorPicker";
 
 function SVGFigureEditor(props) {
 
-  const selectNumberOfSides = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.POLYGON;
-  const headerForFigure = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.CIRCLE;
+  const selectNumberOfSides = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.Polygon;
+  const headerForFigure = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.Circle;
   return (
     <React.Fragment>
       {props.selectedFigure && (
