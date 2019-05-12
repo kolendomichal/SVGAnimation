@@ -5,28 +5,21 @@ import SelectFigureType from "./SelectFigureType/SelectFigureType";
 // import SelectAnimationType from "./SelectAnimationType/SelectAnimationType";
 import InputNumberRangeHook from './InputNumberRange/InputNumberRangeHook';
 import SelectNumberOfSides from './SelectNumberOfSides/SelectNumberOfSides';
-
+import FigureTypes from '../static/FigureTypes';
 import ColorPicker from "./ColorPicker/ColorPicker";
 
 function SVGFigureEditor(props) {
 
-  let selectNumberOfSides = '';
-  if(props.selectedFigure && props.selectedFigure.figureType == 'Polygon') {
-      selectNumberOfSides = <SelectNumberOfSides
-                              header={"Number of sides"}
-                              valueType="numOfSides"
-                              changeSpecifiedValue={props.changeFigureValue}
-                              value={props.selectedFigure.numOfSides}
-                            />
-  }
-
+  const selectNumberOfSides = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.POLYGON;
+  const headerForFigure = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.CIRCLE;
   return (
     <React.Fragment>
       {props.selectedFigure && (
         <React.Fragment>
-          <ActorName 
+          <ActorName
+            valueType="name"
             changeSpecifiedValue={props.changeFigureValue}
-            value = {props.selectedFigure.name}
+            value={props.selectedFigure.name}
           />
           <SelectFigureType
             header={"Figure Type"}
@@ -35,7 +28,7 @@ function SVGFigureEditor(props) {
             value={props.selectedFigure.figureType}
           />
           <InputNumberRangeHook
-            header={props.selectedFigure.figureType === "Circle" ? "Circle Diameter" : props.selectedFigure.figureType + " Size"}// na szybko
+            header={headerForFigure ? props.selectedFigure.figureType + " Diameter" : props.selectedFigure.figureType + " Size"}
             valueType="size"
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.size}
@@ -61,7 +54,7 @@ function SVGFigureEditor(props) {
           />
           <InputNumberRangeHook
             header="Y Position"
-            valueType="yPosition" 
+            valueType="yPosition"
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.yPosition}
             minValue={0}
@@ -71,7 +64,7 @@ function SVGFigureEditor(props) {
           <p className="h3 mt-5 text-dark font-weight-bold">Figure Style</p>
           <InputNumberRangeHook
             header="Opacity"
-            valueType="opacity" 
+            valueType="opacity"
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.opacity}
             minValue={0}
@@ -80,19 +73,19 @@ function SVGFigureEditor(props) {
           />
           <ColorPicker
             header="Fill"
-            valueType="fill" 
+            valueType="fill"
             changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.fill} 
+            value={props.selectedFigure.fill}
           />
           <ColorPicker
             header="Stroke"
-            valueType="stroke" 
+            valueType="stroke"
             changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.stroke} 
+            value={props.selectedFigure.stroke}
           />
           <InputNumberRangeHook
             header="Stroke Width:"
-            valueType="strokeWidth" 
+            valueType="strokeWidth"
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.strokeWidth}
             minValue={1}
