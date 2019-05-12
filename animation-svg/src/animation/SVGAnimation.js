@@ -81,7 +81,7 @@ class SVGAnimation extends React.Component {
     return this.state.figures.map((item, key) => {
       return (
         <li
-          key={item.id}
+          key={item.id + item.name}
           className={'list-group-item list-figure ' + this.isActiveFigure(item.id)}
           onClick={() => this.showFigureEditor(item.id)}>
           {item.name}
@@ -171,12 +171,12 @@ class SVGAnimation extends React.Component {
               renderFiguresList={this.renderFiguresList} />
           </div>
           <div className="col-lg-4 h-100 bg-light overflow-auto">
-            <ul class="svg-editor-nav nav nav-tabs nav-fill ">
-              <li class="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(false)}>
-                <a class={"nav-link " + this.isActiveEditor(false)}>Properties</a>
+            <ul className="svg-editor-nav nav nav-tabs nav-fill ">
+              <li className="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(false)}>
+                <a className={"nav-link " + this.isActiveEditor(false)}>Properties</a>
               </li>
-              <li class="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(true)}>
-                <a class={"nav-link " + this.isActiveEditor(true)}>Animations</a>
+              <li className="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(true)}>
+                <a className={"nav-link " + this.isActiveEditor(true)}>Animations</a>
               </li>
             </ul>
             {this.state.ifAnimationEditionMode
