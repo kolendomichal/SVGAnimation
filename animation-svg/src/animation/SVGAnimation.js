@@ -173,10 +173,10 @@ class SVGAnimation extends React.Component {
           <div className="col-lg-4 h-100 bg-light overflow-auto">
             <ul className="svg-editor-nav nav nav-tabs nav-fill ">
               <li className="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(false)}>
-                <button className={"nav-link btn btn-link .btn-outline-* w-100" + this.isActiveEditor(false)}>Properties</button>
+                <button className={"nav-link btn btn-link .btn-outline-* w-100  " + this.isActiveEditor(false)}>Properties</button>
               </li>
               <li className="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(true)}>
-                <button className={"nav-link btn btn-link .btn-outline-* w-100" + this.isActiveEditor(true)}>Animations</button>
+                <button className={"nav-link btn btn-link .btn-outline-* w-100  " + this.isActiveEditor(true)}>Animations</button>
               </li>
             </ul>
             {this.state.ifAnimationEditionMode
