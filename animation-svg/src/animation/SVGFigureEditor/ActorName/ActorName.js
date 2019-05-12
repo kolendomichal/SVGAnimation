@@ -5,12 +5,12 @@ function ActorName(props) {
     const editName = useRef(null);
 
     function onBlurHandle() {
-        props.changeSpecifiedValue("name", editName.current.innerHTML);
+        props.changeSpecifiedValue(props.valueType, editName.current.innerHTML);
     }
 
     return (
-        <div className="text-center">
-            <button ref={editName} className="actor-name" contentEditable="true" onBlur={() => onBlurHandle()} suppressContentEditableWarning={true}>
+        <div className="text-center mt-3">
+            <button ref={editName} className="h3 actor-name" contentEditable="true" onBlur={() => onBlurHandle()} suppressContentEditableWarning={true}>
                 {props.value}
             </button>
         </div>
