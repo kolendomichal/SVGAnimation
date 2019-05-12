@@ -7,12 +7,13 @@ export class Animation {
       this.additive = "sum";
       this.repeatCount = "10";
       this.calcMode = "spline";
-      this.keyTime = "0;1";
-      this.keySpline = ".42 0 1 1";
+      this.keyTimes = "0;1";
+      this.keySplines = ".42 0 1 1";
       this.dur = "1s";
       this.begin = "0s";
       this.fill = "freeze";
   }
 }
+
 
 export default Animation;
