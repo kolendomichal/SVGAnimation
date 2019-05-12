@@ -1,15 +1,9 @@
 import React from "react";
-import ActorName from "../ActorName/ActorName";
 import SelectDropdownValue from "../SelectDropdownValue/SelectDropdownValue";
-// import SelectAnimationType from "./SelectAnimationType/SelectAnimationType";
 import InputNumberRangeHook from '../InputNumberRange/InputNumberRangeHook';
-import SelectNumberOfSides from '../SelectNumberOfSides/SelectNumberOfSides';
 import AxisTypes from '../../static/AxisTypes';
-import ColorPicker from "../ColorPicker/ColorPicker";
 
 function SVGAnimationEditor(props) {
-    // const selectNumberOfSides = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.POLYGON;
-    // const headerForFigure = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.CIRCLE;
     
     return (<React.Fragment>
         {props.selectedFigure && (
