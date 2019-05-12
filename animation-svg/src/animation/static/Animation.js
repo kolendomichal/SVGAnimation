@@ -2,14 +2,14 @@ export class Animation {
   constructor(id) {
       this.href = "#" + id;
       this.attributeName="cy";
-      this.from = "0";
-      this.to = "100";
+      this.from = 0;
+      this.to = 100;
       this.additive = "sum";
-      this.repeatCount = "5";
+      this.repeatCount = "indefinite";
       this.calcMode = "spline";
       this.keyTimes = "0;1";
       this.keySplines = ".42 0.5 0.5 1";
-      this.dur = "1s";
+      this.dur = "5s";
       this.begin = "0s";
       this.fill = "remove";
   }

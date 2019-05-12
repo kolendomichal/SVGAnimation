@@ -1,12 +1,12 @@
 import React from "react";
 import "./SVGFigureEditor.css";
-import ActorName from "./ActorName/ActorName";
-import SelectFigureType from "./SelectFigureType/SelectFigureType";
+import ActorName from "../ActorName/ActorName";
+import SelectDropdownValue from "../SelectDropdownValue/SelectDropdownValue";
 // import SelectAnimationType from "./SelectAnimationType/SelectAnimationType";
-import InputNumberRangeHook from './InputNumberRange/InputNumberRangeHook';
-import SelectNumberOfSides from './SelectNumberOfSides/SelectNumberOfSides';
-import FigureTypes from '../static/FigureTypes';
-import ColorPicker from "./ColorPicker/ColorPicker";
+import InputNumberRangeHook from '../InputNumberRange/InputNumberRangeHook';
+import SelectNumberOfSides from '../SelectNumberOfSides/SelectNumberOfSides';
+import FigureTypes from '../../static/FigureTypes';
+import ColorPicker from "../ColorPicker/ColorPicker";
 
 function SVGFigureEditor(props) {
 
@@ -21,9 +21,10 @@ function SVGFigureEditor(props) {
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.name}
           />
-          <SelectFigureType
+          <SelectDropdownValue
             header={"Figure Type"}
             valueType="figureType"
+            options={FigureTypes}
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.figureType}
           />
@@ -44,10 +45,10 @@ function SVGFigureEditor(props) {
           /> */}
           {selectNumberOfSides &&
             <SelectNumberOfSides
-            header={"Number of sides"}
-            valueType="numOfSides"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.numOfSides}/>
+              header={"Number of sides"}
+              valueType="numOfSides"
+              changeSpecifiedValue={props.changeFigureValue}
+              value={props.selectedFigure.numOfSides} />
           }
           <InputNumberRangeHook
             header="X Position"
