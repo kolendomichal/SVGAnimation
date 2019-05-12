@@ -1,7 +1,7 @@
 const FigureTypes = Object.freeze({
-  CIRCLE: "Circle",
-  POLYGON: "Polygon",
-  SQUARE: "Square"
+  Circle: "Circle",
+  Polygon: "Polygon",
+  Square: "Square"
 });
 
 export default FigureTypes;

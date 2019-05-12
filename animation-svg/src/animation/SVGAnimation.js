@@ -1,12 +1,13 @@
 import React from "react";
 import "./SVGAnimation.css";
 import SVGFiguresList from "./SVGFiguresList/SVGFiguresList";
-import SVGFigureEditor from "./SVGFigureEditor/SVGFigureEditor";
-import SVGAnimationEditor from "./SVGAnimationEditor/SVGAnimationEditor";
+import SVGFigureEditor from "./SVGEditors/SVGFigureEditor/SVGFigureEditor";
+import SVGAnimationEditor from "./SVGEditors/SVGAnimationEditor/SVGAnimationEditor";
 import SVGCanvas from "./SVGCanvas/SVGCanvas";
 import { Figure } from "./static/Figure";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
+import SVGEditorNav from "./SVGEditorNav/SVGEditorNav";
 
 
 
@@ -23,7 +24,8 @@ class SVGAnimation extends React.Component {
       figures: [],
       figuresLength: 0,
       delete: true,
-      ifAnimationEditionMode: false
+      ifAnimationEditionMode: false,
+      svgDimensions: [500,500]
     };
   }
 
@@ -108,10 +110,6 @@ class SVGAnimation extends React.Component {
         selectedFigure.figureType = value;
         break;
       }
-      case "animationType": {
-        selectedFigure.animationType = value;
-        break;
-      }
       case "size": {
         selectedFigure.size = value;
         break;
@@ -144,6 +142,22 @@ class SVGAnimation extends React.Component {
         selectedFigure.strokeWidth = value;
         break;
       }
+      case "attributeName": {
+        selectedFigure.animation.attributeName = value;
+        break;
+      }
+      case "from": {
+        selectedFigure.animation.from = value;
+        break;
+      }
+      case "to": {
+        selectedFigure.animation.to = value;
+        break;
+      }
+      case "dur": {
+        selectedFigure.animation.dur = value + "s";
+        break;
+      }
       default: {
         break;
       }
@@ -152,11 +166,11 @@ class SVGAnimation extends React.Component {
     this.setState({ figures, selectedFigure });
   }
 
-  isActiveEditor(value) {
+  isActiveEditor = (value) => {
     return value === this.state.ifAnimationEditionMode ? " active" : ""
   }
 
-  handleEditorTabChange(value) {
+  handleEditorTabChange = (value) => {
     this.setState({ ifAnimationEditionMode: value });
   }
 
@@ -171,18 +185,15 @@ class SVGAnimation extends React.Component {
               renderFiguresList={this.renderFiguresList} />
           </div>
           <div className="col-lg-4 h-100 bg-light overflow-auto">
-            <ul className="svg-editor-nav nav nav-tabs nav-fill ">
-              <li className="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(false)}>
-                <button className={"nav-link btn btn-link .btn-outline-* w-100  " + this.isActiveEditor(false)}>Properties</button>
-              </li>
-              <li className="svg-editor-nav-item nav-item" onClick={() => this.handleEditorTabChange(true)}>
-                <button className={"nav-link btn btn-link .btn-outline-* w-100  " + this.isActiveEditor(true)}>Animations</button>
-              </li>
-            </ul>
+            <SVGEditorNav
+              handleEditorTabChange={this.handleEditorTabChange}
+              isActiveEditor={this.isActiveEditor}
+            />
             {this.state.ifAnimationEditionMode
               ? <SVGAnimationEditor
                 changeFigureValue={this.changeFigureValue}
-                selectedFigure={this.state.selectedFigure} />
+                selectedFigure={this.state.selectedFigure} 
+                svgDimensions={this.state.svgDimensions}/>
               : <SVGFigureEditor
                 changeFigureValue={this.changeFigureValue}
                 selectedFigure={this.state.selectedFigure} />
@@ -190,7 +201,7 @@ class SVGAnimation extends React.Component {
             }
           </div>
           <div className="col-lg-5 p-0 h-100" >
-            <SVGCanvas figures={this.state.figures} />
+            <SVGCanvas figures={this.state.figures} svgDimensions={this.state.svgDimensions} />
           </div>
 
         </div>

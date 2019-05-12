@@ -6,7 +6,6 @@ font-size: 17pt;
 background-color: #F8F9FA;
 opacity: 100%;
 -webkit-transition: all;
-/* msTransition: 'all'; */
 }
 .actor-name:hover {
     background-color: lavenderblush;

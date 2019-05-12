@@ -5,11 +5,7 @@
 }
 
 .active-figure {
-    background-color: lightblue !important;
+  cursor: default !important;
+  background-color: lightblue !important;
 }
 
-.svg-editor-nav-item:hover {
-  cursor: pointer;
-  outline: 0 !important;
-  background-color:  lightgray;
-}

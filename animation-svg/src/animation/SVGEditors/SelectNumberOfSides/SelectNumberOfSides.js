@@ -10,12 +10,12 @@ function SelectNumberOfSides(props) {
   
     useEffect(() => {
       changeValue(props.value);
-    }, [props.value]); // Only re-run the effect if props.value changes
+    }, [props.value]);
   
     return (
       <div className="form-group">
         <span className="ml-2 mt-4 text-dark font-weight-bold  p-0"> {props.header} </span>
-        <span className="p-0"> <input className="form-control d-inline-block w-25 number-sides" type="number" value={value} id="number-input" onChange={e => onSelectChange(e)}/></span>
+        <span className="p-0"> <input className="form-control d-inline-block w-25" type="number" value={value} id="number-input" onChange={e => onSelectChange(e)}/></span>
       </div>
     );
 }

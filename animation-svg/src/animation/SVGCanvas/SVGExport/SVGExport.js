@@ -14,7 +14,7 @@ function SVGExport(props) {
     function copySVGAnimation() {
         if (props.svgElement === undefined) return '';
         let svg = ReactDOMServer.renderToStaticMarkup(props.svgElement);
-        return addStylesToSVG(svg);
+        return svg;
     }
 
     function handleTextSelect() {
