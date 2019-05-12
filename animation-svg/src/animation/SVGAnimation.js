@@ -29,15 +29,12 @@ class SVGAnimation extends React.Component {
     //Dont know better solution
     const figures = [ new Figure(), new Figure() ,new Figure() ];
     figures[0].id = 1;
-    figures[0].name += figures[0].id;
     figures[0].fill.hex = '#EB144C' // czerwony
     figures[1].id = 2;
-    figures[1].name +=  figures[1].id;
     figures[1].fill.hex = '#FCB900' //żólty
     figures[1].animationType = 'Move up'
     figures[1].xPosition = 200;
     figures[2].id = 3;
-    figures[2].name +=  figures[2].id;
     figures[2].fill.hex = '#00D084'
     figures[2].xPosition = 350;
     this.setState({figures, selectedFigure: figures[0], figuresLength: figures.length});

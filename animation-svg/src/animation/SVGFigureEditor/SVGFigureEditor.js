@@ -2,7 +2,7 @@ import React from "react";
 import "./SVGFigureEditor.css";
 import ActorName from "./ActorName/ActorName";
 import SelectFigureType from "./SelectFigureType/SelectFigureType";
-import SelectAnimationType from "./SelectAnimationType/SelectAnimationType";
+// import SelectAnimationType from "./SelectAnimationType/SelectAnimationType";
 import InputNumberRangeHook from './InputNumberRange/InputNumberRangeHook';
 import SelectNumberOfSides from './SelectNumberOfSides/SelectNumberOfSides';
 
@@ -43,12 +43,12 @@ function SVGFigureEditor(props) {
             maxValue={100}
             step={1}
           />
-          <SelectAnimationType
+          {/* <SelectAnimationType
             header={"Animation Type"}
             valueType="animationType"
             changeSpecifiedValue={props.changeFigureValue}
             value={props.selectedFigure.animationType}
-          />
+          /> */}
           {selectNumberOfSides}
           <InputNumberRangeHook
             header="X Position"
