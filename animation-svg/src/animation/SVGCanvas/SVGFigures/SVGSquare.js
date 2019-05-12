@@ -1,11 +1,13 @@
 import React from 'react';
-import AnimationTypes from "../../static/AnimationTypes";
+import SVGAnimate from '../SVGAnimate/SVGAnimate'
 
 function SVGSquare(props) {
     const figure = props.figure;
-    let animStyleName = Object.keys(AnimationTypes).find(key => AnimationTypes[key] === figure.animationType);
     return (
-        <polygon  opacity={figure.opacity}  fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} points={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size)} className={animStyleName + " figure"} />
+        <React.Fragment>
+            <polygon id={figure.hrefid} opacity={figure.opacity}  fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} points={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size)} className="figure" />
+            <SVGAnimate animation={figure.animation}/>
+        </React.Fragment>
     )
 }
 

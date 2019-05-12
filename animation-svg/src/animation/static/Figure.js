@@ -1,7 +1,10 @@
+import Animation from "./Animation"
+
 export class Figure {
     constructor() {
         this.id=0;
-        this.name='Figure '
+        this.hrefid = 'figure' + this.id;
+        this.name='Figure ' + this.id;
         this.figureType = 'Circle'
         this.animationType = 'Move down'
         this.xPosition = 50;
@@ -12,5 +15,11 @@ export class Figure {
         this.fill= {};
         this.stroke= {};
         this.size = 50;
+        this.animation = new Animation(this.hrefid);
+    }
+    set id(id) {
+        this.hrefid = 'figure' + id;
+        this.name='Figure ' + id;
+        if(this.animation !== undefined) this.animation.href = '#' + this.hrefid;
     }
 }
