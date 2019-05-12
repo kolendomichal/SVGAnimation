@@ -5,13 +5,13 @@ export class Animation {
       this.from = "0";
       this.to = "100";
       this.additive = "sum";
-      this.repeatCount = "10";
+      this.repeatCount = "5";
       this.calcMode = "spline";
       this.keyTimes = "0;1";
       this.keySplines = ".42 0.5 0.5 1";
-      this.dur = "0.2s";
+      this.dur = "1s";
       this.begin = "0s";
-      this.fill = "freeze";
+      this.fill = "remove";
   }
 }
 
