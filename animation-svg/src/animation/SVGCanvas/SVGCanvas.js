@@ -33,17 +33,10 @@ function SVGCanvas(props) {
         <svg version="1.1" className="border mt-3" xmlns="http://www.w3.org/2000/svg" viewBox={"0 0 " + props.svgDimensions[0] + " " + props.svgDimensions[1]} 
             width="100%" 
             height="80%" 
-            onClick={(evt) => changeActiveFigure(evt)}
-            onMouseOver={(evt => changeCursorOverFigure(evt))}>
+            onClick={(evt) => changeActiveFigure(evt)}>
             {getFiguresToRender()}
         </svg>
         )
-    }
-
-    function changeCursorOverFigure(evt) {
-        if(evt.target.id.startsWith('figure')) {
-            
-        }
     }
 
     function changeActiveFigure(evt) {
