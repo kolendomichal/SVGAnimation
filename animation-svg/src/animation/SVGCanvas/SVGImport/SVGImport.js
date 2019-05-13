@@ -69,7 +69,9 @@ class SVGImport extends React.Component {
                 figure.yPosition = atr;
             else if (svgProperty === 'r')
                 figure.size = atr;
-            else figure.property = atr;
+            else if (svgProperty === 'fill')
+                figure.fill.hex = atr;
+            else figure[svgProperty] = atr;
         }
         return figure;
     }
