@@ -1,8 +1,9 @@
 import Animation from "./Animation"
 
 export class Figure {
+    static staticId = 1;
     constructor() {
-        this.id = 0;
+        this.id = Figure.staticId;
         this.hrefid = 'figure' + this.id;
         this.name='Figure ' + this.id;
         this.figureType = 'Circle'
@@ -16,6 +17,7 @@ export class Figure {
         this.stroke= {};
         this.size = 50;
         this.animation = new Animation(this.hrefid);
+        Figure.staticId++;
     }
     set id(newid) {
         this._id = newid; 

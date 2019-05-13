@@ -54,7 +54,7 @@ function SVGCanvas(props) {
     return (
         <React.Fragment>
             <SVGExport title={"SVGAnimation"} svgText={svgText} svgElement={renderSVG()} figures={props.figures}/>
-            <SVGImport />
+            <SVGImport setNewFigures={props.setNewFigures}/>
             <div className="row mt-5 w-100">
                 <div className="col-lg-12 text-center">
                     <span className="h2">SVGAnimation</span>
