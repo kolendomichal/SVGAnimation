@@ -1,15 +1,8 @@
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
-// import SVGStyles from './SVGStyles';
 import './SVGExport.css';
 
 function SVGExport(props) {
-
-    // function addStylesToSVG(svg) {
-    //     svg = svg.substring(0, svg.length - 6);
-    //     svg += "<style> " + SVGStyles + "</style></svg>";
-    //     return svg;
-    // }
 
     function copySVGAnimation() {
         if (props.svgElement === undefined) return '';
@@ -23,17 +16,12 @@ function SVGExport(props) {
 
     return (
         <React.Fragment>
-            <div className="row mt-5 w-100">
-                <div className="col-lg-12 text-center">
-                    <span className="h2">SVGAnimation</span>
-                    <button type="button" className="btn btn-secondary float-right mr-2" data-toggle="modal" data-target="#exampleModal"> Export SVG </button>
-                </div>
-            </div>
-            <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <button type="button" className="btn btn-secondary float-right mr-2 mt-2" data-toggle="modal" data-target="#exportModal"> Export SVG </button>
+            <div className="modal fade" id="exportModal" tabIndex="-1" role="dialog" aria-labelledby="exportModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">SVGAnimation</h5>
+                            <h5 className="modal-title" id="exportModalLabel">SVGAnimation - Export SVG</h5>
                             <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
