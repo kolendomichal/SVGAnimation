@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import "./SVGCanvas.css";
 import SVGExport from "./SVGExport/SVGExport";
+import SVGImport from "./SVGImport/SVGImport";
 import SVGCircle from "./SVGFigures/SVGCircle";
 import SVGSquare from "./SVGFigures/SVGSquare";
 import SVGPolygon from "./SVGFigures/SVGPolygon";
@@ -53,6 +54,12 @@ function SVGCanvas(props) {
     return (
         <React.Fragment>
             <SVGExport title={"SVGAnimation"} svgText={svgText} svgElement={renderSVG()} figures={props.figures}/>
+            <SVGImport />
+            <div className="row mt-5 w-100">
+                <div className="col-lg-12 text-center">
+                    <span className="h2">SVGAnimation</span>
+                </div>
+            </div>
             {renderSVG()}
         </React.Fragment>
     )

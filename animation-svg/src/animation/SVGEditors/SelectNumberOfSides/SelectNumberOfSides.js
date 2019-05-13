@@ -15,7 +15,7 @@ function SelectNumberOfSides(props) {
     return (
       <div className="form-group">
         <span className="ml-2 mt-4 text-dark font-weight-bold  p-0"> {props.header} </span>
-        <span className="p-0"> <input className="form-control w-25 float-right" type="number" value={value} id="number-input" onChange={e => onSelectChange(e)}/></span>
+        <span className="p-0"> <input min="3" className="form-control w-25 float-right" type="number" value={value} id="number-input" onChange={e => onSelectChange(e)}/></span>
       </div>
     );
 }
