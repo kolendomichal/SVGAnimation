@@ -2,7 +2,6 @@ import React from 'react';
 
 function SVGAnimate(props) {
     const animation = props.animation;
-
     return (
         <animate
             href={animation.href}
