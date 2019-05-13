@@ -9,3 +9,14 @@
   background-color: lightblue !important;
 }
 
+.delete-project {
+  float: right;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.active-project {
+  cursor: default !important;
+  background-color: lightblue !important;
+}
+
