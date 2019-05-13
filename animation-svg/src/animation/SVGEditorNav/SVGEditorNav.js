@@ -5,11 +5,11 @@ function SVGEditorNav(props) {
 
     return (
         <ul className="svg-editor-nav nav nav-tabs nav-fill ">
-            <li className="svg-editor-nav-item nav-item" onClick={() => props.handleEditorTabChange(false)}>
-                <button className={"nav-link btn btn-link .btn-outline-* w-100  " + props.isActiveEditor(false)}>Properties</button>
+            <li className="svg-editor-nav-item nav-item " onClick={() => props.handleEditorTabChange(false)}>
+                <button className={" border-left-0 nav-link btn btn-link .btn-outline-* w-100  " + props.isActiveEditor(false)}>Properties</button>
             </li>
             <li className="svg-editor-nav-item nav-item" onClick={() => props.handleEditorTabChange(true)}>
-                <button className={"nav-link btn btn-link .btn-outline-* w-100  " + props.isActiveEditor(true)}>Animations</button>
+                <button className={" border-right-0 nav-link btn btn-link .btn-outline-* w-100  " + props.isActiveEditor(true)}>Animations</button>
             </li>
         </ul>
     )

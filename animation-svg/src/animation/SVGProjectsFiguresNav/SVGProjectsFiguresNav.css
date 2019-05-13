@@ -1,0 +1,27 @@
+.project-figure-nav-item {
+    border-radius:  0 !important;
+}
+
+.project-figure-nav-item:hover {
+    cursor: pointer;
+    background-color:  grey !important;
+}
+.active {
+    cursor: default !important;
+}
+
+.add-project {
+    cursor: pointer;
+}
+.add-project:hover {
+    background: grey;
+}
+  
+.project-header {
+    font-size: 50px;
+}
+.list-project:hover {
+    cursor: pointer;
+    background: lightgray;
+}
+  
