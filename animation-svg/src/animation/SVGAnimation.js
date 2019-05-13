@@ -33,7 +33,7 @@ class SVGAnimation extends React.Component {
   }
 
   componentDidMount() {
-    const projectList = [...Array(FiguresForProjects.length)].map((value, index) => {
+    const projectList =  [...Array(FiguresForProjects.length)].map((value, index) => {
       let project = new Project();
       project.figuresList = FiguresForProjects[index];
       return project;
@@ -60,8 +60,17 @@ class SVGAnimation extends React.Component {
     }));
   }
 
+  updateProjectState(figuresList) {
+    let projectList = [...this.state.projectList];
+    let selectedProject = this.state.selectedProject;
+    let projectToUpdateIndex = projectList.findIndex(project => project.id === selectedProject.id);
+    projectList[projectToUpdateIndex].figuresList = figuresList;
+    selectedProject.figuresList = figuresList;
+    this.setState({ projectList,selectedProject});
+  }
+
   deleteFigure = (e, id) => {
-    e.stopPropagation();
+    e.stopPropagation(); 
     let figuresList = [...this.state.figuresList];
     let figureToDeleteIndex = figuresList.findIndex(figure => figure.id === id);
     figuresList.splice(figureToDeleteIndex, 1);
@@ -167,8 +176,7 @@ class SVGAnimation extends React.Component {
     figuresList[selectedFigureIndex] = selectedFigure;
 
     this.updateProjectState(figuresList);
-
-    this.setState({ figuresList, selectedFigure });
+    this.setState({ figuresList, selectedFigure});
   }
 
   isActiveEditor = (value) => {
@@ -215,6 +223,11 @@ class SVGAnimation extends React.Component {
       : this.setState({ projectList });
   }
 
+  setCurrentProject = (id) => {
+    let selectedProject = this.state.projectList.find(project => project.id === id);
+    console.log(selectedProject.figuresList);
+    this.setState({ selectedProject, figuresList: selectedProject.figuresList });
+  }
   renderProjectsList = () => {
     return this.state.projectList.map((item, key) => {
       return (
@@ -235,23 +248,12 @@ class SVGAnimation extends React.Component {
       );
     });
   }
-
-  setCurrentProject = (id) => {
-    let selectedProject = this.state.projectList.find(project => project.id === id);
-    console.log(selectedProject.figuresList);
-    this.setState({ selectedProject, figuresList: selectedProject.figuresList });
+  handleProjectFigureTabChange = (value) => {
+    this.setState({ ifProjectCreationMode: value });
   }
-
-  updateProjectState(figuresList) {
-    let projectList = [...this.state.projectList];
-    let selectedProject = this.state.selectedProject;
-    let projectToUpdateIndex = projectList.findIndex(project => project.id === selectedProject.id);
-    projectList[projectToUpdateIndex].figuresList = figuresList;
-    selectedProject.figuresList = figuresList;
-    this.setState({ projectList, selectedProject });
+  isActiveProjectFigureTab = (value) => {
+    return value === this.state.ifProjectCreationMode ? " active" : "";
   }
- 
-
   render() {
     console.log("SVGAnimation rendered");
     return (
@@ -260,7 +262,7 @@ class SVGAnimation extends React.Component {
           <div className="col-lg-3 p-0  overflow-auto border-right">
             <SVGProjectsFiguresNav
               handleProjectFigureTabChange={this.handleProjectFigureTabChange}
-              isActiveEditor={this.isActiveProjectFigureTab}
+              isActiveProjectFigureTab={this.isActiveProjectFigureTab}
             />
             {this.state.ifProjectCreationMode
               ? <SVGProjectsList
