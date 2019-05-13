@@ -56,6 +56,10 @@ class SVGImport extends React.Component {
 
     createFigureFromSVG(svgObject) {
         let figure = new Figure();
+
+        if(svgObject.name === 'circle') figure.figureType = 'Circle';
+        if(svgObject.name === 'polygon') figure.figureType = 'Polygon';
+ 
         for (let svgProperty in svgObject.attributes) {
             let atr = svgObject.attributes[svgProperty];
 
@@ -73,6 +77,7 @@ class SVGImport extends React.Component {
                 figure.fill.hex = atr;
             else figure[svgProperty] = atr;
         }
+
         return figure;
     }
 
