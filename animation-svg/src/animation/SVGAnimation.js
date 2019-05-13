@@ -192,8 +192,9 @@ class SVGAnimation extends React.Component {
     this.setState({ ifAnimationEditionMode: value });
   }
 
-  setNewFigures = (value) => {
-    this.setState({ figures: value });
+  setNewFigures = (figuresList) => {
+    this.updateProjectState(figuresList);
+    this.setState({ figuresList});
   }
 
   isActiveProject(id) {
