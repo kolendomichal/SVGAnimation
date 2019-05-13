@@ -22,7 +22,6 @@ class SVGAnimation extends React.Component {
     this.state = {
       selectedFigure: null,
       figures: [],
-      figuresLength: 0,
       delete: true,
       ifAnimationEditionMode: false,
       svgDimensions: [500,500]
@@ -37,17 +36,14 @@ class SVGAnimation extends React.Component {
     figures[1].xPosition = 200;
     figures[2].fill.hex = '#00D084'
     figures[2].xPosition = 350;
-    this.setState({ figures, selectedFigure: figures[0], figuresLength: figures.length });
+    this.setState({ figures, selectedFigure: figures[0]});
     console.log("SVGAnimation Mounted");
   }
 
   addFigure = () => {
     let figure = new Figure();
-    let figuresLength = this.state.figuresLength + 1;
-    figure.id = figuresLength;
     this.setState(prevState => ({
       figures: [...prevState.figures, figure],
-      figuresLength: figuresLength
     }));
   }
 
