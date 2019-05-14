@@ -19,9 +19,9 @@ function SVGProjectsList(props) {
                 </ul>
             </div>
             <div className="col-lg-12 pt-2 mb-4 project-export-button-group d-flex justify-content-between">
-                <button className="btn btn-secondary "><p className="h5">Import <br/> Projects</p></button>
-                <button className="btn btn-secondary"><p className="h5">Export <br/> Selected Project</p></button>
-                <button className="btn btn-secondary"><p className="h5">Export <br/> Projects</p></button>
+                <button className="btn btn-secondary " onClick={() => props.importProjects()}><p className="h5">Import <br/> Projects</p></button>
+                <button className="btn btn-secondary" onClick={()=> props.exportSelectedProject()}><p className="h5">Export <br/> Selected Project</p></button>
+                <button className="btn btn-secondary" onClick={() => props.exportProjects()}><p className="h5">Export <br/> Projects</p></button>
             </div>
         </React.Fragment>
     );

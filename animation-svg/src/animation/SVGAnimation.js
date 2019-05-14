@@ -14,10 +14,9 @@ import SVGEditorNav from "./SVGEditorNav/SVGEditorNav";
 import SVGProjectsFiguresNav from "./SVGProjectsFiguresNav/SVGProjectsFiguresNav";
 
 
-//TODO use SVG inline instead of fontawesome
 //TODO edit project name
-//TODO Export project
 //TODO Import project
+//TODO use SVG inline instead of fontawesome
 class SVGAnimation extends React.Component {
   constructor(props) {
     super(props);
@@ -33,7 +32,7 @@ class SVGAnimation extends React.Component {
   }
 
   componentDidMount() {
-    const projectList =  [...Array(FiguresForProjects.length)].map((value, index) => {
+    const projectList = [...Array(FiguresForProjects.length)].map((value, index) => {
       let project = new Project();
       project.figuresList = FiguresForProjects[index];
       return project;
@@ -66,11 +65,11 @@ class SVGAnimation extends React.Component {
     let projectToUpdateIndex = projectList.findIndex(project => project.id === selectedProject.id);
     projectList[projectToUpdateIndex].figuresList = figuresList;
     selectedProject.figuresList = figuresList;
-    this.setState({ projectList,selectedProject});
+    this.setState({ projectList, selectedProject });
   }
 
   deleteFigure = (e, id) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     let figuresList = [...this.state.figuresList];
     let figureToDeleteIndex = figuresList.findIndex(figure => figure.id === id);
     figuresList.splice(figureToDeleteIndex, 1);
@@ -119,7 +118,7 @@ class SVGAnimation extends React.Component {
       }
       case "figureType": {
         selectedFigure.figureType = value;
-        if(value === 'Square') selectedFigure.numOfSides = 4;
+        if (value === 'Square') selectedFigure.numOfSides = 4;
         break;
       }
       case "size": {
@@ -177,7 +176,7 @@ class SVGAnimation extends React.Component {
     figuresList[selectedFigureIndex] = selectedFigure;
 
     this.updateProjectState(figuresList);
-    this.setState({ figuresList, selectedFigure});
+    this.setState({ figuresList, selectedFigure });
   }
 
   isActiveEditor = (value) => {
@@ -195,7 +194,7 @@ class SVGAnimation extends React.Component {
 
   setNewFigures = (figuresList) => {
     this.updateProjectState(figuresList);
-    this.setState({ figuresList});
+    this.setState({ figuresList });
   }
 
   isActiveProject(id) {
@@ -256,6 +255,30 @@ class SVGAnimation extends React.Component {
   isActiveProjectFigureTab = (value) => {
     return value === this.state.ifProjectCreationMode ? " active" : "";
   }
+  importProjects = () => {
+    console.log('import projects');
+  }
+
+  exportProjects = () => {
+    console.log('export projects');
+    console.log(JSON.stringify(this.state.projectList));
+    this.downloadObjectAsJson(this.state.projectList, 'projects')
+  }
+
+  exportSelectedProject = () => {
+    this.downloadObjectAsJson(this.state.selectedProject,'ProjectName');
+    console.log('export selected projects');
+  }
+
+  downloadObjectAsJson = (exportObj, exportName) => {
+    var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+    var downloadAnchorNode = document.createElement('a');
+    downloadAnchorNode.setAttribute("href", dataStr);
+    downloadAnchorNode.setAttribute("download", exportName + ".json");
+    document.body.appendChild(downloadAnchorNode); // required for firefox
+    downloadAnchorNode.click();
+    downloadAnchorNode.remove();
+  }
   render() {
     console.log("SVGAnimation rendered");
     return (
@@ -269,7 +292,10 @@ class SVGAnimation extends React.Component {
             {this.state.ifProjectCreationMode
               ? <SVGProjectsList
                 addProject={this.addProject}
-                renderProjectsList={this.renderProjectsList} />
+                renderProjectsList={this.renderProjectsList}
+                exportProjects={this.exportProjects}
+                exportSelectedProject={this.exportSelectedProject}
+                importProjects={this.importProjects} />
               :
               <SVGFiguresList
                 addFigure={this.addFigure}
