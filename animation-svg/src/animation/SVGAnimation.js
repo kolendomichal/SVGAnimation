@@ -261,7 +261,7 @@ class SVGAnimation extends React.Component {
     return (
       <div className="container-fluid h-100 bg-white">
         <div className="row h-100">
-          <div className="col-lg-3 p-0  overflow-auto border-right">
+          <div className="projects-figures col-lg-3 p-0 border-right overflow-auto">
             <SVGProjectsFiguresNav
               handleProjectFigureTabChange={this.handleProjectFigureTabChange}
               isActiveProjectFigureTab={this.isActiveProjectFigureTab}

@@ -1,0 +1,17 @@
+.project-export-button-group {
+    position: absolute !important;
+    bottom: 0;
+}
+.projects-figures {
+    position: relative;
+  }
+.project-list {
+    height: 75vh;
+}
+
+.list-group-item {
+    position: static !important;
+}
+.list-group {
+    overflow-y: auto !important;
+}
