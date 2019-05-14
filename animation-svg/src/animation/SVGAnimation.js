@@ -119,6 +119,7 @@ class SVGAnimation extends React.Component {
       }
       case "figureType": {
         selectedFigure.figureType = value;
+        if(value === 'Square') selectedFigure.numOfSides = 4;
         break;
       }
       case "size": {
