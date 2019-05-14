@@ -13,9 +13,11 @@ function SVGFiguresList(props) {
           <FontAwesomeIcon className="add-figure" icon={faPlus} size="2x" />
         </span>
       </div>
-      <ul id="figures-list" className="list-group bg-light text-left">
-        {props.renderFiguresList()}
-      </ul>
+      <div className="figures-list overflow-auto">
+        <ul id="figures-list" className="list-group bg-light text-left">
+          {props.renderFiguresList()}
+        </ul>
+      </div>
     </React.Fragment>
   );
 }
