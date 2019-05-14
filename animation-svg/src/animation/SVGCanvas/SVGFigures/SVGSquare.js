@@ -6,10 +6,23 @@ function SVGSquare(props) {
 
     return (
         <React.Fragment>
-            <polygon style={{ cursor: 'pointer' }} id={figure.hrefid} opacity={figure.opacity}  fill={figure.fill.hex} stroke={figure.stroke.hex} strokeWidth={figure.strokeWidth} className="figure" />
+            <polygon style={{ cursor: 'pointer' }} 
+                     id={figure.hrefid} 
+                     opacity={figure.opacity}  
+                     fill={figure.fill.hex} 
+                     stroke={figure.stroke.hex} 
+                     strokeWidth={figure.strokeWidth} 
+                     hrefid={figure.hrefid}
+                     name={figure.name}
+                     figureType={figure.figureType}
+                     xPosition={figure.xPosition}
+                     yPosition={figure.yPosition}
+                     numOfSides={figure.numOfSides}
+                     size={figure.size} 
+            />
             <SVGAnimate animation={figure.animation} 
                         attributeName="points"
-                        from={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size, figure.numOfSides)}
+                        from={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size)}
                         to={computeToPoints(figure)}
             />
         </React.Fragment>

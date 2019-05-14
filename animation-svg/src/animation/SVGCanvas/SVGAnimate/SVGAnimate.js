@@ -15,7 +15,10 @@ function SVGAnimate(props) {
             keySplines={animation.keySplines}
             dur={animation.dur}
             begin={animation.begin}
-            fill={animation.fill} />
+            fill={animation.fill} 
+            _to = {animation.to}
+            _from = {animation.from}
+            _attributeName = {animation.attributeName}/>
     )
 }
 

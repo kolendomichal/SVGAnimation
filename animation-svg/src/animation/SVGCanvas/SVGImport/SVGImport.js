@@ -56,27 +56,17 @@ class SVGImport extends React.Component {
 
     createFigureFromSVG(svgObject) {
         let figure = new Figure();
-
-        if(svgObject.name === 'circle') figure.figureType = 'Circle';
-        if(svgObject.name === 'polygon') figure.figureType = 'Polygon';
- 
         for (let svgProperty in svgObject.attributes) {
             let atr = svgObject.attributes[svgProperty];
 
-            if (svgProperty === 'id') {
-                figure.hrefid = atr;
-                figure.name = atr;
-            }
-            else if (svgProperty === 'cx')
-                figure.xPosition = atr;
-            else if (svgProperty === 'cy')
-                figure.yPosition = atr;
-            else if (svgProperty === 'r')
-                figure.size = atr;
-            else if (svgProperty === 'fill')
+            if (svgProperty === 'fill')
                 figure.fill.hex = atr;
+            else if(['xPosition', 'yPosition', 'numOfSides', 'opacity', 'strokeWidth', 'size'].indexOf(svgProperty) > -1)
+                figure[svgProperty] = parseInt(atr);
             else figure[svgProperty] = atr;
         }
+
+        
 
         return figure;
     }
@@ -85,7 +75,9 @@ class SVGImport extends React.Component {
         for (let i in figures) {
             if (('#' + figures[i].hrefid) === svgObject.attributes.href) {
                 Object.keys(svgObject.attributes).forEach(function (key, index) {
-                    figures[i].animation[key] = svgObject.attributes[key];
+                    if(key.startsWith('_')) 
+                        figures[i].animation[key.substr(1)] = svgObject.attributes[key]
+                    else figures[i].animation[key] = svgObject.attributes[key];
                 })
             }
         }
