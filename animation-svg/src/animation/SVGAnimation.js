@@ -255,8 +255,11 @@ class SVGAnimation extends React.Component {
   isActiveProjectFigureTab = (value) => {
     return value === this.state.ifProjectCreationMode ? " active" : "";
   }
-  importProjects = () => {
-    console.log('import projects');
+  
+  handleImportProjectsJson = (jsonProjectArray) => {
+    let projectArray = JSON.parse(jsonProjectArray);
+    let projectList = this.state.projectList.concat(projectArray);
+    this.setState({projectList});
   }
 
   exportProjects = () => {
@@ -295,7 +298,7 @@ class SVGAnimation extends React.Component {
                 renderProjectsList={this.renderProjectsList}
                 exportProjects={this.exportProjects}
                 exportSelectedProject={this.exportSelectedProject}
-                importProjects={this.importProjects} />
+                handleImportProjectsJson={this.handleImportProjectsJson} />
               :
               <SVGFiguresList
                 addFigure={this.addFigure}
