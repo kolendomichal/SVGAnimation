@@ -18,7 +18,7 @@ function SVGAnimate(props) {
             fill={animation.fill} 
             _to = {animation.to}
             _from = {animation.from}
-            _attributeName = {animation.attributeName}/>
+            _attributename = {animation.attributeName}/>
     )
 }
 

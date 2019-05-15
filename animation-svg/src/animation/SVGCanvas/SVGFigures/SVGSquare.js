@@ -14,10 +14,10 @@ function SVGSquare(props) {
                      strokeWidth={figure.strokeWidth} 
                      hrefid={figure.hrefid}
                      name={figure.name}
-                     figureType={figure.figureType}
-                     xPosition={figure.xPosition}
-                     yPosition={figure.yPosition}
-                     numOfSides={figure.numOfSides}
+                     figuretype={figure.figureType}
+                     xposition={figure.xPosition}
+                     yposition={figure.yPosition}
+                     numofsides={figure.numOfSides}
                      size={figure.size} 
             />
             <SVGAnimate animation={figure.animation} 
