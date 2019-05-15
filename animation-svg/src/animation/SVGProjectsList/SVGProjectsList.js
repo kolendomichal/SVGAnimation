@@ -2,6 +2,8 @@ import React from 'react';
 import "./SVGProjectsList.css"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import FileImport from './FileImport/FileImport';
+import validator from 'validator';
 
 function SVGProjectsList(props) {
 
@@ -19,11 +21,22 @@ function SVGProjectsList(props) {
                 </ul>
             </div>
             <div className="col-lg-12 pt-2 mb-4 project-export-button-group d-flex justify-content-between">
-                <button className="btn btn-secondary " onClick={() => props.importProjects()}><p className="h5">Import <br/> Projects</p></button>
-                <button className="btn btn-secondary" onClick={()=> props.exportSelectedProject()}><p className="h5">Export <br/> Selected Project</p></button>
-                <button className="btn btn-secondary" onClick={() => props.exportProjects()}><p className="h5">Export <br/> Projects</p></button>
+                <FileImport 
+                    buttonTitle={"Import projects"}
+                    fileType={".json"}
+                    fileValidate={validator.isJSON}
+                    importIdentificator={"projectImport"}
+                    importModalHeader={"SVG Animation - import project"}
+                    importFilePlaceholder={"Choose projects json file..."} 
+                    handleImportedFile={props.handleImportProjectsJson}
+                >
+                </FileImport>
+                <button className="btn btn-secondary" onClick={() => props.exportSelectedProject()}><p className="h5">Export <br /> Selected Project</p></button>
+                <button className="btn btn-secondary" onClick={() => props.exportProjects()}><p className="h5">Export <br /> Projects</p></button>
             </div>
         </React.Fragment>
+
+
     );
 }
 
