@@ -61,13 +61,24 @@ class SVGImport extends React.Component {
 
             if (svgProperty === 'fill')
                 figure.fill.hex = atr;
-            else if(['xPosition', 'yPosition', 'numOfSides', 'opacity', 'strokeWidth', 'size'].indexOf(svgProperty) > -1)
-                figure[svgProperty] = parseInt(atr);
+            else if (svgProperty === 'xposition')
+                figure.xPosition = parseInt(atr);
+            else if (svgProperty === 'yposition')
+                figure.yPosition = parseInt(atr);
+            else if (svgProperty === 'numofsides')
+                figure.numOfSides = parseInt(atr);
+            else if (svgProperty === 'figuretype')
+                figure.figureType = atr;
+            else if (svgProperty === 'opacity')
+                figure.opacity = parseFloat(atr);
+            else if (svgProperty === 'stroke-width')
+                figure.strokeWidth = parseFloat(atr);
+            else if (svgProperty === 'size')
+                figure.size = parseInt(atr);
+            else if (svgProperty === 'stroke')
+                figure.stroke.hex = atr;
             else figure[svgProperty] = atr;
         }
-
-        
-
         return figure;
     }
 
@@ -75,12 +86,23 @@ class SVGImport extends React.Component {
         for (let i in figures) {
             if (('#' + figures[i].hrefid) === svgObject.attributes.href) {
                 Object.keys(svgObject.attributes).forEach(function (key, index) {
-                    if(key.startsWith('_')) 
-                        figures[i].animation[key.substr(1)] = svgObject.attributes[key]
-                    else figures[i].animation[key] = svgObject.attributes[key];
+                        if (key === '_attributename')
+                            figures[i].animation.attributeName = svgObject.attributes[key];
+                        else if (key === '_to')
+                            figures[i].animation.to = svgObject.attributes[key]
+                        else if (key === 'from')
+                            figures[i].animation.from = svgObject.attributes[key]
+                        else figures[i].animation[key] = svgObject.attributes[key];
                 })
             }
         }
+    }
+
+    getPropertyInCorrectCase(figure, svgProperty) {
+        for (var property in figure) {
+            if(property.toLowerCase() === svgProperty.toLowerCase()) return property;
+        }
+        return svgProperty
     }
 
     render() {

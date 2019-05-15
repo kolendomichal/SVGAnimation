@@ -15,10 +15,10 @@ function SVGCircle(props) {
                     cy={figure.yPosition} 
                     r={figure.size} 
                     href={figure.href}
-                    figureType={figure.figureType}
+                    figuretype={figure.figureType}
                     name={figure.name}
-                    xPosition={figure.xPosition}
-                    yPosition={figure.yPosition}
+                    xposition={figure.xPosition}
+                    yposition={figure.yPosition}
                     size={figure.size}
             />
             <SVGAnimate animation={figure.animation}/>
