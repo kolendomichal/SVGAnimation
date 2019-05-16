@@ -255,11 +255,11 @@ class SVGAnimation extends React.Component {
   isActiveProjectFigureTab = (value) => {
     return value === this.state.ifProjectCreationMode ? " active" : "";
   }
-  
+
   handleImportProjectsJson = (jsonProjectArray) => {
     let projectArray = JSON.parse(jsonProjectArray);
     let projectList = this.state.projectList.concat(projectArray);
-    this.setState({projectList});
+    this.setState({ projectList });
   }
 
   exportProjects = () => {
@@ -269,7 +269,7 @@ class SVGAnimation extends React.Component {
   }
 
   exportSelectedProject = () => {
-    this.downloadObjectAsJson(this.state.selectedProject,'ProjectName');
+    this.downloadObjectAsJson(this.state.selectedProject, 'ProjectName');
     console.log('export selected projects');
   }
 
@@ -282,6 +282,7 @@ class SVGAnimation extends React.Component {
     downloadAnchorNode.click();
     downloadAnchorNode.remove();
   }
+
   render() {
     console.log("SVGAnimation rendered");
     return (
@@ -305,6 +306,13 @@ class SVGAnimation extends React.Component {
                 renderFiguresList={this.renderFiguresList} />
             }
           </div>
+          <div className="col-lg-5 p-0 h-100" >
+            <SVGCanvas figures={this.state.figuresList}
+              svgDimensions={this.state.svgDimensions}
+              changeSelectedFigure={this.changeSelectedFigure}
+              setNewFigures={this.setNewFigures}
+            />
+          </div>
           <div className="col-lg-4 h-100 bg-light overflow-auto border">
             <SVGEditorNav
               handleEditorTabChange={this.handleEditorTabChange}
@@ -319,13 +327,6 @@ class SVGAnimation extends React.Component {
                 changeFigureValue={this.changeFigureValue}
                 selectedFigure={this.state.selectedFigure} />
             }
-          </div>
-          <div className="col-lg-5 p-0 h-100" >
-            <SVGCanvas figures={this.state.figuresList}
-              svgDimensions={this.state.svgDimensions}
-              changeSelectedFigure={this.changeSelectedFigure}
-              setNewFigures={this.setNewFigures}
-            />
           </div>
 
         </div>
