@@ -13,7 +13,7 @@ function SVGAnimate(props) {
             calcMode={animation.calcMode}
             keyTimes={animation.keyTimes}
             keySplines={animation.keySplines}
-            dur={animation.dur}
+            dur={`${animation.dur}s`}
             begin={animation.begin}
             fill={animation.fill} 
             _to = {animation.to}

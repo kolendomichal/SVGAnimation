@@ -3,21 +3,20 @@ import "./InputNumberRange.css";
 import InputRange from "react-input-range";
 
 function InputNumberRangeHook(props) {
-  const [value, setValue] = useState(props.value);
+  const initialValue = props.options.selectedFigure[props.valueType];
+  const [value, setValue] = useState(initialValue);
   const [minValue, maxValue] = [props.minValue, props.maxValue];
 
   function changeTextInputValue(e) {
     let { value, min, max } = e.target;
     value = Math.max(Number(min), Math.min(Number(max), Number(value)));
     setValue(value);
-    props.changeSpecifiedValue(props.valueType, value);
-    console.log(minValue);
-    console.log(maxValue);
+    props.options.changeSpecifiedValue(props.valueType, value);
   }
 
   useEffect(() => {
-    setValue(props.value);
-  }, [props.value]); // Only re-run the effect if props.value changes
+    setValue(initialValue);
+  }, [initialValue]); 
 
   return (
 
@@ -31,7 +30,7 @@ function InputNumberRangeHook(props) {
             value={value}
             step={props.step}
             onChange={value => setValue(value)}
-            onChangeComplete={value => props.changeSpecifiedValue(props.valueType, value)}
+            onChangeComplete={value => props.options.changeSpecifiedValue(props.valueType, value)}
           />
         </div>
         <div className="col-lg-3 mt-3">

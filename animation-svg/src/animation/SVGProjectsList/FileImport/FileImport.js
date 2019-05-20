@@ -7,6 +7,7 @@ function FileImport(props) {
     const [ifCorrectFile, setFileValidation] = useState(false);
     const fileReader = new FileReader();
     const fileType = props.fileType;
+    
     useEffect(() => {
         if (fileContent && !props.fileValidate(fileContent)) {
             setFileName(`Please check if your ${fileType} is correct.`)

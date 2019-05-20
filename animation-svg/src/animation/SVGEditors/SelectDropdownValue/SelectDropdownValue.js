@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 
 function SelectDropdownValue(props) {
-  const [value, changeValue] = useState(props.value);
+  const initialValue = props.options.selectedFigure[props.valueType];
+  const [value, changeValue] = useState(initialValue);
 
   function renderOptions() {
-    const options = props.options;
+    const options = props.dropdownOptions;
     const optionsValues = Object.keys(options);
     return Object.keys(options).map((item, key) => {
       return (
@@ -18,12 +19,12 @@ function SelectDropdownValue(props) {
   function onSelectChange(event) {
     let newSelectedOption = event.target.value;
     changeValue(newSelectedOption);
-    props.changeSpecifiedValue(props.valueType, newSelectedOption);
+    props.options.changeSpecifiedValue(props.valueType, newSelectedOption);
   }
 
   useEffect(() => {
-    changeValue(props.value);
-  }, [props.value]); 
+    changeValue(initialValue);
+  }, [initialValue]); 
 
   return (
     <div className="form-group">

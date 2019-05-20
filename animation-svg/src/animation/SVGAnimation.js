@@ -166,7 +166,7 @@ class SVGAnimation extends React.Component {
         break;
       }
       case "dur": {
-        selectedFigure.animation.dur = value + "s";
+        selectedFigure.animation.dur = value;
         break;
       }
       default: {
