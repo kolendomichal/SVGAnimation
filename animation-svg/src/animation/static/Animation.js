@@ -9,7 +9,7 @@ export class Animation {
       this.calcMode = "spline";
       this.keyTimes = "0;1";
       this.keySplines = ".42 0.5 0.5 1";
-      this.dur = "5s";
+      this.dur = 5;
       this.begin = "0s";
       this.fill = "remove";
   }

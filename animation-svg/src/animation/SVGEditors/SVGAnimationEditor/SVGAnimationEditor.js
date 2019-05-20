@@ -5,42 +5,40 @@ import AxisTypes from '../../static/AxisTypes';
 
 function SVGAnimationEditor(props) {
     
+    const figureChange = {changeSpecifiedValue: props.changeFigureValue, selectedFigure: props.selectedFigure.animation};
+  
     return (<React.Fragment>
         {props.selectedFigure && (
             <React.Fragment>
                 <SelectDropdownValue
                     header={"Animation Axis"}
                     valueType="attributeName"
-                    options={AxisTypes}
-                    changeSpecifiedValue={props.changeFigureValue}
-                    value={props.selectedFigure.animation.attributeName}
+                    dropdownOptions={AxisTypes}
+                    options={figureChange}
                 />
                 <InputNumberRangeHook
                     header={"Animation Starting point"}
                     valueType="from"
-                    changeSpecifiedValue={props.changeFigureValue}
-                    value={props.selectedFigure.animation.from}
-                    minValue={0} //SVG size?
-                    maxValue={props.svgDimensions[0]} //SVG size?
+                    options={figureChange}
+                    minValue={0} 
+                    maxValue={props.svgDimensions[0]} 
                     step={1}
 
                 />
                 <InputNumberRangeHook
                     header={"Animation ending point"}
                     valueType="to"
-                    changeSpecifiedValue={props.changeFigureValue}
-                    value={props.selectedFigure.animation.to}
-                    minValue={0} //SVG size?
-                    maxValue={props.svgDimensions[0]} //SVG size?
+                    options={figureChange}
+                    minValue={0} 
+                    maxValue={props.svgDimensions[0]} 
                     step={1}
                 />
                 <InputNumberRangeHook
                     header={"Animation duration"}
                     valueType="dur"
-                    changeSpecifiedValue={props.changeFigureValue}
-                    value={Number(props.selectedFigure.animation.dur.substring(0,props.selectedFigure.animation.dur.length-1))}
-                    minValue={0} //SVG size?
-                    maxValue={20} //SVG size?
+                    options={figureChange}   
+                    minValue={0} 
+                    maxValue={20} 
                     step={0.1}
                 />
             </React.Fragment>

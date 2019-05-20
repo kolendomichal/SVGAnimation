@@ -12,37 +12,29 @@ function SVGFigureEditor(props) {
 
   const selectNumberOfSides = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.Polygon;
   const headerForFigure = props.selectedFigure && props.selectedFigure.figureType === FigureTypes.Circle;
+  const figureChange = {changeSpecifiedValue: props.changeFigureValue, selectedFigure: props.selectedFigure};
   return (
     <React.Fragment>
       {props.selectedFigure && (
         <React.Fragment>
           <ActorName
             valueType="name"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.name}
+            options={figureChange}
           />
           <SelectDropdownValue
             header={"Figure Type"}
             valueType="figureType"
-            options={FigureTypes}
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.figureType}
+            dropdownOptions={FigureTypes}
+            options={figureChange}
           />
           <InputNumberRangeHook
             header={headerForFigure ? props.selectedFigure.figureType + " Diameter" : props.selectedFigure.figureType + " Size"}
             valueType="size"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.size}
+            options={figureChange}
             minValue={0}
             maxValue={100}
             step={1}
           />
-          {/* <SelectAnimationType
-            header={"Animation Type"}
-            valueType="animationType"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.animationType}
-          /> */}
           {selectNumberOfSides &&
             <SelectNumberOfSides
               header={"Number of sides"}
@@ -53,8 +45,7 @@ function SVGFigureEditor(props) {
           <InputNumberRangeHook
             header="X Position"
             valueType="xPosition"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.xPosition}
+            options={figureChange}
             minValue={0}
             maxValue={500}
             step={1}
@@ -62,8 +53,7 @@ function SVGFigureEditor(props) {
           <InputNumberRangeHook
             header="Y Position"
             valueType="yPosition"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.yPosition}
+            options={figureChange}
             minValue={0}
             maxValue={500}
             step={1}
@@ -72,8 +62,7 @@ function SVGFigureEditor(props) {
           <InputNumberRangeHook
             header="Opacity"
             valueType="opacity"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.opacity}
+            options={figureChange}
             minValue={0}
             maxValue={1}
             step={0.01}
@@ -81,20 +70,17 @@ function SVGFigureEditor(props) {
           <ColorPicker
             header="Fill"
             valueType="fill"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.fill}
+            options={figureChange}
           />
           <ColorPicker
             header="Stroke"
             valueType="stroke"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.stroke}
+            options={figureChange}
           />
           <InputNumberRangeHook
             header="Stroke Width:"
             valueType="strokeWidth"
-            changeSpecifiedValue={props.changeFigureValue}
-            value={props.selectedFigure.strokeWidth}
+            options={figureChange}
             minValue={1}
             maxValue={50}
             step={1}

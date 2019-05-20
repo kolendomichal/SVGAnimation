@@ -98,13 +98,6 @@ class SVGImport extends React.Component {
         }
     }
 
-    getPropertyInCorrectCase(figure, svgProperty) {
-        for (var property in figure) {
-            if(property.toLowerCase() === svgProperty.toLowerCase()) return property;
-        }
-        return svgProperty
-    }
-
     render() {
         return (
             <React.Fragment>

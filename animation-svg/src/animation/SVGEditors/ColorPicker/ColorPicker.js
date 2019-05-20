@@ -2,11 +2,12 @@ import React , { useState, useEffect } from "react";
 import { TwitterPicker } from 'react-color';
 
 function ColorPicker(props) {
-    const [color, setColor] = useState(props.value);
+    const initialValue = props.options.selectedFigure[props.valueType];
+    const [color, setColor] = useState(initialValue);
 
     useEffect(() => {
-        setColor(props.value);
-    }, [props.value]); 
+        setColor(initialValue);
+    }, [initialValue]); 
 
 
     return (
@@ -15,7 +16,7 @@ function ColorPicker(props) {
             <TwitterPicker
                 color={color}
                 onChange={color => setColor(color)}
-                onChangeComplete={color => props.changeSpecifiedValue(props.valueType, color)}
+                onChangeComplete={color => props.options.changeSpecifiedValue(props.valueType, color)}
             />
         </React.Fragment>
     )
