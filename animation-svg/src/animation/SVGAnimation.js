@@ -103,10 +103,6 @@ class SVGAnimation extends React.Component {
     });
   }
 
-  changeSelectedFigure = (figure) => {
-    this.setState({ selectedFigure: figure })
-  }
-
   changeFigureValue = (type, value) => {
     let figuresList = [...this.state.figuresList];
     let selectedFigure = this.state.selectedFigure;
@@ -229,6 +225,7 @@ class SVGAnimation extends React.Component {
     console.log(selectedProject.figuresList);
     this.setState({ selectedProject, figuresList: selectedProject.figuresList });
   }
+
   renderProjectsList = () => {
     return this.state.projectList.map((item, key) => {
       return (
@@ -249,6 +246,7 @@ class SVGAnimation extends React.Component {
       );
     });
   }
+
   handleProjectFigureTabChange = (value) => {
     this.setState({ ifProjectCreationMode: value });
   }
@@ -309,7 +307,7 @@ class SVGAnimation extends React.Component {
           <div className="col-lg-5 p-0 h-100" >
             <SVGCanvas figures={this.state.figuresList}
               svgDimensions={this.state.svgDimensions}
-              changeSelectedFigure={this.changeSelectedFigure}
+              showFigureEditor={this.showFigureEditor}
               setNewFigures={this.setNewFigures}
             />
           </div>

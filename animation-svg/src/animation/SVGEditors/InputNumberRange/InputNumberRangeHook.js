@@ -40,7 +40,7 @@ function InputNumberRangeHook(props) {
             max={maxValue}
             step={props.step}
             className="form-control"
-            value={props.value}
+            value={initialValue}
             onChange={e => changeTextInputValue(e)}
           />
         </div>
