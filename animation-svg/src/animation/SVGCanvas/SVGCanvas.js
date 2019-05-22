@@ -45,7 +45,7 @@ function SVGCanvas(props) {
             let hrefid = evt.target.id;
             props.figures.forEach(figure => {
                 if(figure.hrefid === hrefid) {
-                    props.changeSelectedFigure(figure);
+                    props.showFigureEditor(figure.id);
                 }
             });
         }

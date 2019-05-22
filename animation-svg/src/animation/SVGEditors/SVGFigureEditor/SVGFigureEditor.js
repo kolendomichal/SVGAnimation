@@ -4,7 +4,6 @@ import ActorName from "../ActorName/ActorName";
 import SelectDropdownValue from "../SelectDropdownValue/SelectDropdownValue";
 // import SelectAnimationType from "./SelectAnimationType/SelectAnimationType";
 import InputNumberRangeHook from '../InputNumberRange/InputNumberRangeHook';
-import SelectNumberOfSides from '../SelectNumberOfSides/SelectNumberOfSides';
 import FigureTypes from '../../static/FigureTypes';
 import ColorPicker from "../ColorPicker/ColorPicker";
 
@@ -36,11 +35,14 @@ function SVGFigureEditor(props) {
             step={1}
           />
           {selectNumberOfSides &&
-            <SelectNumberOfSides
-              header={"Number of sides"}
-              valueType="numOfSides"
-              changeSpecifiedValue={props.changeFigureValue}
-              value={props.selectedFigure.numOfSides} />
+             <InputNumberRangeHook
+             header="Number of sides"
+             valueType="numOfSides"
+             options={figureChange}
+             minValue={0}
+             maxValue={10}
+             step={1}
+           />
           }
           <InputNumberRangeHook
             header="X Position"
