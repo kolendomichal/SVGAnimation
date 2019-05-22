@@ -4,7 +4,7 @@
   z-index: 1;
 }
 
-.active-figure {
+.active-list-element {
   cursor: default !important;
   background-color: lightblue !important;
 }
@@ -15,10 +15,6 @@
   z-index: 1;
 }
 
-.active-project {
-  cursor: default !important;
-  background-color: lightblue !important;
-}
 
 .projects-figures {
   position: relative;

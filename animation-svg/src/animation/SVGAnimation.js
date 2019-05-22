@@ -12,10 +12,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import SVGEditorNav from "./SVGEditorNav/SVGEditorNav";
 import SVGProjectsFiguresNav from "./SVGProjectsFiguresNav/SVGProjectsFiguresNav";
+import ActiveListElement from "./static/ActiveListElement";
 
 
 //TODO edit project name
-//TODO Import project
 //TODO use SVG inline instead of fontawesome
 class SVGAnimation extends React.Component {
   constructor(props) {
@@ -46,16 +46,29 @@ class SVGAnimation extends React.Component {
     console.log("SVGAnimation Mounted");
   }
 
-  isActiveFigure = (id) => {
-    let selectedFigureId = this.state.selectedFigure !== null ? this.state.selectedFigure.id : -1;
-    let isActive = selectedFigureId === id;
-    return isActive ? 'active-figure' : '';
+  isActiveListElement = (elementType, elementId) => {
+    let selectedElementId = null;
+    switch (elementType) {
+      case ActiveListElement.Figure:
+        selectedElementId = this.state.selectedFigure !== null ? this.state.selectedFigure.id : -1;
+        break;
+      case ActiveListElement.Project:
+        selectedElementId = this.state.selectedProject !== null ? this.state.selectedProject.id : -1;
+        break;
+      default:
+        break;
+    }
+    return selectedElementId === elementId ? 'active-list-element' : "";;
+  }
+
+
+  isActiveEditor = (value) => {
+    return value === this.state.ifAnimationEditionMode ? " active" : ""
   }
 
   addFigure = () => {
-    let figure = new Figure();
     this.setState(prevState => ({
-      figuresList: [...prevState.figuresList, figure],
+      figuresList: [...prevState.figuresList, new Figure()],
     }));
   }
 
@@ -90,7 +103,7 @@ class SVGAnimation extends React.Component {
       return (
         <li
           key={item.id + item.name}
-          className={'list-group-item list-figure ' + this.isActiveFigure(item.id)}
+          className={'list-group-item list-figure ' + this.isActiveListElement(ActiveListElement.Figure, item.id)}
           onClick={() => this.showFigureEditor(item.id)}>
           {item.name}
           <FontAwesomeIcon
@@ -175,9 +188,6 @@ class SVGAnimation extends React.Component {
     this.setState({ figuresList, selectedFigure });
   }
 
-  isActiveEditor = (value) => {
-    return value === this.state.ifAnimationEditionMode ? " active" : ""
-  }
 
   showFigureEditor = (id) => {
     let selectedFigure = this.state.figuresList.find(figure => figure.id === id);
@@ -193,16 +203,11 @@ class SVGAnimation extends React.Component {
     this.setState({ figuresList });
   }
 
-  isActiveProject(id) {
-    let selectedProjectId = this.state.selectedProject !== null ? this.state.selectedProject.id : -1;
-    let isActive = selectedProjectId === id;
-    return isActive ? 'active-project' : '';
-  }
+
 
   addProject = () => {
-    let project = new Project();
     this.setState(prevState => ({
-      projectList: [...prevState.projectList, project],
+      projectList: [...prevState.projectList, new Project()],
     }));
   }
 
@@ -222,7 +227,6 @@ class SVGAnimation extends React.Component {
 
   setCurrentProject = (id) => {
     let selectedProject = this.state.projectList.find(project => project.id === id);
-    console.log(selectedProject.figuresList);
     this.setState({ selectedProject, figuresList: selectedProject.figuresList });
   }
 
@@ -231,7 +235,7 @@ class SVGAnimation extends React.Component {
       return (
         <li
           key={item.id}
-          className={'list-group-item list-project ' + this.isActiveProject(item.id)}
+          className={'list-group-item list-project ' + this.isActiveListElement(ActiveListElement.Project, item.id)}
           onClick={() => this.setCurrentProject(item.id)}>
           {<p className="h3">
             {item.name}
@@ -250,6 +254,7 @@ class SVGAnimation extends React.Component {
   handleProjectFigureTabChange = (value) => {
     this.setState({ ifProjectCreationMode: value });
   }
+
   isActiveProjectFigureTab = (value) => {
     return value === this.state.ifProjectCreationMode ? " active" : "";
   }
@@ -261,14 +266,11 @@ class SVGAnimation extends React.Component {
   }
 
   exportProjects = () => {
-    console.log('export projects');
-    console.log(JSON.stringify(this.state.projectList));
     this.downloadObjectAsJson(this.state.projectList, 'projects')
   }
 
   exportSelectedProject = () => {
     this.downloadObjectAsJson(this.state.selectedProject, 'ProjectName');
-    console.log('export selected projects');
   }
 
   downloadObjectAsJson = (exportObj, exportName) => {
