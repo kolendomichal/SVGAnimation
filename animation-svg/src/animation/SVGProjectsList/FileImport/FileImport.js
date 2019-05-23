@@ -37,7 +37,7 @@ function FileImport(props) {
 
     return (
         <React.Fragment>
-            <button type="button" className="btn btn-secondary " data-toggle="modal" data-target={`#${props.importIdentificator}`}><p className="h5"> {props.buttonTitle} </p>  </button>
+            <button type="button" className="btn btn-secondary project-button pr-1 pl-1" data-toggle="modal" data-target={`#${props.importIdentificator}`}><p> {props.buttonTitle} </p>  </button>
             <div className="modal fade" id={props.importIdentificator} tabIndex="-1" role="dialog" aria-labelledby="importModalLabel" aria-hidden="true">
                 <div className="modal-dialog" role="document">
                     <div className="modal-content">

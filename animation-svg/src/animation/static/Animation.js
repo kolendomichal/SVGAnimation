@@ -12,6 +12,7 @@ export class Animation {
       this.dur = 5;
       this.begin = "0s";
       this.fill = "remove";
+      this.r = 0;
   }
 }
 

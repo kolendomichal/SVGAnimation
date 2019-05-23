@@ -1,17 +1,20 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import "./InputNumberRange.css";
 import InputRange from "react-input-range";
+import SVGContext from "../../SVGContext";
+import { get } from 'lodash';
 
-function InputNumberRangeHook(props) {
-  const initialValue = props.options.selectedFigure[props.valueType];
+function InputNumberRange(props) {
+  const svgContext = useContext(SVGContext);
+  const initialValue = get(svgContext.selectedFigure, props.valueType);
   const [value, setValue] = useState(initialValue);
   const [minValue, maxValue] = [props.minValue, props.maxValue];
-
+  
   function changeTextInputValue(e) {
     let { value, min, max } = e.target;
     value = Math.max(Number(min), Math.min(Number(max), Number(value)));
     setValue(value);
-    props.options.changeSpecifiedValue(props.valueType, value);
+    svgContext.changeFigureValue(props.valueType, value);
   }
 
   useEffect(() => {
@@ -30,7 +33,7 @@ function InputNumberRangeHook(props) {
             value={value}
             step={props.step}
             onChange={value => setValue(value)}
-            onChangeComplete={value => props.options.changeSpecifiedValue(props.valueType, value)}
+            onChangeComplete={value => svgContext.changeFigureValue(props.valueType, value)}
           />
         </div>
         <div className="col-lg-3 mt-3">
@@ -49,4 +52,4 @@ function InputNumberRangeHook(props) {
   );
 }
 
-export default InputNumberRangeHook;
+export default InputNumberRange;

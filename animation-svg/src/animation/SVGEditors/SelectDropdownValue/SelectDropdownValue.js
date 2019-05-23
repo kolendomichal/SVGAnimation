@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext} from "react";
+import SVGContext from "../../SVGContext";
 
 function SelectDropdownValue(props) {
-  const initialValue = props.options.selectedFigure[props.valueType];
+  const svgContext = useContext(SVGContext);
+
+  const initialValue = svgContext.selectedFigure[props.valueType];
   const [value, changeValue] = useState(initialValue);
 
   function renderOptions() {
@@ -19,7 +22,7 @@ function SelectDropdownValue(props) {
   function onSelectChange(event) {
     let newSelectedOption = event.target.value;
     changeValue(newSelectedOption);
-    props.options.changeSpecifiedValue(props.valueType, newSelectedOption);
+    svgContext.changeFigureValue(props.valueType, newSelectedOption);
   }
 
   useEffect(() => {

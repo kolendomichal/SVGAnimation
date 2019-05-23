@@ -4,9 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
 function SVGFiguresList(props) {
-
   return (
-    <React.Fragment>
+    <div className="svg-figures-list">
       <div className="bg-secondary text-white">
         <span className="figures-header text-left pl-2">Figures</span>
         <span className="mt-4 mr-4 float-right" onClick={() => props.addFigure()}>
@@ -14,11 +13,9 @@ function SVGFiguresList(props) {
         </span>
       </div>
       <div className="figures-list overflow-auto">
-        <ul id="figures-list" className="list-group bg-light text-left">
-          {props.renderFiguresList()}
-        </ul>
+        {props.renderFiguresList()}
       </div>
-    </React.Fragment>
+    </div>
   );
 }
 

@@ -8,7 +8,7 @@ import validator from 'validator';
 function SVGProjectsList(props) {
 
     return (
-        <React.Fragment>
+        <div className="svg-project-list">
             <div className="bg-secondary text-white">
                 <span className="figures-header text-left pl-2">Projects</span>
                 <span className="mt-4 mr-4 float-right" onClick={() => props.addProject()}>
@@ -16,27 +16,22 @@ function SVGProjectsList(props) {
                 </span>
             </div>
             <div className="project-list overflow-auto border-bottom ">
-                <ul id="figures-list" className="list-group bg-light text-left">
-                    {props.renderProjectsList()}
-                </ul>
+                {props.renderProjectsList()}
             </div>
-            <div className="col-lg-12 pt-2 mb-4 project-export-button-group d-flex justify-content-between">
-                <FileImport 
+            <div className="col-lg-12 mb-1 project-export-button-group d-flex justify-content-between">
+                <FileImport
                     buttonTitle={"Import projects"}
                     fileType={".json"}
                     fileValidate={validator.isJSON}
                     importIdentificator={"projectImport"}
                     importModalHeader={"SVG Animation - import project"}
-                    importFilePlaceholder={"Choose projects json file..."} 
+                    importFilePlaceholder={"Choose projects json file..."}
                     handleImportedFile={props.handleImportProjectsJson}
-                >
-                </FileImport>
-                <button className="btn btn-secondary" onClick={() => props.exportSelectedProject()}><p className="h5">Export <br /> Selected Project</p></button>
-                <button className="btn btn-secondary" onClick={() => props.exportProjects()}><p className="h5">Export <br /> Projects</p></button>
+                />
+                <button className="btn btn-secondary project-button" onClick={() => props.exportSelectedProject()}><p>Export <br /> Selected Project</p></button>
+                <button className="btn btn-secondary project-button" onClick={() => props.exportProjects()}><p>Export <br /> Projects</p></button>
             </div>
-        </React.Fragment>
-
-
+        </div>
     );
 }
 

@@ -4,6 +4,7 @@ import SVGFiguresList from "./SVGFiguresList/SVGFiguresList";
 import SVGProjectsList from "./SVGProjectsList/SVGProjectsList";
 import SVGFigureEditor from "./SVGEditors/SVGFigureEditor/SVGFigureEditor";
 import SVGAnimationEditor from "./SVGEditors/SVGAnimationEditor/SVGAnimationEditor";
+import FigureTypes from './static/FigureTypes';
 import SVGCanvas from "./SVGCanvas/SVGCanvas";
 import { Figure } from "./static/Figure";
 import { FiguresForProjects } from "./static/StartingData";
@@ -13,6 +14,7 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons'
 import SVGEditorNav from "./SVGEditorNav/SVGEditorNav";
 import SVGProjectsFiguresNav from "./SVGProjectsFiguresNav/SVGProjectsFiguresNav";
 import ActiveListElement from "./static/ActiveListElement";
+import { SVGProvider } from "./SVGContext";
 
 
 //TODO edit project name
@@ -27,7 +29,6 @@ class SVGAnimation extends React.Component {
       selectedFigure: null,
       ifAnimationEditionMode: false,
       ifProjectCreationMode: true,
-      svgDimensions: [500, 500]
     };
   }
 
@@ -99,21 +100,23 @@ class SVGAnimation extends React.Component {
 
 
   renderFiguresList = () => {
-    return this.state.figuresList.map((item, key) => {
-      return (
-        <li
-          key={item.id + item.name}
-          className={'list-group-item list-figure ' + this.isActiveListElement(ActiveListElement.Figure, item.id)}
-          onClick={() => this.showFigureEditor(item.id)}>
-          {item.name}
-          <FontAwesomeIcon
-            onClick={(e) => this.deleteFigure(e, item.id)}
-            className="delete-figure"
-            icon={faTrash}
-            size="1x" />
-        </li>
-      );
-    });
+    return (<ul id="figures-list" className="list-group bg-light text-left">
+      {this.state.figuresList.map((item) => {
+        return (
+          <li
+            key={item.id + item.name}
+            className={'list-group-item list-figure ' + this.isActiveListElement(ActiveListElement.Figure, item.id)}
+            onClick={() => this.showFigureEditor(item.id)}>
+            {item.name}
+            <FontAwesomeIcon
+              onClick={(e) => this.deleteFigure(e, item.id)}
+              className="delete-figure"
+              icon={faTrash}
+              size="1x" />
+          </li>
+        );
+      })}
+    </ul>);
   }
 
   changeFigureValue = (type, value) => {
@@ -162,20 +165,24 @@ class SVGAnimation extends React.Component {
         selectedFigure.strokeWidth = value;
         break;
       }
-      case "attributeName": {
+      case "animation.attributeName": {
         selectedFigure.animation.attributeName = value;
         break;
       }
-      case "from": {
+      case "animation.from": {
         selectedFigure.animation.from = value;
         break;
       }
-      case "to": {
+      case "animation.to": {
         selectedFigure.animation.to = value;
         break;
       }
-      case "dur": {
+      case "animation.dur": {
         selectedFigure.animation.dur = value;
+        break;
+      }
+      case "animation.r": {
+        selectedFigure.animation.r = value;
         break;
       }
       default: {
@@ -231,24 +238,27 @@ class SVGAnimation extends React.Component {
   }
 
   renderProjectsList = () => {
-    return this.state.projectList.map((item, key) => {
-      return (
-        <li
-          key={item.id}
-          className={'list-group-item list-project ' + this.isActiveListElement(ActiveListElement.Project, item.id)}
-          onClick={() => this.setCurrentProject(item.id)}>
-          {<p className="h3">
-            {item.name}
-            <FontAwesomeIcon
-              onClick={(e) => this.deleteProject(e, item.id)}
-              className="delete-project"
-              icon={faTrash}
-              size="1x" />
-          </p>}
+    return (
+      <ul id="figures-list" className="list-group bg-light text-left">
+        {this.state.projectList.map((item) => {
+          return (
+            <li
+              key={item.id}
+              className={'list-group-item list-project ' + this.isActiveListElement(ActiveListElement.Project, item.id)}
+              onClick={() => this.setCurrentProject(item.id)}>
+              {<p className="h3">
+                {item.name}
+                <FontAwesomeIcon
+                  onClick={(e) => this.deleteProject(e, item.id)}
+                  className="delete-project"
+                  icon={faTrash}
+                  size="1x" />
+              </p>}
 
-        </li>
-      );
-    });
+            </li>
+          );
+        })}
+      </ul>)
   }
 
   handleProjectFigureTabChange = (value) => {
@@ -285,52 +295,56 @@ class SVGAnimation extends React.Component {
 
   render() {
     console.log("SVGAnimation rendered");
+    const contextProviderValue = {
+      changeFigureValue: this.changeFigureValue,
+      selectedFigure: this.state.selectedFigure
+    }
     return (
-      <div className="container-fluid h-100 bg-white">
-        <div className="row h-100">
-          <div className="projects-figures col-lg-3 p-0 border-right overflow-auto">
-            <SVGProjectsFiguresNav
-              handleProjectFigureTabChange={this.handleProjectFigureTabChange}
-              isActiveProjectFigureTab={this.isActiveProjectFigureTab}
-            />
-            {this.state.ifProjectCreationMode
-              ? <SVGProjectsList
-                addProject={this.addProject}
-                renderProjectsList={this.renderProjectsList}
-                exportProjects={this.exportProjects}
-                exportSelectedProject={this.exportSelectedProject}
-                handleImportProjectsJson={this.handleImportProjectsJson} />
-              :
-              <SVGFiguresList
-                addFigure={this.addFigure}
-                renderFiguresList={this.renderFiguresList} />
-            }
+      <SVGProvider value={contextProviderValue}>
+        <div className="container-fluid h-100 bg-white">
+          <div className="row h-100">
+            <div className="projects-figures col-lg-3 p-0 border-right overflow-auto">
+              <SVGProjectsFiguresNav
+                handleProjectFigureTabChange={this.handleProjectFigureTabChange}
+                isActiveProjectFigureTab={this.isActiveProjectFigureTab}
+                selectedProject={this.state.selectedProject}
+              />
+              {this.state.ifProjectCreationMode
+                ? <SVGProjectsList
+                  addProject={this.addProject}
+                  renderProjectsList={this.renderProjectsList}
+                  exportProjects={this.exportProjects}
+                  exportSelectedProject={this.exportSelectedProject}
+                  handleImportProjectsJson={this.handleImportProjectsJson} />
+                :
+                <SVGFiguresList
+                  addFigure={this.addFigure}
+                  renderFiguresList={this.renderFiguresList} />
+              }
+            </div>
+            <div className="col-lg-5 p-0 h-100" >
+              <SVGCanvas
+                figures={this.state.figuresList}
+                showFigureEditor={this.showFigureEditor}
+                setNewFigures={this.setNewFigures}
+              />
+            </div>
+            <div className="col-lg-4 h-100 bg-light overflow-auto border">
+              <SVGEditorNav
+                handleEditorTabChange={this.handleEditorTabChange}
+                isActiveEditor={this.isActiveEditor}
+              />
+              {this.state.selectedFigure &&
+                (this.state.ifAnimationEditionMode
+                  ? <SVGAnimationEditor />
+                  : <SVGFigureEditor
+                    selectNumberOfSides={this.state.selectedFigure.figureType === FigureTypes.Polygon}
+                    headerForFigure={this.state.selectedFigure.figureType === FigureTypes.Circle} />
+                )}
+            </div>
           </div>
-          <div className="col-lg-5 p-0 h-100" >
-            <SVGCanvas figures={this.state.figuresList}
-              svgDimensions={this.state.svgDimensions}
-              showFigureEditor={this.showFigureEditor}
-              setNewFigures={this.setNewFigures}
-            />
-          </div>
-          <div className="col-lg-4 h-100 bg-light overflow-auto border">
-            <SVGEditorNav
-              handleEditorTabChange={this.handleEditorTabChange}
-              isActiveEditor={this.isActiveEditor}
-            />
-            {this.state.ifAnimationEditionMode
-              ? <SVGAnimationEditor
-                changeFigureValue={this.changeFigureValue}
-                selectedFigure={this.state.selectedFigure}
-                svgDimensions={this.state.svgDimensions} />
-              : <SVGFigureEditor
-                changeFigureValue={this.changeFigureValue}
-                selectedFigure={this.state.selectedFigure} />
-            }
-          </div>
-
         </div>
-      </div>
+      </SVGProvider>
     );
   }
 }

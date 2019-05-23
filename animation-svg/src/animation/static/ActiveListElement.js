@@ -3,5 +3,5 @@ const ActiveListElement = Object.freeze({
     Project: "Project"
 });
 
-  export default ActiveListElement;
+export default ActiveListElement;
   
