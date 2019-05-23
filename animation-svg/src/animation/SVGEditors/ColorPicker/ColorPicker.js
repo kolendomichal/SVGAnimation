@@ -1,8 +1,10 @@
-import React , { useState, useEffect } from "react";
+import React , { useState, useEffect, useContext } from "react";
 import { TwitterPicker } from 'react-color';
+import SVGContext from "../../SVGContext";
 
 function ColorPicker(props) {
-    const initialValue = props.options.selectedFigure[props.valueType];
+    const svgContext = useContext(SVGContext);
+    const initialValue = svgContext.selectedFigure[props.valueType];
     const [color, setColor] = useState(initialValue);
 
     useEffect(() => {
@@ -16,7 +18,7 @@ function ColorPicker(props) {
             <TwitterPicker
                 color={color}
                 onChange={color => setColor(color)}
-                onChangeComplete={color => props.options.changeSpecifiedValue(props.valueType, color)}
+                onChangeComplete={color => svgContext.changeFigureValue(props.valueType, color)}
             />
         </React.Fragment>
     )

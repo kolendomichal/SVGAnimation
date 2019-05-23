@@ -1,17 +1,19 @@
-import React, { useRef } from "react";
+import React, { useRef ,useContext} from "react";
 import "./ActorName.css"
+import SVGContext from "../../SVGContext";
 
 function ActorName(props) {
+    const svgContext = useContext(SVGContext);
     const editName = useRef(null);
 
     function onBlurHandle() {
-        props.options.changeSpecifiedValue(props.valueType, editName.current.innerHTML);
+        svgContext.changeFigureValue(props.valueType, editName.current.innerHTML);
     }
 
     return (
         <div className="text-center mt-3">
             <button ref={editName} className="h3 actor-name" contentEditable="true" onBlur={() => onBlurHandle()} suppressContentEditableWarning={true}>
-                {props.options.selectedFigure[props.valueType]}
+                {svgContext.selectedFigure[props.valueType]}
             </button>
         </div>
     );
