@@ -12,7 +12,7 @@ function ActorName(props) {
 
     return (
         <div className="text-center mt-3">
-            <button ref={editName} className="h3 actor-name" contentEditable="true" onBlur={() => onBlurHandle()} suppressContentEditableWarning={true}>
+            <button ref={editName} className="h3 actor-project-name" contentEditable="true" onBlur={() => onBlurHandle()} suppressContentEditableWarning={true}>
                 {svgContext.selectedFigure[props.valueType]}
             </button>
         </div>

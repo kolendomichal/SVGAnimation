@@ -4,7 +4,7 @@ import SVGAnimationMotion from '../SVGAnimation/SVGAnimationMotion';
 
 function SVGPolygon(props) {
     const figure = props.figure;
-
+    const animationEnabled = figure.animationEnabled;
     return (
         <React.Fragment>
             <polygon style={{ cursor: 'pointer' }}
@@ -21,13 +21,14 @@ function SVGPolygon(props) {
                 numofsides={figure.numOfSides}
                 size={figure.size}
             >
-                <SVGAnimationMotion animation={figure.animation} />
+                {animationEnabled && <SVGAnimationMotion animation={figure.animation} />}
             </polygon>
-            <SVGAnimate animation={figure.animation}
-                attributeName="points"
-                from={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size, figure.numOfSides)}
-                to={computeToPoints(figure)}
-            />
+            {animationEnabled &&
+                <SVGAnimate animation={figure.animation}
+                    attributeName="points"
+                    from={computeCornerPoints(figure.xPosition, figure.yPosition, figure.size, figure.numOfSides)}
+                    to={computeToPoints(figure)}
+                />}
         </React.Fragment>
     )
 }

@@ -1,15 +1,19 @@
 import React from "react";
 import "./SVGFigureEditor.css";
-import ActorName from "../ActorName/ActorName";
+import ActorName from "../NameChange/ActorName";
 import SelectDropdownValue from "../SelectDropdownValue/SelectDropdownValue";
 import InputNumberRange from '../InputNumberRange/InputNumberRange';
 import FigureTypes from '../../static/FigureTypes';
 import ColorPicker from "../ColorPicker/ColorPicker";
+import ProjectName from "../NameChange/ProjectName";
 
 function SVGFigureEditor(props) {
 
   return (
     <div className="figure-editor">
+      <ProjectName
+        valueType="name"
+      />
       <ActorName
         valueType="name"
       />
@@ -29,7 +33,7 @@ function SVGFigureEditor(props) {
         <InputNumberRange
           header="Number of sides"
           valueType="numOfSides"
-          minValue={0}
+          minValue={3}
           maxValue={10}
           step={1}
         />

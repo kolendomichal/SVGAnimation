@@ -122,6 +122,7 @@ class SVGAnimation extends React.Component {
   changeFigureValue = (type, value) => {
     let figuresList = [...this.state.figuresList];
     let selectedFigure = this.state.selectedFigure;
+    let selectedProject = this.state.selectedProject;
     let selectedFigureIndex = figuresList.findIndex(figure => figure.id === selectedFigure.id);
     switch (type) {
       case "name": {
@@ -185,6 +186,14 @@ class SVGAnimation extends React.Component {
         selectedFigure.animation.r = value;
         break;
       }
+      case "animationEnabled": {
+        selectedFigure.animationEnabled = value;
+        break;
+      }
+      case "projectName": {
+        selectedProject.name = value;
+        break;
+      }
       default: {
         break;
       }
@@ -192,7 +201,7 @@ class SVGAnimation extends React.Component {
     figuresList[selectedFigureIndex] = selectedFigure;
 
     this.updateProjectState(figuresList);
-    this.setState({ figuresList, selectedFigure });
+    this.setState({ figuresList, selectedFigure,selectedProject });
   }
 
 
@@ -234,7 +243,7 @@ class SVGAnimation extends React.Component {
 
   setCurrentProject = (id) => {
     let selectedProject = this.state.projectList.find(project => project.id === id);
-    this.setState({ selectedProject, figuresList: selectedProject.figuresList });
+    this.setState({ selectedProject, figuresList: selectedProject.figuresList, selectedFigure: null });
   }
 
   renderProjectsList = () => {
@@ -297,7 +306,8 @@ class SVGAnimation extends React.Component {
     console.log("SVGAnimation rendered");
     const contextProviderValue = {
       changeFigureValue: this.changeFigureValue,
-      selectedFigure: this.state.selectedFigure
+      selectedFigure: this.state.selectedFigure,
+      selectedProject: this.state.selectedProject,
     }
     return (
       <SVGProvider value={contextProviderValue}>
@@ -336,7 +346,7 @@ class SVGAnimation extends React.Component {
               />
               {this.state.selectedFigure &&
                 (this.state.ifAnimationEditionMode
-                  ? <SVGAnimationEditor />
+                  ? <SVGAnimationEditor ifEnabled={this.state.selectedFigure.animationEnabled} />
                   : <SVGFigureEditor
                     selectNumberOfSides={this.state.selectedFigure.figureType === FigureTypes.Polygon}
                     headerForFigure={this.state.selectedFigure.figureType === FigureTypes.Circle} />
