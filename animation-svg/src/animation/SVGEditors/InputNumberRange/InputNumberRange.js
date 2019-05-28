@@ -19,7 +19,7 @@ function InputNumberRange(props) {
 
   useEffect(() => {
     setValue(initialValue);
-  }, [initialValue]); 
+  }, [initialValue]);
 
   return (
 

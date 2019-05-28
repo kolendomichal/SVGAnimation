@@ -4,6 +4,7 @@ import SVGAnimationMotion from '../SVGAnimation/SVGAnimationMotion';
 
 function SVGCircle(props) {
     const figure = props.figure;
+    const animationEnabled = figure.animationEnabled;
     return (
         <React.Fragment>
             <circle style={{ cursor: 'pointer' }}
@@ -22,9 +23,9 @@ function SVGCircle(props) {
                 yposition={figure.yPosition}
                 size={figure.size}
             >
-                <SVGAnimationMotion animation={figure.animation} />
+                {animationEnabled && <SVGAnimationMotion animation={figure.animation} />}
             </circle>
-            <SVGAnimate animation={figure.animation} />
+            {animationEnabled && <SVGAnimate animation={figure.animation} />}
         </React.Fragment>
     )
 }

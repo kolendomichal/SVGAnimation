@@ -1,5 +1,5 @@
 
-.actor-name {
+.actor-project-name {
 border: none;
 font-weight: bold;
 font-size: 17pt;
@@ -7,6 +7,6 @@ background-color: #F8F9FA;
 opacity: 100%;
 -webkit-transition: all;
 }
-.actor-name:hover {
+.actor-project-name:hover {
     background-color: lavenderblush;
 }

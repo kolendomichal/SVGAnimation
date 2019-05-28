@@ -30,7 +30,7 @@ function SelectDropdownValue(props) {
   }, [initialValue]); 
 
   return (
-    <div className="form-group">
+    <div className="form-group mt-4">
       <div className="ml-2 mt-2 text-dark font-weight-bold"> {props.header}</div>
       <select
         value={value}

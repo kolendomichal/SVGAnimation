@@ -8,16 +8,14 @@ function SVGAnimationMotion(props) {
 
     return (
         <React.Fragment>
-            {/* {animation.r !== 0 */}
-                {/* ? */}
+            {animation.r !== 0 &&
                 <animateMotion
                     dur={`${animation.dur}s`}
                     begin={animation.begin}
                     fill={animation.fill}
                     repeatCount={animation.repeatCount}
                     path={path} />
-                {/* : "" */}
-            {/* } */}
+            }
         </React.Fragment>
     )
 }
