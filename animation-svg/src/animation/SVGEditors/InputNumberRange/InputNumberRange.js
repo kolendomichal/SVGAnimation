@@ -32,8 +32,7 @@ function InputNumberRange(props) {
             maxValue={maxValue}
             value={value}
             step={props.step}
-            onChange={value => setValue(value)}
-            onChangeComplete={value => svgContext.changeFigureValue(props.valueType, value)}
+            onChange={value => svgContext.changeFigureValue(props.valueType, value)}
           />
         </div>
         <div className="col-lg-3 mt-3">
