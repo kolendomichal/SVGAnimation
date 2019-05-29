@@ -23,7 +23,7 @@ function SVGFigureEditor(props) {
         dropdownOptions={FigureTypes}
       />
       <InputNumberRange
-        header={props.headerForFigure}
+        header={"Figure Size"}
         valueType="size"
         minValue={0}
         maxValue={100}
@@ -34,7 +34,7 @@ function SVGFigureEditor(props) {
           header="Number of sides"
           valueType="numOfSides"
           minValue={3}
-          maxValue={10}
+          maxValue={15}
           step={1}
         />
       }

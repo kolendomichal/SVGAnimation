@@ -15,8 +15,8 @@ function AnimationSwitch(props) {
     }
 
     useEffect(() => {
-        setValue(value);
-    }, [value])
+        setValue(initialValue);
+    }, [initialValue])
 
     function renderShit() {
         console.log("Rerender animation switch z checkbox = ", value)
