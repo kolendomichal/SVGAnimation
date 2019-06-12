@@ -17,8 +17,7 @@ import ActiveListElement from "./static/ActiveListElement";
 import { SVGProvider } from "./SVGContext";
 
 
-//TODO edit project name
-//TODO use SVG inline instead of fontawesome
+
 class SVGAnimation extends React.Component {
   constructor(props) {
     super(props);

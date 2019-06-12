@@ -34,7 +34,7 @@ function SVGCanvas(props) {
         return (
             <svg version="1.1" className=" border-top border-bottom mt-3" xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${SVGDimensions.width} ${SVGDimensions.height}`}
                 width="100%"
-                height="80%"
+                height="79%"
                 onClick={(evt) => changeActiveFigure(evt)}>
                 {getFiguresToRender()}
             </svg>
