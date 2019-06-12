@@ -11,9 +11,7 @@ function SVGFigureEditor(props) {
 
   return (
     <div className="figure-editor">
-      <ProjectName
-        valueType="name"
-      />
+      <ProjectName/>
       <ActorName
         valueType="name"
       />
