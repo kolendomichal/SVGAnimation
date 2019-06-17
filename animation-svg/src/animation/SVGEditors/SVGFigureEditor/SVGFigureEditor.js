@@ -11,11 +11,11 @@ function SVGFigureEditor(props) {
 
   return (
     <div className="figure-editor">
-      <ProjectName/>
+      {/* <ProjectName/> */}
       <ActorName
         valueType="name"
       />
-      <SelectDropdownValue
+      {/* <SelectDropdownValue
         header={"Figure Type"}
         valueType="figureType"
         dropdownOptions={FigureTypes}
@@ -72,7 +72,7 @@ function SVGFigureEditor(props) {
         minValue={1}
         maxValue={50}
         step={1}
-      />
+      /> */}
     </div>
   );
 }

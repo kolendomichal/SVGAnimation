@@ -4,11 +4,15 @@ import InputNumberRange from '../InputNumberRange/InputNumberRange';
 import AxisTypes from '../../static/AxisTypes';
 import SVGDimensions from "../../static/SVGDimensions";
 import AnimationSwitch from "../AnimationSwitch/AnimationSwitch";
+import ReduxAnimationSwitch from "../AnimationSwitch/ReduxAnimationSwitch";
 
 function SVGAnimationEditor(props) {
 
     return (
         <div className="animation-editor">
+            <ReduxAnimationSwitch
+                valueType="animationEnabled"
+            />
             <AnimationSwitch
                 header="Animation Enabled"
                 valueType="animationEnabled"

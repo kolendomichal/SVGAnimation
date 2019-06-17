@@ -1,5 +1,6 @@
 import React from "react";
 import "./SVGAnimation.css";
+import { connect } from "react-redux";
 import SVGFiguresList from "./SVGFiguresList/SVGFiguresList";
 import SVGProjectsList from "./SVGProjectsList/SVGProjectsList";
 import SVGFigureEditor from "./SVGEditors/SVGFigureEditor/SVGFigureEditor";
@@ -15,199 +16,20 @@ import SVGEditorNav from "./SVGEditorNav/SVGEditorNav";
 import SVGProjectsFiguresNav from "./SVGProjectsFiguresNav/SVGProjectsFiguresNav";
 import ActiveListElement from "./static/ActiveListElement";
 import { SVGProvider } from "./SVGContext";
-
-
+import { CHANGE_FIGURE_VALUE, UPDATE_PROJECT_STATE } from "./redux/actionTypes";
 
 class SVGAnimation extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      projectList: [],
-      selectedProject: null,
-      figuresList: [],
-      selectedFigure: null,
-      ifAnimationEditionMode: false,
-      ifProjectCreationMode: true,
-    };
-  }
 
   componentDidMount() {
-    const projectList = [...Array(FiguresForProjects.length)].map((value, index) => {
-      let project = new Project();
-      project.figuresList = FiguresForProjects[index];
-      return project;
-    });
-    this.setState({
-      projectList,
-      selectedProject: projectList[0],
-      figuresList: projectList[0].figuresList,
-      selectedFigure: projectList[0].figuresList[0],
-    });
     console.log("SVGAnimation Mounted");
-  }
-
-  isActiveListElement = (elementType, elementId) => {
-    let selectedElementId = null;
-    switch (elementType) {
-      case ActiveListElement.Figure:
-        selectedElementId = this.state.selectedFigure !== null ? this.state.selectedFigure.id : -1;
-        break;
-      case ActiveListElement.Project:
-        selectedElementId = this.state.selectedProject !== null ? this.state.selectedProject.id : -1;
-        break;
-      default:
-        break;
-    }
-    return selectedElementId === elementId ? 'active-list-element' : "";;
   }
 
 
   isActiveEditor = (value) => {
-    return value === this.state.ifAnimationEditionMode ? " active" : ""
-  }
-
-  addFigure = () => {
-    this.setState(prevState => ({
-      figuresList: [...prevState.figuresList, new Figure()],
-    }));
-  }
-
-  updateProjectState(figuresList) {
-    let projectList = [...this.state.projectList];
-    let selectedProject = this.state.selectedProject;
-    let projectToUpdateIndex = projectList.findIndex(project => project.id === selectedProject.id);
-    projectList[projectToUpdateIndex].figuresList = figuresList;
-    selectedProject.figuresList = figuresList;
-    this.setState({ projectList, selectedProject });
-  }
-
-  deleteFigure = (e, id) => {
-    e.stopPropagation();
-    let figuresList = [...this.state.figuresList];
-    let figureToDeleteIndex = figuresList.findIndex(figure => figure.id === id);
-    figuresList.splice(figureToDeleteIndex, 1);
-    let isSelectedFigure = this.state.selectedFigure !== null
-      ? this.state.selectedFigure.id === id
-      : false;
-
-    this.updateProjectState(figuresList);
-
-    isSelectedFigure
-      ? this.setState({ figuresList, selectedFigure: null })
-      : this.setState({ figuresList });
+    return value === this.props.ifAnimationEditionMode ? " active" : ""
   }
 
 
-  renderFiguresList = () => {
-    return (<ul id="figures-list" className="list-group bg-light text-left">
-      {this.state.figuresList.map((item) => {
-        return (
-          <li
-            key={item.id + item.name}
-            className={'list-group-item list-figure ' + this.isActiveListElement(ActiveListElement.Figure, item.id)}
-            onClick={() => this.showFigureEditor(item.id)}>
-            {item.name}
-            <FontAwesomeIcon
-              onClick={(e) => this.deleteFigure(e, item.id)}
-              className="delete-figure"
-              icon={faTrash}
-              size="1x" />
-          </li>
-        );
-      })}
-    </ul>);
-  }
-
-  changeFigureValue = (type, value) => {
-    let figuresList = [...this.state.figuresList];
-    let selectedFigure = this.state.selectedFigure;
-    let selectedProject = this.state.selectedProject;
-    let selectedFigureIndex = figuresList.findIndex(figure => figure.id === selectedFigure.id);
-    switch (type) {
-      case "name": {
-        selectedFigure.name = value;
-        break;
-      }
-      case "figureType": {
-        selectedFigure.figureType = value;
-        if (value === 'Square') selectedFigure.numOfSides = 4;
-        break;
-      }
-      case "size": {
-        selectedFigure.size = value;
-        break;
-      }
-      case "xPosition": {
-        selectedFigure.xPosition = value;
-        break;
-      }
-      case "yPosition": {
-        selectedFigure.yPosition = value;
-        break;
-      }
-      case "numOfSides": {
-        selectedFigure.numOfSides = value;
-        break;
-      }
-      case "opacity": {
-        selectedFigure.opacity = value;
-        break;
-      }
-      case "fill": {
-        selectedFigure.fill = value;
-        break;
-      }
-      case "stroke": {
-        selectedFigure.stroke = value;
-        break;
-      }
-      case "strokeWidth": {
-        selectedFigure.strokeWidth = value;
-        break;
-      }
-      case "animation.attributeName": {
-        selectedFigure.animation.attributeName = value;
-        break;
-      }
-      case "animation.from": {
-        selectedFigure.animation.from = value;
-        break;
-      }
-      case "animation.to": {
-        selectedFigure.animation.to = value;
-        break;
-      }
-      case "animation.dur": {
-        selectedFigure.animation.dur = value;
-        break;
-      }
-      case "animation.r": {
-        selectedFigure.animation.r = value;
-        break;
-      }
-      case "animationEnabled": {
-        selectedFigure.animationEnabled = value;
-        break;
-      }
-      case "projectName": {
-        selectedProject.name = value;
-        break;
-      }
-      default: {
-        break;
-      }
-    }
-    figuresList[selectedFigureIndex] = selectedFigure;
-
-    this.updateProjectState(figuresList);
-    this.setState({ figuresList, selectedFigure,selectedProject });
-  }
-
-
-  showFigureEditor = (id) => {
-    let selectedFigure = this.state.figuresList.find(figure => figure.id === id);
-    this.setState({ selectedFigure });
-  }
 
   handleEditorTabChange = (value) => {
     this.setState({ ifAnimationEditionMode: value });
@@ -248,7 +70,7 @@ class SVGAnimation extends React.Component {
   renderProjectsList = () => {
     return (
       <ul id="figures-list" className="list-group bg-light text-left">
-        {this.state.projectList.map((item) => {
+        {this.props.projectList.map((item) => {
           return (
             <li
               key={item.id}
@@ -274,7 +96,7 @@ class SVGAnimation extends React.Component {
   }
 
   isActiveProjectFigureTab = (value) => {
-    return value === this.state.ifProjectCreationMode ? " active" : "";
+    return value === this.props.ifProjectCreationMode ? " active" : "";
   }
 
   handleImportProjectsJson = (jsonProjectArray) => {
@@ -305,8 +127,8 @@ class SVGAnimation extends React.Component {
     console.log("SVGAnimation rendered");
     const contextProviderValue = {
       changeFigureValue: this.changeFigureValue,
-      selectedFigure: this.state.selectedFigure,
-      selectedProject: this.state.selectedProject,
+      selectedFigure: this.props.selectedFigure,
+      selectedProject: this.props.selectedProject,
     }
     return (
       <SVGProvider value={contextProviderValue}>
@@ -316,9 +138,9 @@ class SVGAnimation extends React.Component {
               <SVGProjectsFiguresNav
                 handleProjectFigureTabChange={this.handleProjectFigureTabChange}
                 isActiveProjectFigureTab={this.isActiveProjectFigureTab}
-                selectedProject={this.state.selectedProject}
+                selectedProject={this.props.selectedProject}
               />
-              {this.state.ifProjectCreationMode
+              {this.props.ifProjectCreationMode
                 ? <SVGProjectsList
                   addProject={this.addProject}
                   renderProjectsList={this.renderProjectsList}
@@ -326,14 +148,12 @@ class SVGAnimation extends React.Component {
                   exportSelectedProject={this.exportSelectedProject}
                   handleImportProjectsJson={this.handleImportProjectsJson} />
                 :
-                <SVGFiguresList
-                  addFigure={this.addFigure}
-                  renderFiguresList={this.renderFiguresList} />
+                <SVGFiguresList/>
               }
             </div>
             <div className="col-lg-5 p-0 h-100" >
               <SVGCanvas
-                figures={this.state.figuresList}
+                figures={this.props.figuresList}
                 showFigureEditor={this.showFigureEditor}
                 setNewFigures={this.setNewFigures}
               />
@@ -343,12 +163,12 @@ class SVGAnimation extends React.Component {
                 handleEditorTabChange={this.handleEditorTabChange}
                 isActiveEditor={this.isActiveEditor}
               />
-              {this.state.selectedFigure &&
-                (this.state.ifAnimationEditionMode
-                  ? <SVGAnimationEditor ifEnabled={this.state.selectedFigure.animationEnabled} />
+              {this.props.selectedFigure &&
+                (this.props.ifAnimationEditionMode
+                  ? <SVGAnimationEditor ifEnabled={this.props.selectedFigure.animationEnabled} />
                   : <SVGFigureEditor
-                    selectNumberOfSides={this.state.selectedFigure.figureType === FigureTypes.Polygon}
-                    headerForFigure={this.state.selectedFigure.figureType === FigureTypes.Circle} />
+                    selectNumberOfSides={this.props.selectedFigure.figureType === FigureTypes.Polygon}
+                    headerForFigure={this.props.selectedFigure.figureType === FigureTypes.Circle} />
                 )}
             </div>
           </div>
@@ -358,4 +178,27 @@ class SVGAnimation extends React.Component {
   }
 }
 
-export default SVGAnimation;
+const mapStateToProps = (state) => {
+  const {projectList, figuresList, selectedFigure, selectedProject} = state.svgAnimation;
+  return { projectList, figuresList, selectedFigure, selectedProject };
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    changeFigureValue: (figuresList,selectedFigure) => dispatch({ type: CHANGE_FIGURE_VALUE ,
+      payload:{
+        figuresList: figuresList,
+        selectedFigure: selectedFigure,
+      }}),
+      updateProjectState: ( projectList,selectedProject) => dispatch({type: UPDATE_PROJECT_STATE, 
+      payload:{
+        projectList: projectList,
+        selectedProject: selectedProject
+      }})
+  }
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(SVGAnimation)
