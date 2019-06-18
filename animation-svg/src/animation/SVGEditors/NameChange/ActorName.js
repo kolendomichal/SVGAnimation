@@ -1,39 +1,23 @@
-import React, { useRef, useContext } from "react";
-import { connect } from "react-redux";
+import React, { useRef,useCallback  } from "react";
 import "./ActorName.css"
-import SVGContext from "../../SVGContext";
+import { useSelector,useDispatch } from 'react-redux'
+import { changeFigureValueAction } from "../../redux/actions";
 
-import { useSelector } from 'react-redux'
-import { CHANGE_FIGURE_VALUE } from "../../redux/actionTypes";
-
-function ActorName(props) {
+const ActorName =  props => {
+    const selectedFigure = useSelector(state => state.svgAnimation.selectedFigure);
+    const dispatch = useDispatch();
+    const changeFigureValue = useCallback((type,value) => dispatch(changeFigureValueAction(type,value)),[dispatch]);
     const editName = useRef(null);
-
-    function onBlurHandle() {
-        props.changeFigureValue(props.valueType, editName.current.innerHTML);
-    }
+    const onBlurHandle = () => changeFigureValue(props.valueType, editName.current.innerHTML);
 
     return (
         <div className="text-center mt-3">
             <button ref={editName} className="h3 actor-project-name" contentEditable="true" onBlur={() => onBlurHandle()} suppressContentEditableWarning={true}>
-                {props.selectedFigure[props.valueType]}
+                {selectedFigure[props.valueType]}
             </button>
         </div>
     );
 
 }
 
-const mapStateToProps = (state) => {
-    const { selectedFigure } = state.reduxAnimationSwitch;
-    return { selectedFigure };
-}
-
-const mapDispatchToProps = dispatch => {
-    return {
-        changeFigureValue: (type,value) => dispatch({ type: CHANGE_FIGURE_VALUE, payload: {type,value} })
-    }
-}
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(ActorName)
+export default ActorName;
