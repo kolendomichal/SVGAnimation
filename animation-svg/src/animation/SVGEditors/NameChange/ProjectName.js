@@ -1,19 +1,20 @@
-import React, { useRef ,useContext} from "react";
+import React, { useCallback,useRef  } from "react";
 import "./ActorName.css"
-import SVGContext from "../../SVGContext";
+import { useSelector,useDispatch } from 'react-redux'
+import { changeFigureValueAction } from "../../redux/actions";
 
-function ProjectName() {
-    const svgContext = useContext(SVGContext);
+const ProjectName = () => {
+
+    const selectedProject = useSelector(state => state.svgAnimation.selectedProject);
+    const dispatch = useDispatch();
     const editName = useRef(null);
-
-    function onBlurHandle() {
-        svgContext.changeFigureValue("projectName", editName.current.innerHTML);
-    }
+    const changeFigureValue = useCallback((type,value) => dispatch(changeFigureValueAction(type,value)),[dispatch]);
+    const onBlurHandle = () => changeFigureValue("projectName", editName.current.innerHTML);
 
     return (
         <div className="text-center mt-3">
             <button ref={editName} className="h1 actor-project-name" contentEditable="true" onBlur={() => onBlurHandle()} suppressContentEditableWarning={true}>
-                {svgContext.selectedProject["name"]}
+                {selectedProject["name"]}
             </button>
         </div>
     );

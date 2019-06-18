@@ -9,7 +9,6 @@ function AnimationSwitch(props) {
     const [value, setValue] = useState(initialValue);
 
     function handleSwitchChange(checked) {
-        // let checked = e.target.checked;
         svgContext.changeFigureValue(props.valueType, checked);
         setValue(checked);
     }

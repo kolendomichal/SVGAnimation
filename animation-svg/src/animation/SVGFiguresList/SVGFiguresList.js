@@ -1,32 +1,20 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import "./SVGFiguresList.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import { ADD_FIGURE, DELETE_FIGURE, SHOW_FIGURE_EDITOR } from "../redux/actionTypes";
-import ActiveListElement from "../static/ActiveListElement";
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 class SVGFiguresList extends React.PureComponent {
-  
-  isActiveListElement = (elementType, elementId) =>{
-    var selectedElementId = null;
-    switch (elementType) {
-      case ActiveListElement.Figure:
-        selectedElementId = this.props.selectedFigure !== null ? this.props.selectedFigure.id : -1;
-        break;
-      case ActiveListElement.Project:
-        selectedElementId = this.props.selectedProject !== null ? this.props.selectedProject.id : -1;
-        break;
-      default:
-        break;
-    }
+
+  isActiveListElement = (elementId) => {
+    var selectedElementId = this.props.selectedFigure !== null ? this.props.selectedFigure.id : -1;
     return selectedElementId === elementId ? 'active-list-element' : "";;
   }
 
   render() {
-    const { figuresList, addFigure, deleteFigure,showFigureEditor } = this.props;
-    console.log(figuresList);
+    const { figuresList, addFigure, deleteFigure, showFigureEditor } = this.props;
 
     return (
       <div className="svg-figures-list">
@@ -42,7 +30,7 @@ class SVGFiguresList extends React.PureComponent {
               return (
                 <li
                   key={item.id + item.name}
-                  className={'list-group-item list-figure ' + this.isActiveListElement(ActiveListElement.Figure, item.id)}
+                  className={'list-group-item list-figure ' + this.isActiveListElement(item.id)}
                   onClick={() => showFigureEditor(item.id)}
                 >
                   {item.name}
@@ -60,11 +48,10 @@ class SVGFiguresList extends React.PureComponent {
     );
   }
 }
-const mapStateToProps = (state) => {
-  const { figuresList,selectedFigure, selectedFigureId } = state.svgAnimation;
-  console.log(figuresList, "figuresList")
 
-  return { figuresList,selectedFigure,selectedFigureId };
+const mapStateToProps = (state) => {
+  const { figuresList, selectedFigure } = state.svgAnimation;
+  return { figuresList, selectedFigure };
 }
 
 const mapDispatchToProps = dispatch => {

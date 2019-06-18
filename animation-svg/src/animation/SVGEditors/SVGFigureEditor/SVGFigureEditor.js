@@ -11,15 +11,15 @@ function SVGFigureEditor(props) {
 
   return (
     <div className="figure-editor">
-      {/* <ProjectName/> */}
+      <ProjectName/>
       <ActorName
         valueType="name"
       />
-      {/* <SelectDropdownValue
+      { <SelectDropdownValue
         header={"Figure Type"}
         valueType="figureType"
         dropdownOptions={FigureTypes}
-      />
+      /> /*
       <InputNumberRange
         header={"Figure Size"}
         valueType="size"
