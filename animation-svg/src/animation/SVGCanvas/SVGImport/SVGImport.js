@@ -2,8 +2,9 @@ import React from 'react';
 import XMLParser from 'react-xml-parser';
 import FigureTypes from '../../static/FigureTypes';
 import { Figure } from '../../static/Figure';
-
-class SVGImport extends React.Component {
+import { importFiguresFromFileAction } from '../../redux/actions';
+import { connect } from "react-redux";
+class SVGImport extends React.PureComponent {
     constructor(props) {
         super(props);
         this.state = {
@@ -42,7 +43,7 @@ class SVGImport extends React.Component {
                 this.setState({ fileName: "Choose svg file...", svgNotSupported: true, alertInformation: information });
                 return;
             }
-            this.props.setNewFigures(figures);
+            this.props.importFiguresFromFile(figures);
         }
         this.setState({ svgNotSupported: false, fileName: "Choose svg file...", alertInformation: "SVG uploaded successfully." });
     }
@@ -134,4 +135,12 @@ class SVGImport extends React.Component {
     }
 }
 
-export default SVGImport;
+const mapDispatchToProps = (dispatch) => {
+    return {
+        importFiguresFromFile: (importedFiguresList) => dispatch(importFiguresFromFileAction(importedFiguresList))
+    }
+}
+export default connect(
+    null,
+    mapDispatchToProps
+)(SVGImport)

@@ -17,4 +17,4 @@ function createInitialState(){
   }
 }
 
-export  const initialState = createInitialState();
+export const initialState = createInitialState();

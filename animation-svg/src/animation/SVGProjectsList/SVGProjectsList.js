@@ -15,8 +15,32 @@ class SVGProjectsList extends React.PureComponent {
         return selectedElementId === elementId ? 'active-list-element' : "";;
     }
 
+    deleteProjectFromList(e, id) {
+        e.stopPropagation();
+        this.props.deleteProject(id);
+    }
+
+    downloadObjectAsJson = (exportObj, exportName) => {
+        var dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(exportObj));
+        var downloadAnchorNode = document.createElement('a');
+        downloadAnchorNode.setAttribute("href", dataStr);
+        downloadAnchorNode.setAttribute("download", exportName + ".json");
+        document.body.appendChild(downloadAnchorNode); // required for firefox
+        downloadAnchorNode.click();
+        downloadAnchorNode.remove();
+    }
+
+    exportProjects = () => {
+        this.downloadObjectAsJson(this.props.projectList, 'projects')
+    }
+
+    exportSelectedProject = () => {
+        this.downloadObjectAsJson(this.props.selectedProject, 'ProjectName');
+    }
+
     render() {
-        const { projectList, addProject, deleteProject, setCurrentProject } = this.props;
+        console.log("SVGProjectsList render");
+        const { projectList, addProject, setCurrentProject } = this.props;
         return (
             <div className="svg-project-list">
                 <div className="bg-secondary text-white">
@@ -36,7 +60,7 @@ class SVGProjectsList extends React.PureComponent {
                                     {<p className="h3">
                                         {item.name}
                                         <FontAwesomeIcon
-                                            onClick={(e) => deleteProject(e, item.id)}
+                                            onClick={(e) => this.deleteProjectFromList(e, item.id)}
                                             className="delete-project"
                                             icon={faTrash}
                                             size="1x" />
@@ -55,10 +79,10 @@ class SVGProjectsList extends React.PureComponent {
                         importIdentificator={"projectImport"}
                         importModalHeader={"SVG Animation - import project"}
                         importFilePlaceholder={"Choose projects json file..."}
-                        handleImportedFile={this.props.handleImportProjectsJson}
+
                     />
-                    <button className="btn btn-secondary project-button" onClick={() => this.props.exportSelectedProject()}><p>Export <br /> Selected Project</p></button>
-                    <button className="btn btn-secondary project-button" onClick={() => this.props.exportProjects()}><p>Export <br /> Projects</p></button>
+                    <button className="btn btn-secondary project-button" onClick={() => this.exportSelectedProject()}><p>Export <br /> Selected Project</p></button>
+                    <button className="btn btn-secondary project-button" onClick={() => this.exportProjects()}><p>Export <br /> Projects</p></button>
                 </div>
             </div>
         );
@@ -72,7 +96,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
     return {
         addProject: () => dispatch(addProjectAction()),
-        deleteProject: (e, id) => dispatch(deleteProjectAction(e, id)),
+        deleteProject: (id) => dispatch(deleteProjectAction(id)),
         setCurrentProject: (id) => dispatch(setCurrentProjectAction(id))
     }
 }

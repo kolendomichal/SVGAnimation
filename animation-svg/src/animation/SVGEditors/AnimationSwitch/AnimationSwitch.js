@@ -1,33 +1,23 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useCallback } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { changeFigureValueAction } from "../../redux/actions";
 import { get } from 'lodash';
-import SVGContext from "../../SVGContext";
 import Switch from "react-switch";
 
-function AnimationSwitch(props) {
-    const svgContext = useContext(SVGContext);
-    const initialValue = get(svgContext.selectedFigure, props.valueType);
-    const [value, setValue] = useState(initialValue);
+const AnimationSwitch = (props) => {
+    const checked = useSelector(state => get(state.svgAnimation.selectedFigure,props.valueType))
+    const dispatch = useDispatch();
+    const changeFigureValue = useCallback((type, value) => dispatch(changeFigureValueAction(type, value)), [dispatch]);
 
-    function handleSwitchChange(checked) {
-        svgContext.changeFigureValue(props.valueType, checked);
-        setValue(checked);
+    const handleSwitchChange = (checked) => {
+        changeFigureValue(props.valueType, checked);
     }
 
-    useEffect(() => {
-        setValue(initialValue);
-    }, [initialValue])
-
-    function renderShit() {
-        console.log("Rerender animation switch z checkbox = ", value)
-    }
     return (
-        <React.Fragment>
-            {renderShit()}
-            <div className="mt-4">
-                <span className="mr-2 mt-3" >{props.header}</span>
-                <Switch className="ml-2 mt-2" onChange={handleSwitchChange} checked={value} />
-            </div>
-        </React.Fragment>
+        <div className="mt-4">
+            <span className="mr-2 mt-3" >{props.header}</span>
+            <Switch className="ml-2 mt-2" onChange={handleSwitchChange} checked={checked} />
+        </div>
     )
 }
 

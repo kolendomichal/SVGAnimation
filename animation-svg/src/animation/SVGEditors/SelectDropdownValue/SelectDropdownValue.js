@@ -1,17 +1,14 @@
-import React, { useState, useEffect, useContext,useCallback} from "react";
-import SVGContext from "../../SVGContext";
-import { connect } from "react-redux";
+import React, {useCallback} from "react";
 
 import { useSelector,useDispatch } from 'react-redux'
 import { changeFigureValueAction } from "../../redux/actions";
 
 const SelectDropdownValue = (props) => {
-  const selectedFigure = useSelector(state => state.svgAnimation.selectedFigure)
-  const initialValue = selectedFigure[props.valueType];
+  const initialValue = useSelector(state => state.svgAnimation.selectedFigure[props.valueType])
   const dispatch = useDispatch();
-  const changeFigureValue = useCallback(() => dispatch(changeFigureValueAction()),[dispatch]);
+  const changeFigureValue = useCallback((type,value) => dispatch(changeFigureValueAction(type,value)),[dispatch]);
 
-  function renderOptions() {
+  const renderOptions = () => {
     const options = props.dropdownOptions;
     const optionsValues = Object.keys(options);
     return Object.keys(options).map((item, key) => {
@@ -23,7 +20,7 @@ const SelectDropdownValue = (props) => {
     });
   }
 
-  function onSelectChange(event) {
+  const onSelectChange = (event) => {
     changeFigureValue(props.valueType, event.target.value);
   }
 

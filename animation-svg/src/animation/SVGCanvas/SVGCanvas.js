@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import "./SVGCanvas.css";
 import SVGExport from "./SVGExport/SVGExport";
 import SVGImport from "./SVGImport/SVGImport";
@@ -6,12 +6,15 @@ import SVGCircle from "./SVGFigures/SVGCircle";
 import SVGSquare from "./SVGFigures/SVGSquare";
 import SVGPolygon from "./SVGFigures/SVGPolygon";
 import SVGDimensions from "../static/SVGDimensions";
+import {changeActiveSVGFigureAction  } from "../redux/actions";
+import { connect } from "react-redux";
 
-function SVGCanvas(props) {
-    const svgText = useRef();
+class SVGCanvas extends React.PureComponent {
 
-    function getFiguresToRender() {
-        return props.figures.map((figure, i) => {
+    svgText = React.createRef();
+
+    getFiguresToRender() {
+        return this.props.figuresList.map((figure, i) => {
             switch (figure.figureType) {
                 case "Circle": {
                     return <SVGCircle key={i} figure={figure} />
@@ -30,40 +33,46 @@ function SVGCanvas(props) {
 
     }
 
-    function renderSVG() {
+    renderSVG() {
         return (
-            <svg version="1.1" className=" border-top border-bottom mt-3" xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${SVGDimensions.width} ${SVGDimensions.height}`}
+            <svg version="1.1" ref={this.svgText} className=" border-top border-bottom mt-3" xmlns="http://www.w3.org/2000/svg" viewBox={`0 0 ${SVGDimensions.width} ${SVGDimensions.height}`}
                 width="100%"
                 height="79%"
-                onClick={(evt) => changeActiveFigure(evt)}>
-                {getFiguresToRender()}
+                onClick={(evt) => this.props.changeActiveSVGFigure(evt.target.id)}>
+                {this.getFiguresToRender()}
             </svg>
         )
     }
 
-    function changeActiveFigure(evt) {
-        if (evt.target.id.startsWith('figure')) {
-            let hrefid = evt.target.id;
-            props.figures.forEach(figure => {
-                if (figure.hrefid === hrefid) {
-                    props.showFigureEditor(figure.id);
-                }
-            });
-        }
-    }
 
-    return (
-        <React.Fragment>
-            <div className="row mt-5 w-100">
-                <div className="col-lg-12 text-center h-100">
-                    <span className="h2">SVGAnimation</span>
-                    <SVGExport title={"SVGAnimation"} svgText={svgText} svgElement={renderSVG()} figures={props.figures} />
-                    <SVGImport setNewFigures={props.setNewFigures} />
+    render() {
+        return (
+            <React.Fragment>
+                <div className="row mt-5 w-100">
+                    <div className="col-lg-12 text-center h-100">
+                        <span className="h2">SVGAnimation</span>
+                        <SVGExport title={"SVGAnimation"} svgText={this.renderSVG()} />
+                        <SVGImport setNewFigures={this.props.setNewFigures} />
+                    </div>
                 </div>
-            </div>
-            {renderSVG()}
-        </React.Fragment>
-    )
+                {this.renderSVG()}
+            </React.Fragment>
+        )
+    }
 }
 
-export default SVGCanvas;
+const mapStateToProps = (state) => {
+    const { figuresList } = state.svgAnimation;
+    return {figuresList};
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        changeActiveSVGFigure: (hrefid) => dispatch(changeActiveSVGFigureAction(hrefid))
+    }
+}
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(SVGCanvas)

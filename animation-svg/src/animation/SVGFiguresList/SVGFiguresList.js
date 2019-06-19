@@ -3,19 +3,23 @@ import { connect } from "react-redux";
 import "./SVGFiguresList.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { ADD_FIGURE, DELETE_FIGURE, SHOW_FIGURE_EDITOR } from "../redux/actionTypes";
+import { addFigureAction, deleteFigureAction, showFigureEditorActon } from "../redux/actions";
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 class SVGFiguresList extends React.PureComponent {
 
-  isActiveListElement = (elementId) => {
+  isActiveListElement(elementId) {
     var selectedElementId = this.props.selectedFigure !== null ? this.props.selectedFigure.id : -1;
     return selectedElementId === elementId ? 'active-list-element' : "";;
   }
-
+  deleteFigureFromList(e, id) {
+    e.stopPropagation();
+    this.props.deleteFigure(id);
+  }
   render() {
-    const { figuresList, addFigure, deleteFigure, showFigureEditor } = this.props;
-
+    const { figuresList, addFigure, showFigureEditor } = this.props;
+    console.log("SVGFiguresList render")
+    
     return (
       <div className="svg-figures-list">
         <div className="bg-secondary text-white">
@@ -35,7 +39,7 @@ class SVGFiguresList extends React.PureComponent {
                 >
                   {item.name}
                   <FontAwesomeIcon
-                    onClick={(e) => deleteFigure(e, item.id)}
+                    onClick={(e) => this.deleteFigureFromList(e, item.id)}
                     className="delete-figure"
                     icon={faTrash}
                     size="1x" />
@@ -56,9 +60,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addFigure: () => dispatch({ type: ADD_FIGURE }),
-    deleteFigure: (e, id) => dispatch({ type: DELETE_FIGURE, payload: { e, id } }),
-    showFigureEditor: (id) => dispatch({ type: SHOW_FIGURE_EDITOR, payload: { id } })
+    addFigure: () => dispatch(addFigureAction()),
+    deleteFigure: (id) => dispatch(deleteFigureAction(id)),
+    showFigureEditor: (id) => dispatch(showFigureEditorActon(id))
   }
 }
 export default connect(

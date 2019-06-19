@@ -1,4 +1,4 @@
-import { ENABLE_ANIMATION,CHANGE_FIGURE_VALUE,HANDLE_EDITOR_TAB_CHANGE, CHANGE_PROJECT_FIGURE_TAB, ADD_PROJECT, DELETE_PROJECT, SET_CURRENT_PROJECT } from "./actionTypes";
+import { ENABLE_ANIMATION,CHANGE_FIGURE_VALUE,HANDLE_EDITOR_TAB_CHANGE, CHANGE_PROJECT_FIGURE_TAB, ADD_PROJECT, DELETE_PROJECT, SET_CURRENT_PROJECT, DELETE_FIGURE, ADD_FIGURE, SHOW_FIGURE_EDITOR,CHANGE_ACTIVE_SVG_FIGURE, IMPORT_FIGURES_FROM_FILE, HANDLE_IMPORTED_PROJECT_FILE } from "./actionTypes";
 
 export const enableAnimation = (flag) => ({
     type: ENABLE_ANIMATION,
@@ -22,9 +22,9 @@ export const changeProjectFigureTabAction = (flag) => ({
 export const addProjectAction = () => ({
     type: ADD_PROJECT,
 });
-export const deleteProjectAction = (e,id) => ({
+export const deleteProjectAction = (id) => ({
     type: DELETE_PROJECT,
-    payload: { e, id }
+    payload: { id }
 });
 
 export const setCurrentProjectAction = (id) => ({
@@ -32,3 +32,31 @@ export const setCurrentProjectAction = (id) => ({
     payload: { id }
 });
 
+export const addFigureAction = () => ({
+    type: ADD_FIGURE,
+});
+
+export const deleteFigureAction = (id) => ({
+    type: DELETE_FIGURE,
+    payload: { id }
+});
+
+export const showFigureEditorActon = (id) => ({
+    type: SHOW_FIGURE_EDITOR,
+    payload: {id}
+})
+
+export const changeActiveSVGFigureAction = (hrefid) => ({
+    type: CHANGE_ACTIVE_SVG_FIGURE,
+    payload: {hrefid}
+})
+
+export const importFiguresFromFileAction = (importedFiguresList) => ({
+    type: IMPORT_FIGURES_FROM_FILE,
+    payload: {importedFiguresList}
+})
+
+export const handleImportedProjectFileAction = (fileContent) => ({
+    type: HANDLE_IMPORTED_PROJECT_FILE,
+    payload: {fileContent}
+})

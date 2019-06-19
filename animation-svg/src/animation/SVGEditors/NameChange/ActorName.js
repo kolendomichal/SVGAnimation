@@ -1,9 +1,10 @@
-import React, { useRef,useCallback  } from "react";
+import React, { useRef, useCallback  } from "react";
 import "./ActorName.css"
 import { useSelector,useDispatch } from 'react-redux'
 import { changeFigureValueAction } from "../../redux/actions";
 
-const ActorName =  props => {
+const ActorName =  (props) => {
+
     const selectedFigure = useSelector(state => state.svgAnimation.selectedFigure);
     const dispatch = useDispatch();
     const changeFigureValue = useCallback((type,value) => dispatch(changeFigureValueAction(type,value)),[dispatch]);
