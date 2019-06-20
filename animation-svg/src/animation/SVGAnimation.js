@@ -47,7 +47,8 @@ class SVGAnimation extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { selectedFigure, ifProjectCreationMode, ifAnimationEditionMode } = state.svgAnimation;
+  const { selectedFigure } = state.figuresProjects;
+  const {  ifProjectCreationMode, ifAnimationEditionMode } = state.selectedList;
   return { selectedFigure, ifProjectCreationMode, ifAnimationEditionMode };
 }
 

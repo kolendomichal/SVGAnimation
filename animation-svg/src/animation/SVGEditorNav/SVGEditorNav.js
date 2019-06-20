@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 class SVGEditorNav extends React.PureComponent {
     
     isActiveEditor = (value) => {
-        return value === this.props.ifAnimationEditionMode ? " active" : ""
+        return value === this.props.ifAnimationEditionMode ? " active" : "";
     }
 
     render() {
@@ -24,7 +24,7 @@ class SVGEditorNav extends React.PureComponent {
     }
 }
 const mapStateToProps = (state) => {
-    const { ifAnimationEditionMode } = state.svgAnimation;
+    const { ifAnimationEditionMode } = state.selectedList;
     return { ifAnimationEditionMode };
 }
 

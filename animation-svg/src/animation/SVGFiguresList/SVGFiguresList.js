@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import "./SVGFiguresList.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import { addFigureAction, deleteFigureAction, showFigureEditorActon } from "../redux/actions";
+import { addFigureAction, deleteFigureAction, showFigureEditorAction } from "../redux/actions";
 import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
 class SVGFiguresList extends React.PureComponent {
@@ -12,14 +12,16 @@ class SVGFiguresList extends React.PureComponent {
     var selectedElementId = this.props.selectedFigure !== null ? this.props.selectedFigure.id : -1;
     return selectedElementId === elementId ? 'active-list-element' : "";;
   }
+
   deleteFigureFromList(e, id) {
     e.stopPropagation();
     this.props.deleteFigure(id);
   }
+
   render() {
     const { figuresList, addFigure, showFigureEditor } = this.props;
     console.log("SVGFiguresList render")
-    
+
     return (
       <div className="svg-figures-list">
         <div className="bg-secondary text-white">
@@ -54,7 +56,7 @@ class SVGFiguresList extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { figuresList, selectedFigure } = state.svgAnimation;
+  const { figuresList, selectedFigure } = state.figuresProjects;
   return { figuresList, selectedFigure };
 }
 
@@ -62,7 +64,7 @@ const mapDispatchToProps = dispatch => {
   return {
     addFigure: () => dispatch(addFigureAction()),
     deleteFigure: (id) => dispatch(deleteFigureAction(id)),
-    showFigureEditor: (id) => dispatch(showFigureEditorActon(id))
+    showFigureEditor: (id) => dispatch(showFigureEditorAction(id))
   }
 }
 export default connect(

@@ -41,7 +41,7 @@ export const deleteFigureAction = (id) => ({
     payload: { id }
 });
 
-export const showFigureEditorActon = (id) => ({
+export const showFigureEditorAction = (id) => ({
     type: SHOW_FIGURE_EDITOR,
     payload: {id}
 })
@@ -60,3 +60,14 @@ export const handleImportedProjectFileAction = (fileContent) => ({
     type: HANDLE_IMPORTED_PROJECT_FILE,
     payload: {fileContent}
 })
+
+// export default {
+//     changeFigureValueAction,
+//     handleEditorTabChangeAction,
+//     changeProjectFigureTabAction,
+//     addProjectAction,
+//     addFigureAction,
+//     deleteProjectAction,
+//     setCurrentProjectAction,
+//     addFigureAction,
+// }

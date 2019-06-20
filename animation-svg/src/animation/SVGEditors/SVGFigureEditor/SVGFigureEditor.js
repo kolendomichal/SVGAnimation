@@ -87,7 +87,7 @@ class SVGFigureEditor extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { selectedFigure } = state.svgAnimation;
+  const { selectedFigure } = state.figuresProjects;
   return { selectedFigure }
 }
 

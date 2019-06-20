@@ -4,7 +4,7 @@ import { useSelector,useDispatch } from 'react-redux'
 import { changeFigureValueAction } from "../../redux/actions";
 
 const SelectDropdownValue = (props) => {
-  const initialValue = useSelector(state => state.svgAnimation.selectedFigure[props.valueType])
+  const initialValue = useSelector(state => state.figuresProjects.selectedFigure[props.valueType])
   const dispatch = useDispatch();
   const changeFigureValue = useCallback((type,value) => dispatch(changeFigureValueAction(type,value)),[dispatch]);
 

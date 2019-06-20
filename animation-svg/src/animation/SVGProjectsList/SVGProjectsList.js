@@ -89,7 +89,7 @@ class SVGProjectsList extends React.PureComponent {
     }
 }
 const mapStateToProps = (state) => {
-    const { selectedProject, projectList } = state.svgAnimation;
+    const { selectedProject, projectList } = state.figuresProjects;
     return { selectedProject, projectList };
 }
 
