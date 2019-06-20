@@ -29,7 +29,8 @@ class SVGProjectsFiguresNav extends React.PureComponent {
     }
 }
 const mapStateToProps = (state) => {
-    const { selectedProject, ifProjectCreationMode } = state.svgAnimation;
+    const { selectedProject } = state.figuresProjects;
+    const { ifProjectCreationMode } = state.selectedList;
     return { selectedProject, ifProjectCreationMode };
 }
 

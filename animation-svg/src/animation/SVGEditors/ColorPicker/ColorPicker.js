@@ -4,7 +4,7 @@ import { changeFigureValueAction } from "../../redux/actions";
 import { TwitterPicker } from 'react-color';
 
 const ColorPicker = (props) => {
-    const selectedFigure = useSelector(state => state.svgAnimation.selectedFigure)
+    const selectedFigure = useSelector(state => state.figuresProjects.selectedFigure)
     const dispatch = useDispatch();
     const initialColor = selectedFigure[props.valueType];
     const changeFigureValue = useCallback((type, value) => dispatch(changeFigureValueAction(type, value)), [dispatch]);

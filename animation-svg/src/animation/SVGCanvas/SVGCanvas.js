@@ -62,7 +62,7 @@ class SVGCanvas extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    const { figuresList } = state.svgAnimation;
+    const { figuresList } = state.figuresProjects;
     return {figuresList};
 }
 
