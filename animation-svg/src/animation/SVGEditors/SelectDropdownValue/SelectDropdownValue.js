@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useContext} from "react";
-import SVGContext from "../../SVGContext";
+import React, {useCallback} from "react";
 
-function SelectDropdownValue(props) {
-  const svgContext = useContext(SVGContext);
+import { useSelector,useDispatch } from 'react-redux'
+import { changeFigureValueAction } from "../../redux/actions";
 
-  const initialValue = svgContext.selectedFigure[props.valueType];
-  const [value, changeValue] = useState(initialValue);
+const SelectDropdownValue = (props) => {
+  const initialValue = useSelector(state => state.figuresProjects.present.selectedFigure[props.valueType])
+  const dispatch = useDispatch();
+  const changeFigureValue = useCallback((type,value) => dispatch(changeFigureValueAction(type,value)),[dispatch]);
 
-  function renderOptions() {
+  const renderOptions = () => {
     const options = props.dropdownOptions;
     const optionsValues = Object.keys(options);
     return Object.keys(options).map((item, key) => {
@@ -19,21 +20,15 @@ function SelectDropdownValue(props) {
     });
   }
 
-  function onSelectChange(event) {
-    let newSelectedOption = event.target.value;
-    changeValue(newSelectedOption);
-    svgContext.changeFigureValue(props.valueType, newSelectedOption);
+  const onSelectChange = (event) => {
+    changeFigureValue(props.valueType, event.target.value);
   }
-
-  useEffect(() => {
-    changeValue(initialValue);
-  }, [initialValue]); 
 
   return (
     <div className="form-group mt-4">
       <div className="ml-2 mt-2 text-dark font-weight-bold"> {props.header}</div>
       <select
-        value={value}
+        value={initialValue}
         className="form-control mt-2"
         onChange={e => onSelectChange(e)}>
         {renderOptions()}
