@@ -1,11 +1,10 @@
 export function deleteItemFromArray(array, itemId) {
-    const itemsToDeleteFrom = array.forEach(item => {
-        if (item.id !== itemId) {
-            return item;
+    return array.filter((item, index) => {
+        if (item.id === itemId) {
+            return false;
         }
-        array.splice(item, 1);
+        return true;
     })
-    return itemsToDeleteFrom;
 }
 
 export function compareItems(item, id) {
@@ -14,10 +13,14 @@ export function compareItems(item, id) {
         : false;
 }
 
-export function findItemInArray(array, itemId) {
-    return array.find(item => item.id === itemId)
+export function findItemInArray(array, property, propertyValue) {
+    return array.find(item => item[property] === propertyValue)
 }
 
 export function updateObject(oldObject, newValues) {
     return Object.assign({}, oldObject, newValues)
+}
+
+export function deepCloneApplicationState(state) {
+    return JSON.parse(JSON.stringify(state));
 }

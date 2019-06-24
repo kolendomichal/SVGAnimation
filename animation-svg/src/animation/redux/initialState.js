@@ -8,10 +8,10 @@ function createInitialState() {
     return project;
   });
   return {
-    projectList: projectList,
-    selectedProject: projectList[0],
-    figuresList: projectList[0].figuresList,
-    selectedFigure: projectList[0].figuresList[0],
+      projectList: projectList,
+      selectedProject: projectList[0],
+      figuresList: projectList[0].figuresList,
+      selectedFigure: projectList[0].figuresList[0]
   }
 }
 

@@ -60,14 +60,3 @@ export const handleImportedProjectFileAction = (fileContent) => ({
     type: HANDLE_IMPORTED_PROJECT_FILE,
     payload: {fileContent}
 })
-
-// export default {
-//     changeFigureValueAction,
-//     handleEditorTabChangeAction,
-//     changeProjectFigureTabAction,
-//     addProjectAction,
-//     addFigureAction,
-//     deleteProjectAction,
-//     setCurrentProjectAction,
-//     addFigureAction,
-// }

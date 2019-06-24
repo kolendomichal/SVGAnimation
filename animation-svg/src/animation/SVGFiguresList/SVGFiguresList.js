@@ -2,14 +2,13 @@ import React from "react";
 import { connect } from "react-redux";
 import "./SVGFiguresList.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import { faPlus,faTrash } from '@fortawesome/free-solid-svg-icons'
 import { addFigureAction, deleteFigureAction, showFigureEditorAction } from "../redux/actions";
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
 
-class SVGFiguresList extends React.PureComponent {
+class SVGFiguresList extends React.Component {
 
   isActiveListElement(elementId) {
-    var selectedElementId = this.props.selectedFigure !== null ? this.props.selectedFigure.id : -1;
+    var selectedElementId = this.props.selectedFigure !== null ? this.props.selectedFigure._id : -1;
     return selectedElementId === elementId ? 'active-list-element' : "";;
   }
 
@@ -21,10 +20,9 @@ class SVGFiguresList extends React.PureComponent {
   render() {
     const { figuresList, addFigure, showFigureEditor } = this.props;
     console.log("SVGFiguresList render")
-
     return (
       <div className="svg-figures-list">
-        <div className="bg-secondary text-white">
+        <div className="bg-secondary text-white" style={{height: '7vh'}}>
           <span className="figures-header text-left pl-2">Figures</span>
           <span className="mt-4 mr-4 float-right" onClick={() => addFigure()}>
             <FontAwesomeIcon className="add-figure" icon={faPlus} size="2x" />
@@ -56,7 +54,7 @@ class SVGFiguresList extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { figuresList, selectedFigure } = state.figuresProjects;
+  const { figuresList, selectedFigure } = state.figuresProjects.present;
   return { figuresList, selectedFigure };
 }
 

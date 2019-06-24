@@ -12,16 +12,16 @@ class SVGProjectsFiguresNav extends React.PureComponent {
     render() {
         const { selectedProject, handleProjectFigureTabChange } = this.props;
         return (
-            <ul className="svg-editor-nav nav nav-tabs nav-fill ">
+            <ul className="svg-editor-nav nav nav-tabs nav-fill" style={{height: '3vh'}}>
                 <li className="nav-item bg-light" onClick={() => handleProjectFigureTabChange(true)}>
                     <button className={"project-figure-nav-item btn btn-outline-secondary  h-100 w-100 " + this.isActiveProjectFigureTab(true)}>Projects</button>
                 </li>
                 {selectedProject != null
-                    ? <li className=" nav-item" onClick={() => handleProjectFigureTabChange(false)}>
-                        <button className={"project-figure-nav-item btn btn-outline-secondary .btn-outline-* w-100  " + this.isActiveProjectFigureTab(false)}>Figures</button>
+                    ? <li className="nav-item bg-light " onClick={() => handleProjectFigureTabChange(false)}>
+                        <button className={"project-figure-nav-item btn btn-outline-secondary .btn-outline-*  h-100 w-100" + this.isActiveProjectFigureTab(false)}>Figures</button>
                     </li>
-                    : <li className=" nav-item" >
-                        <button className={"btn btn-outline-secondary .btn-outline-* w-100 "} disabled>Figures</button>
+                    : <li className="nav-item  bg-light" >
+                        <button className={"btn btn-outline-secondary .btn-outline-* h-100 w-100"} disabled>Figures</button>
                     </li>
                 }
             </ul>
@@ -29,7 +29,7 @@ class SVGProjectsFiguresNav extends React.PureComponent {
     }
 }
 const mapStateToProps = (state) => {
-    const { selectedProject } = state.figuresProjects;
+    const { selectedProject } = state.figuresProjects.present;
     const { ifProjectCreationMode } = state.selectedList;
     return { selectedProject, ifProjectCreationMode };
 }

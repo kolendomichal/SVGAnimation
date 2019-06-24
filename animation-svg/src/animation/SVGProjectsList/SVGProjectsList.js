@@ -43,7 +43,7 @@ class SVGProjectsList extends React.PureComponent {
         const { projectList, addProject, setCurrentProject } = this.props;
         return (
             <div className="svg-project-list">
-                <div className="bg-secondary text-white">
+                <div className="bg-secondary text-white" style={{height: '7vh'}}>
                     <span className="figures-header text-left pl-2">Projects</span>
                     <span className="mt-4 mr-4 float-right" onClick={() => addProject()}>
                         <FontAwesomeIcon className="add-figure" icon={faPlus} size="2x" />
@@ -51,7 +51,7 @@ class SVGProjectsList extends React.PureComponent {
                 </div>
                 <div className="project-list overflow-auto border-bottom ">
                     <ul id="figures-list" className="list-group bg-light text-left">
-                        {projectList.map((item) => {
+                        {projectList && projectList.map((item) => {
                             return (
                                 <li
                                     key={item.id}
@@ -89,7 +89,7 @@ class SVGProjectsList extends React.PureComponent {
     }
 }
 const mapStateToProps = (state) => {
-    const { selectedProject, projectList } = state.figuresProjects;
+    const { selectedProject, projectList } = state.figuresProjects.present;
     return { selectedProject, projectList };
 }
 
