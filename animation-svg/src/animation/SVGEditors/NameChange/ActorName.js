@@ -5,7 +5,7 @@ import { changeFigureValueAction } from "../../redux/actions";
 
 const ActorName =  (props) => {
 
-    const selectedFigure = useSelector(state => state.figuresProjects.selectedFigure);
+    const selectedFigure = useSelector(state => state.figuresProjects.present.selectedFigure);
     const dispatch = useDispatch();
     const changeFigureValue = useCallback((type,value) => dispatch(changeFigureValueAction(type,value)),[dispatch]);
     const editName = useRef(null);

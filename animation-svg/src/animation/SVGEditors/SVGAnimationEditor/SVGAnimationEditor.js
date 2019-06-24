@@ -57,7 +57,7 @@ class SVGAnimationEditor extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-    const ifAnimationEnabled = state.figuresProjects.selectedFigure.animationEnabled;
+    const ifAnimationEnabled = state.figuresProjects.present.selectedFigure.animationEnabled;
     return { ifAnimationEnabled };
 }
 

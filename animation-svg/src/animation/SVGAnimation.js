@@ -10,7 +10,6 @@ import SVGEditorNav from "./SVGEditorNav/SVGEditorNav";
 import SVGProjectsFiguresNav from "./SVGProjectsFiguresNav/SVGProjectsFiguresNav";
 
 
-//Todo backing up recent action
 class SVGAnimation extends React.PureComponent {
 
   componentDidMount() {
@@ -47,8 +46,8 @@ class SVGAnimation extends React.PureComponent {
 }
 
 const mapStateToProps = (state) => {
-  const { selectedFigure } = state.figuresProjects;
-  const {  ifProjectCreationMode, ifAnimationEditionMode } = state.selectedList;
+  const { selectedFigure } = state.figuresProjects.present;
+  const { ifProjectCreationMode, ifAnimationEditionMode } = state.selectedList;
   return { selectedFigure, ifProjectCreationMode, ifAnimationEditionMode };
 }
 

@@ -5,7 +5,8 @@ import { get } from 'lodash';
 import Switch from "react-switch";
 
 const AnimationSwitch = (props) => {
-    const checked = useSelector(state => get(state.figuresProjects.selectedFigure,props.valueType))
+    const checked = useSelector(state => get(state.figuresProjects.present.selectedFigure,props.valueType));
+    
     const dispatch = useDispatch();
     const changeFigureValue = useCallback((type, value) => dispatch(changeFigureValueAction(type, value)), [dispatch]);
 

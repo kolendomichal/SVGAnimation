@@ -6,7 +6,7 @@ import InputRange from "react-input-range";
 import "./InputNumberRange.css";
 
 const InputNumberRange = (props) => {
-  const initialValue = useSelector(state => get(state.figuresProjects.selectedFigure, props.valueType))
+  const initialValue = useSelector(state => get(state.figuresProjects.present.selectedFigure, props.valueType))
   const dispatch = useDispatch();
   const changeFigureValue = useCallback((type,value) => dispatch(changeFigureValueAction(type,value)),[dispatch]);
   const [minValue, maxValue] = [props.minValue, props.maxValue];
