@@ -12,7 +12,7 @@ class SVGFigureEditor extends React.PureComponent {
 
   render() {
     console.log("SVGFigureEditor render")
-    const selectedFigure = this.props;
+    const { selectedFigure } = this.props;
     return (
       <div className="figure-editor">
         {selectedFigure &&

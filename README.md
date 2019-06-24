@@ -75,10 +75,10 @@ See also the list of [contributors](https://github.com/kolendomichal/SVGAnimatio
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/kolendomichal/AnimationSVG/blob/master/LICENSE) file for details
 
 ## Developers Education Notes
-For educational purposes , I started rewriting this React only based application to an application using React with Redux.
-Redux version of application can be found down below:
-* [Redux](https://github.com/kolendomichal/SVGAnimation/tree/redux-playground)
+For educational purposes , I rewrote this React based application to an application using React with Redux.
 
+* [Redux version](https://github.com/kolendomichal/SVGAnimation/tree/redux-playground) - branch with latest commits regarding refactor
+* [React only version](https://github.com/kolendomichal/SVGAnimation/tree/pure-react) - old only React ( with React Context Api and React-Hooks)
 
 
 [![Board Status](https://dev.azure.com/mchkolendo/2ffb0d85-8c3b-46f5-8aca-131cd5b6f28f/123129eb-5a16-4d0c-be4c-35ecb35114dc/_apis/work/boardbadge/1a00faf6-eaac-4aa2-9d4d-c2e61ee404fd?columnOptions=1)](https://dev.azure.com/mchkolendo/2ffb0d85-8c3b-46f5-8aca-131cd5b6f28f/_boards/board/t/123129eb-5a16-4d0c-be4c-35ecb35114dc/Microsoft.RequirementCategory)
