@@ -7,7 +7,10 @@ Exporting animations, importing or working together with other people is also en
 
 ## Live Application
 
-[SVGAnimation](http://svganimation.azurewebsites.net/).
+[SVGAnimation](http://svganimation.azurewebsites.net/)
+
+[![Build Status](https://dev.azure.com/mchkolendo/SVGAnimation/_apis/build/status/SVGAnimation-CI?branchName=master)](https://dev.azure.com/mchkolendo/SVGAnimation/_build/latest?definitionId=1&branchName=master)
+
 ## Getting Started
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
@@ -71,11 +74,11 @@ See also the list of [contributors](https://github.com/kolendomichal/SVGAnimatio
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/kolendomichal/AnimationSVG/blob/master/LICENSE) file for details
 
-## Acknowledgments
+## Developers Education Notes
+For educational purposes , I started rewriting this React only based application to an application using React with Redux.
+Redux version of application can be found down below:
+* [Redux](https://github.com/kolendomichal/SVGAnimation/tree/redux-playground)
 
-* Hat tip to anyone whose code was used
-* Inspiration
-* etc
 
 
 [![Board Status](https://dev.azure.com/mchkolendo/2ffb0d85-8c3b-46f5-8aca-131cd5b6f28f/123129eb-5a16-4d0c-be4c-35ecb35114dc/_apis/work/boardbadge/1a00faf6-eaac-4aa2-9d4d-c2e61ee404fd?columnOptions=1)](https://dev.azure.com/mchkolendo/2ffb0d85-8c3b-46f5-8aca-131cd5b6f28f/_boards/board/t/123129eb-5a16-4d0c-be4c-35ecb35114dc/Microsoft.RequirementCategory)
