@@ -8,7 +8,7 @@ import { addFigureAction, deleteFigureAction, showFigureEditorAction } from "../
 class SVGFiguresList extends React.Component {
 
   isActiveListElement(elementId) {
-    var selectedElementId = this.props.selectedFigure !== null ? this.props.selectedFigure._id : -1;
+    var selectedElementId = this.props.selectedFigure !== null ? this.props.selectedFigure.id : -1;
     return selectedElementId === elementId ? 'active-list-element' : "";;
   }
 
@@ -30,7 +30,7 @@ class SVGFiguresList extends React.Component {
         </div>
         <div className="figures-list overflow-auto">
           <ul id="figures-list" className="list-group bg-light text-left">
-            {figuresList.map((item) => {
+            {figuresList && figuresList.map((item) => {
               return (
                 <li
                   key={item.id + item.name}

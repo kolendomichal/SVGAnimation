@@ -15,7 +15,7 @@ class SVGCanvas extends React.PureComponent {
 
     setFigure(evt){
         if (evt.target.getAttribute("figuretype") !== null) {
-            this.props.changeActiveSVGFigure(evt.target.getAttribute("id"))
+            this.props.changeActiveSVGFigure(evt.target.id);
         }
     }
 

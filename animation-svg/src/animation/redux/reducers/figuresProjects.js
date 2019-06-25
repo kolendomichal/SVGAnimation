@@ -2,7 +2,7 @@ import { IMPORT_FIGURES_FROM_FILE, CHANGE_ACTIVE_SVG_FIGURE, CHANGE_FIGURE_VALUE
 import { initialFiguresProjectsState } from '../initialState';
 import { Figure } from "../../static/Figure";
 import { Project } from '../../static/Project';
-import { deleteItemFromArray, compareItems, findItemInArray, updateObject, deepCloneApplicationState } from './utils';
+import { deleteItemFromArray, compareItems, findItemInArray, updateObject, deepCloneObject } from './utils';
 import undoable, { excludeAction } from 'redux-undo';
 
 
@@ -24,8 +24,8 @@ function importFiguresFromFile(state, action) {
 
 function changeActiveSVGFigure(state, action) {
     const { hrefid } = action.payload;
-    const{ figuresList } = deepCloneApplicationState(state);
-    let selectedFigure = findItemInArray(figuresList,"hrefid",hrefid);
+    const { figuresList } = deepCloneObject(state);
+    let selectedFigure = findItemInArray(figuresList, "hrefid", hrefid);
     return updateObject(state, { selectedFigure: selectedFigure })
 }
 
@@ -41,7 +41,7 @@ function addFigure(state) {
 
 function deleteFigure(state, action) {
     const { id } = action.payload;
-    const { selectedFigure } = deepCloneApplicationState(state);
+    const { selectedFigure } = deepCloneObject(state);
     let figuresList = deleteItemFromArray(state.figuresList, id);
     let isSelectedFigure = compareItems(selectedFigure, id);
     const { projectList, selectedProject } = updateProjectState(state, figuresList);
@@ -54,7 +54,7 @@ function deleteFigure(state, action) {
 }
 
 function showFigureEditor(state, action) {
-    let selectedFigure = findItemInArray(state.figuresList,"id", action.payload.id);
+    let selectedFigure = findItemInArray(state.figuresList, "id", action.payload.id);
     return updateObject(state, { selectedFigure: selectedFigure })
 }
 
@@ -70,19 +70,19 @@ function addProject(state) {
 
 function deleteProject(state, action) {
     const { id } = action.payload;
-    const { selectedProject,figuresList,selectedFigure } = deepCloneApplicationState(state);
+    const { selectedProject, figuresList, selectedFigure } = deepCloneObject(state);
     let projectList = deleteItemFromArray(state.projectList, id);
     let isSelectedProject = compareItems(selectedProject, id);
     return updateObject(state, {
         projectList: projectList,
-        selectedProject: isSelectedProject ?  null : selectedProject,
+        selectedProject: isSelectedProject ? null : selectedProject,
         figuresList: isSelectedProject ? [] : figuresList,
         selectedFigure: isSelectedProject ? null : selectedFigure,
     })
 }
 
 function setCurrentProject(state, action) {
-    let selectedProject = findItemInArray(state.projectList,"id", action.payload.id);
+    let selectedProject = findItemInArray(state.projectList, "id", action.payload.id);
     return updateObject(state, {
         selectedProject: selectedProject,
         figuresList: selectedProject.figuresList,
@@ -91,7 +91,7 @@ function setCurrentProject(state, action) {
 }
 
 function updateProjectState(state, figuresList) {
-    const { projectList, selectedProject } = deepCloneApplicationState(state);
+    const { projectList, selectedProject } = deepCloneObject(state);
     let projectToUpdateIndex = projectList.findIndex(project => project.id === selectedProject.id);
     projectList[projectToUpdateIndex].figuresList = figuresList;
     selectedProject.figuresList = figuresList;
@@ -100,7 +100,7 @@ function updateProjectState(state, figuresList) {
 
 function changeFigureValue(state, action) {
     const { type, value } = action.payload;
-    const { selectedFigure, figuresList } = deepCloneApplicationState(state);
+    const { selectedFigure, figuresList } = deepCloneObject(state);
     switch (type) {
         case "name": {
             selectedFigure.name = value;
@@ -171,6 +171,7 @@ function changeFigureValue(state, action) {
             break;
         }
     }
+
     figuresList[figuresList.findIndex(fig => fig.id === selectedFigure.id)] = selectedFigure;
     const { projectList, selectedProject } = updateProjectState(state, figuresList);
     return updateObject(
@@ -221,7 +222,7 @@ const figuresProjects = (state = initialFiguresProjectsState, action) => {
 }
 
 const undoableFiguresProjects = undoable(figuresProjects, {
-    filter: excludeAction(SET_CURRENT_PROJECT,SHOW_FIGURE_EDITOR,CHANGE_ACTIVE_SVG_FIGURE)
+    filter: excludeAction(SET_CURRENT_PROJECT, SHOW_FIGURE_EDITOR, CHANGE_ACTIVE_SVG_FIGURE)
 });
 
 export default undoableFiguresProjects;
