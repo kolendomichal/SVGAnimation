@@ -1,11 +1,13 @@
 
 .actor-project-name {
-border: none;
-font-weight: bold;
-font-size: 17pt;
-background-color: #F8F9FA;
-opacity: 100%;
--webkit-transition: all;
+    text-align: center;
+    width: 200px;
+    max-width: 400px;
+    border: none;
+    font-weight: bold;
+    font-size: 17px;
+    background-color: #F8F9FA;
+    opacity: 100%;
 }
 .actor-project-name:hover {
     background-color: lavenderblush;

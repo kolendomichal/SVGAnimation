@@ -16,7 +16,7 @@
     overflow-y: auto !important;
 }
 .project-button {
-    font-size: 12px !important ;
+    font-size: 15px !important ;
     height: 50px;
-    margin-bottom: 5px;
+    margin-bottom:1.6vh;
 }
