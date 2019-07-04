@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/SVGAnimation/static/css/main.c362d9ed.chunk.css",
+    "main.js": "/SVGAnimation/static/js/main.39ac7d3f.chunk.js",
+    "main.js.map": "/SVGAnimation/static/js/main.39ac7d3f.chunk.js.map",
+    "runtime~main.js": "/SVGAnimation/static/js/runtime~main.2b339243.js",
+    "runtime~main.js.map": "/SVGAnimation/static/js/runtime~main.2b339243.js.map",
+    "static/css/2.0f7a873c.chunk.css": "/SVGAnimation/static/css/2.0f7a873c.chunk.css",
+    "static/js/2.ce66cf00.chunk.js": "/SVGAnimation/static/js/2.ce66cf00.chunk.js",
+    "static/js/2.ce66cf00.chunk.js.map": "/SVGAnimation/static/js/2.ce66cf00.chunk.js.map",
+    "index.html": "/SVGAnimation/index.html",
+    "precache-manifest.26e87c2400a4894db0dd6be5355615d8.js": "/SVGAnimation/precache-manifest.26e87c2400a4894db0dd6be5355615d8.js",
+    "service-worker.js": "/SVGAnimation/service-worker.js",
+    "static/css/2.0f7a873c.chunk.css.map": "/SVGAnimation/static/css/2.0f7a873c.chunk.css.map",
+    "static/css/main.c362d9ed.chunk.css.map": "/SVGAnimation/static/css/main.c362d9ed.chunk.css.map"
+  }
+}
