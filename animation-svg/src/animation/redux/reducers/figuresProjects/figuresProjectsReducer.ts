@@ -1,5 +1,5 @@
 import { IMPORT_FIGURES_FROM_FILE, CHANGE_ACTIVE_SVG_FIGURE, CHANGE_FIGURE_VALUE, ADD_FIGURE, DELETE_FIGURE, SHOW_FIGURE_EDITOR, ADD_PROJECT, DELETE_PROJECT, SET_CURRENT_PROJECT, HANDLE_IMPORTED_PROJECT_FILE, CHANGE_PROJECT_NAME } from './actionTypes'
-import { initialFiguresProjectsState, FiguresProjectsState } from '../../initialState';
+import { initialFiguresProjectsState, FiguresProjectsState, createNewFigure } from '../../initialState';
 import { Figure } from "../../../static/Figure";
 import { Project } from '../../../static/Project';
 import { deleteItemFromArray, compareItems, findItemInArray, updateObject, deepCloneObject } from '../utils';
@@ -31,11 +31,14 @@ function changeActiveSVGFigure(state: FiguresProjectsState, action: ChangeActive
 }
 
 function addFigure(state: FiguresProjectsState) {
+
+    var figure = createNewFigure();
+
     return {
         ...state,
         figuresList: [
             ...state.figuresList,
-            new Figure()
+            figure
         ]
     }
 }
