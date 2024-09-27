@@ -7,9 +7,7 @@ Exporting animations, importing or working together with other people is also en
 
 ## Live Application
 
-[SVGAnimation](http://svganimation.azurewebsites.net/)
-
-[![Build Status](https://dev.azure.com/mchkolendo/SVGAnimation/_apis/build/status/SVGAnimation-CI?branchName=master)](https://dev.azure.com/mchkolendo/SVGAnimation/_build/latest?definitionId=1&branchName=master)
+[SVGAnimation](https://kolendomichal.github.io/SVGAnimation/)
 
 ## Getting Started
 
