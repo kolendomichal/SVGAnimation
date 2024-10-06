@@ -1,5 +1,4 @@
 import { cloneDeep } from 'lodash';
-import { Action } from 'redux';
 
 export interface MetadataObj {
     [key: string]: any
