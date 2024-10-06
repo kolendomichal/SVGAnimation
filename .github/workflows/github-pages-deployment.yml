@@ -3,9 +3,6 @@ name: SVG Animation CI and Github Pages deployment
 on:
   push:
     branches: [ "master" ]
-  pull_request:
-    branches:
-      - master
 
 jobs:
   build:
