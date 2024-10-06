@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/static/css/main.6255f93e.chunk.css",
-    "main.js": "/static/js/main.5845552e.chunk.js",
-    "main.js.map": "/static/js/main.5845552e.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.a8a9905a.js",
-    "runtime~main.js.map": "/static/js/runtime~main.a8a9905a.js.map",
-    "static/css/2.0f7a873c.chunk.css": "/static/css/2.0f7a873c.chunk.css",
-    "static/js/2.3a35a4e2.chunk.js": "/static/js/2.3a35a4e2.chunk.js",
-    "static/js/2.3a35a4e2.chunk.js.map": "/static/js/2.3a35a4e2.chunk.js.map",
-    "index.html": "/index.html",
-    "precache-manifest.534ec9c980ea893d2c659f1c84dbc8d3.js": "/precache-manifest.534ec9c980ea893d2c659f1c84dbc8d3.js",
-    "service-worker.js": "/service-worker.js",
-    "static/css/2.0f7a873c.chunk.css.map": "/static/css/2.0f7a873c.chunk.css.map",
-    "static/css/main.6255f93e.chunk.css.map": "/static/css/main.6255f93e.chunk.css.map"
+    "main.css": "%3Cusername%3E.github.io/SVGAnimation/static/css/main.6255f93e.chunk.css",
+    "main.js": "%3Cusername%3E.github.io/SVGAnimation/static/js/main.7b284f2c.chunk.js",
+    "main.js.map": "%3Cusername%3E.github.io/SVGAnimation/static/js/main.7b284f2c.chunk.js.map",
+    "runtime~main.js": "%3Cusername%3E.github.io/SVGAnimation/static/js/runtime~main.5e110cd8.js",
+    "runtime~main.js.map": "%3Cusername%3E.github.io/SVGAnimation/static/js/runtime~main.5e110cd8.js.map",
+    "static/css/2.0f7a873c.chunk.css": "%3Cusername%3E.github.io/SVGAnimation/static/css/2.0f7a873c.chunk.css",
+    "static/js/2.e449ba47.chunk.js": "%3Cusername%3E.github.io/SVGAnimation/static/js/2.e449ba47.chunk.js",
+    "static/js/2.e449ba47.chunk.js.map": "%3Cusername%3E.github.io/SVGAnimation/static/js/2.e449ba47.chunk.js.map",
+    "index.html": "%3Cusername%3E.github.io/SVGAnimation/index.html",
+    "precache-manifest.56b6ec13b3be94289fcad4c83a1a5449.js": "%3Cusername%3E.github.io/SVGAnimation/precache-manifest.56b6ec13b3be94289fcad4c83a1a5449.js",
+    "service-worker.js": "%3Cusername%3E.github.io/SVGAnimation/service-worker.js",
+    "static/css/2.0f7a873c.chunk.css.map": "%3Cusername%3E.github.io/SVGAnimation/static/css/2.0f7a873c.chunk.css.map",
+    "static/css/main.6255f93e.chunk.css.map": "%3Cusername%3E.github.io/SVGAnimation/static/css/main.6255f93e.chunk.css.map"
   }
 }
