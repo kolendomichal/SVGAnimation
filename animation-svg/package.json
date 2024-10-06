@@ -1,5 +1,6 @@
 {
   "name": "animation-svg",
+  "homepage": "https://<username>.github.io/SVGAnimation/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
