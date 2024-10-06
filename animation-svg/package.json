@@ -1,5 +1,6 @@
 {
   "name": "animation-svg",
+  "homepage": "https://kolendomichal.github.io/SVGAnimation/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -32,6 +33,7 @@
     "validator": "^10.11.0"
   },
   "scripts": {
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
