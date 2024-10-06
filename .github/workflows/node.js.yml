@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: animation-svg
+        working-directory: animation-svg  # Ensure this is set to the correct directory
     strategy:
       matrix:
         node-version: [18.x]
@@ -27,6 +27,7 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
       with:
+        cache-dependency-path: animation-svg/package-lock.json
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm ci
